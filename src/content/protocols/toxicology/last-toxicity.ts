@@ -66,7 +66,7 @@ export const lastToxicity: ProtocolInput = {
       id: "hyperventilate-acidosis",
       action: "אם קיימת חמצת מטבולית — הנשם בהיפרונטילציה כדי להעלות את ה-pH בפלזמה.",
       rationale:
-        "חמצת מגבירה את הרעילות של חומרי הרדמה מקומיים; העלאת ה-pH באמצעות היפרונטילציה מפחיתה אותה.",
+        "המקור ממליץ להעלות את ה-pH בפלזמה בהיפרונטילציה כאשר קיימת חמצת מטבולית; הנימוק אינו מפורט במקור.",
       citations: [
         erc("Hyperventilate the patient to increase plasma pH if metabolic acidosis is present"),
       ],
@@ -77,8 +77,7 @@ export const lastToxicity: ProtocolInput = {
       id: "lipid-bolus",
       action:
         "תחליב שומנים 20%: בולוס IV של 1.5 mL/kg במשך דקה אחת, ואחריו עירוי של 0.25 mL/kg/min. אין לעבור מנה מצטברת מקסימלית של 12 mL/kg.",
-      rationale:
-        "תחליב השומנים קושר את חומר ההרדמה המקומי הליפופילי בדם ומפחית את הריכוז הזמין ברקמות הלב והמוח.",
+      rationale: "המקור ממליץ על תחליב שומנים 20% בבולוס ובעירוי; מנגנון הפעולה אינו מפורט במקור.",
       drugRefs: ["lipid-emulsion"],
       decisionPoints: [
         {
@@ -103,7 +102,7 @@ export const lastToxicity: ProtocolInput = {
       id: "lipid-escalation",
       action:
         "אם לא הושג ROSC אחרי 5 דקות: הכפל את קצב עירוי השומנים, ותן עד שני בולוסים נוספים לכל היותר במרווחים של 5 דקות עד להשגת ROSC. אל תעבור 12 mL/kg מצטבר.",
-      rationale: "כשאין תגובה, הגדלת מנת השומנים מעלה את קיבולת הקשירה, בכפוף לתקרה המצטברת.",
+      rationale: "כשאין ROSC המקור ממליץ להגביר את מתן השומנים, בכפוף לתקרה המצטברת של 12 mL/kg.",
       drugRefs: ["lipid-emulsion"],
       reassessmentTargets: [
         { param: "בולוסים נוספים", target: "עד 2, במרווחים של 5 min" },
@@ -121,8 +120,7 @@ export const lastToxicity: ProtocolInput = {
       id: "arrest-adrenaline",
       action:
         "בדום לב: החייאה לפי ALS, אך עם מנת אדרנלין נמוכה — עד 1 מק״ג/ק״ג (≤1 µg/kg) במקום בולוס של 1 מ״ג IV.",
-      rationale:
-        "מנות גבוהות של אדרנלין עלולות לפגוע ביעילות הטיפול בשומנים ולהחמיר הפרעות קצב בהרעלה זו; לכן המקור ממליץ על מנה נמוכה.",
+      rationale: "המקור ממליץ על מנה מופחתת של אדרנלין ב-LAST ואינו מפרט את הנימוק.",
       drugRefs: ["adrenaline-last"],
       decisionPoints: [
         {
@@ -175,14 +173,11 @@ export const lastToxicity: ProtocolInput = {
       hebrewName: "אדרנלין — מנה מופחתת ב-LAST",
       synonyms: ["epinephrine", "אפינפרין"],
       indication:
-        "דום לב בהרעלת חומרי הרדמה מקומיים: עד 1 מק״ג/ק״ג (≤1 µg/kg) במקום 1 מ״ג. הערך המחושב הוא התקרה, לא יעד.",
+        "מנה מקסימלית: דום לב בהרעלת חומרי הרדמה מקומיים: עד 1 מק״ג/ק״ג (≤1 µg/kg) במקום 1 מ״ג. הערך המחושב הוא התקרה, לא יעד.",
       routes: ["IV"],
       dose: {
-        kind: "perKg",
-        amountPerKg: 1,
-        unit: "mcg",
-        weightBasis: "actual",
-        weightBasisRationale: "המקור אינו מציין בסיס משקל — משקל בפועל כברירת מחדל; לאמת",
+        kind: "text",
+        text: "עד 1 מק״ג/ק״ג לכל היותר (≤1 µg/kg) — מנה מקסימלית, לא יעד; במקום 1 מ״ג IV (לפי המקור)",
       },
       concentrations: [],
       highAlert: true,
@@ -198,7 +193,10 @@ export const lastToxicity: ProtocolInput = {
       synonyms: ["benzodiazepines", "midazolam", "lorazepam", "diazepam"],
       indication: "פרכוסים בהרעלת חומרי הרדמה מקומיים",
       routes: ["IV"],
-      dose: { kind: "text", text: "המינון אינו מפורט במקור — לפי נוהל מקומי" },
+      dose: {
+        kind: "text",
+        text: "המינון אינו מפורט במקור — לפי נוהל מקומי (מסלול לפי נוהל מקומי)",
+      },
       concentrations: [],
       highAlert: true,
       highAlertReason: "תרופה מרדימה — סיכון לדיכוי נשימתי ולירידת לחץ דם",
@@ -208,7 +206,7 @@ export const lastToxicity: ProtocolInput = {
     },
   ],
   pitfalls: [
-    "אל תיתן אדרנלין 1 מ״ג סטנדרטי — במקור: עד 1 מק״ג/ק״ג.",
+    "אל תיתן אדרנלין 1 מ״ג סטנדרטי — במקור: עד 1 מק״ג/ק״ג לכל היותר.",
     "מינון תחליב השומנים הוא בנפח (mL/kg) — אינו מחושב באפליקציה; חשב ובדוק ידנית מול התקרה המצטברת.",
     "החייאה עשויה להימשך זמן רב — אל תפסיק מוקדם; שקול ECPR.",
   ],

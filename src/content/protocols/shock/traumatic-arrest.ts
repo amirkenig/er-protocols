@@ -50,7 +50,7 @@ export const traumaticArrest: ProtocolInput = {
     {
       id: "non-traumatic-likely",
       action:
-        "שאל: האם סביר שהדום אינו טראומטי (סיבה רפואית שקדמה לפגיעה)? אם כן — אלגוריתם ALS רגיל. אם לא — אלגוריתם דום לב טראומטי.",
+        "שאל: האם סביר שהדום אינו טראומטי (סיבה רפואית)? אם כן — אלגוריתם ALS רגיל. אם לא — אלגוריתם דום לב טראומטי.",
       rationale:
         "דום לב טראומטי שונה מדום לב מסיבה רפואית, והטיפול בו שונה. אצל חלק ממטופלי הטראומה הדום נגרם מסיבה רפואית, ואז יש לטפל לפי ALS.",
       decisionPoints: [
@@ -146,7 +146,7 @@ export const traumaticArrest: ProtocolInput = {
       id: "chest-decompression",
       action: "בצע דקומפרסיה דו-צדדית של בית החזה (thoracostomies).",
       rationale:
-        "חזה אוויר בלחץ מונע החזר ורידי ללב וגורם לדום לב חסימתי. דקומפרסיה דו-צדדית מטפלת בסיבה בשני הצדדים בלי לעכב לצורך אבחנה.",
+        "חזה אוויר בלחץ מונע החזר ורידי ללב וגורם לדום לב חסימתי. דקומפרסיה דו-צדדית מטפלת בסיבה בשני הצדדים.",
       citations: [
         erc(
           "Fig. 17 Traumatic cardiac arrest algorithm, p. 28",
@@ -207,6 +207,7 @@ export const traumaticArrest: ProtocolInput = {
           "Resuscitative endovascular balloon occlusion of the aorta (REBOA), p. 20",
           "The ERC does not recommend the routine use of REBOA for cardiac arrest unless being evaluated in a clinical trial.",
         ),
+        erc("Fig. 17 Traumatic cardiac arrest algorithm, p. 28"),
       ],
       verificationStatus: "unverified",
       unverifiedReason: `${PENDING} The REBOA statement is in the general ALS section (p. 20), not the traumatic-arrest section.`,
@@ -247,7 +248,7 @@ export const traumaticArrest: ProtocolInput = {
   pitfalls: [
     "אל תטפל בדום לב טראומטי כמו בדום לב רפואי: טיפול בסיבות ההפיכות קודם לעיסויים.",
     "האלגוריתם אינו רציף — בחר את ההתערבות הדחופה ביותר לפי המטופל (למשל: טמפונדה — טורקוטומיה דחופה; שבר אגן עם נתיב אוויר יציב — קיבוע אגן והעברה מהירה).",
-    "לאחר ROSC עם עליית ST: אין לתת תרומבוליזה בדום לב טראומטי — העבר מיד למרכז צנתורים.",
+    "לאחר ROSC עם עליית ST: אין לשקול פיברינוליזה בדום לב טראומטי (ERC, Coronary thrombosis, p. 27).",
   ],
   contraindications: [],
   sources: [ERC],

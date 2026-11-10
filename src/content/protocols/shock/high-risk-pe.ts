@@ -7,14 +7,13 @@
  * The source names fibrinolytic therapy but gives NO drug or dose, and does not define
  * "haemodynamic instability / high-risk PE" numerically: those are left as text.
  *
- * AHA 2025 Part 9 (adult ALS) has no PE-specific treatment recommendation (deferred to
- * Part 10, not provided). Its only PE-related statement is on POCUS during cardiac arrest
- * (Adjuncts to CPR, rec 2, PDF p. 32 table; PE named in supportive text p. 33).
+ * AHA 2025 Part 9 (adult ALS) is silent on PE treatment (deferred to Part 10, not
+ * provided), so no AHA comparison is made. It only rates POCUS for reversible causes
+ * during arrest as "not well established" (COR 2b, LOE C-LD, PDF p. 32).
  */
 import type { ProtocolInput } from "../../schema";
 
 const ERC = "erc-2025-exec";
-const AHA9 = "aha-2025-als";
 const PENDING =
   "Transcribed from ERC 2025 Executive Summary (full text, PDF pp. 25–27). AHA 2025 Part 9 has no PE-specific treatment statement; AHA Part 10 (special circumstances) not provided. Awaiting clinician review.";
 
@@ -50,7 +49,7 @@ export const highRiskPe: ProtocolInput = {
       "סימני עומס על חדר ימין באק״ג",
     ],
     criteria: [
-      "תסחיף בסיכון גבוה = עם חוסר יציבות המודינמית. המקור אינו מגדיר ספים מספריים — לפי הערכה קלינית ונוהל מקומי.",
+      "זהה חוסר יציבות המודינמית ותסחיף בסיכון גבוה. המקור אינו מגדיר תסחיף בסיכון גבוה ואינו נותן ספים מספריים — לפי הערכה קלינית ונוהל מקומי.",
     ],
   },
   immediateActions: [
@@ -125,9 +124,9 @@ export const highRiskPe: ProtocolInput = {
     {
       id: "rescue-reperfusion",
       action:
-        "במטופל המתדרדר במהירות: טיפול פיברינוליטי כטיפול הצלה (rescue). כחלופה לפיברינוליזה — שקול אמבולקטומיה כירורגית או טיפול מבוסס צנתר. סוג התרופה הפיברינוליטית והמינון אינם מפורטים במקור — לפי נוהל מקומי.",
+        "במטופל המתדרדר במהירות: שקול אמבולקטומיה כירורגית או טיפול מבוסס צנתר כחלופה לטיפול פיברינוליטי כטיפול הצלה (rescue). המקור אינו מפרט את סוג התרופה הפיברינוליטית או המינון — לפי נוהל מקומי.",
       rationale:
-        "בתסחיף בסיכון גבוה עם התדרדרות, פתיחה מהירה של עורקי הריאה מפחיתה את העומס על חדר ימין. כשפיברינוליזה אינה מתאימה (למשל סיכון דימום), טיפול כירורגי או בצנתר הם חלופה.",
+        "בתסחיף בסיכון גבוה עם התדרדרות, פתיחה מהירה של עורקי הריאה מפחיתה את העומס על חדר ימין. כחלופה לפיברינוליזה, טיפול כירורגי או בצנתר הם חלופה.",
       drugRefs: ["fibrinolytic"],
       decisionPoints: [
         {
@@ -184,31 +183,14 @@ export const highRiskPe: ProtocolInput = {
           ARREST,
           "Consider ECPR as a rescue therapy for selected patients with cardiac arrest when conventional CPR is failing in settings in which it is implemented.",
         ),
-      ],
-      guidelineDifferences: [
         {
-          body: "AHA 2025",
-          relation: "differs",
-          recommendation:
-            "פרק 9 של AHA אינו מתייחס לטיפול בתסחיף בדום לב (פיברינוליזה/אמבולקטומיה) — הנושא בפרק 10 שטרם התקבל. לגבי אולטרסאונד: שימוש ב-POCUS בזמן החייאה לאבחון סיבות הפיכות (כולל תסחיף ריאתי) ״אינו מבוסס היטב״ (COR 2b, LOE C-LD), ויש להקפיד על מזעור הפסקות בעיסויים.",
-          citations: [
-            {
-              sourceId: AHA9,
-              locator: "Recommendations for Adjuncts to CPR, rec 2 (COR 2b, LOE C-LD), PDF p. 32",
-              quote:
-                "Use of point-of-care ultrasonography during adult cardiac arrest resuscitation to diagnose reversible causes is not well established.",
-            },
-            {
-              sourceId: AHA9,
-              locator: "Adjuncts to CPR, Recommendation-Specific Supportive Text 2, PDF p. 33",
-              quote:
-                "… identification of potentially reversible causes of cardiac arrest, such as pulmonary embolism, … attention to minimizing interruptions in CPR is a priority.",
-            },
-          ],
+          sourceId: ERC,
+          locator: "Special circumstances — general recommendation, p. 22",
+          quote: "Initiate resuscitation following the standard ALS algorithm in cardiac arrest.",
         },
       ],
       verificationStatus: "unverified",
-      unverifiedReason: `${PENDING} No fibrinolytic agent/dose and no guidance on CPR duration after fibrinolysis in the source.`,
+      unverifiedReason: `${PENDING} No fibrinolytic agent/dose and no guidance on CPR duration after fibrinolysis in the source. AHA 2025 Part 9 is silent on PE treatment; it rates POCUS for reversible causes during arrest 'not well established' (COR 2b, LOE C-LD, PDF p. 32).`,
     },
   ],
   drugs: [
@@ -245,7 +227,7 @@ export const highRiskPe: ProtocolInput = {
       hebrewName: "תרופה פיברינוליטית",
       synonyms: ["thrombolysis", "תרומבוליזה", "fibrinolysis", "פיברינוליזה"],
       indication:
-        "טיפול הצלה במטופל עם תסחיף בסיכון גבוה המתדרדר במהירות; דום לב עם חשד לתסחיף או תסחיף ידוע כסיבה",
+        "חלופה שאליה מתייחס המקור במטופל המתדרדר במהירות; טיפול הצלה במטופל עם תסחיף בסיכון גבוה המתדרדר במהירות; דום לב עם חשד לתסחיף או תסחיף ידוע כסיבה",
       routes: ["IV"],
       dose: { kind: "text", text: "המינון אינו מפורט במקור — לפי נוהל מקומי" },
       concentrations: [],
@@ -271,11 +253,11 @@ export const highRiskPe: ProtocolInput = {
     "המקור אינו מכסה: סוג ומינון התרופה הפיברינוליטית, התוויות נגד לפיברינוליזה, עירוי הפרין להמשך, הגדרה מספרית של חוסר יציבות המודינמית, וזופרסורים/נוזלים בכשל חדר ימין, ומשך החייאה לאחר פיברינוליזה — לפי נוהל מקומי והתייעצות.",
   ],
   contraindications: ["הפרין: סימני דימום או התוויות נגד מוחלטות (לפי המקור; הרשימה אינה מפורטת)"],
-  sources: [ERC, AHA9],
+  sources: [ERC],
   guidelineDifferences: [],
   lastReviewed: null,
   reviewedBy: null,
   verificationStatus: "unverified",
   unverifiedReason:
-    "ERC 2025 executive summary only. Not covered in the available source: fibrinolytic agent and dose, fibrinolysis contraindications, heparin maintenance, numeric definition of high-risk PE, RV-failure haemodynamic support. AHA 2025 Part 9 compared for POCUS only; Part 10 not provided. Awaiting clinician review.",
+    "ERC 2025 executive summary only. Not covered in the available source: fibrinolytic agent and dose, fibrinolysis contraindications, heparin maintenance, numeric definition of high-risk PE, RV-failure haemodynamic support. AHA 2025 Part 9 is silent on PE treatment; Part 10 not provided. Awaiting clinician review.",
 };
