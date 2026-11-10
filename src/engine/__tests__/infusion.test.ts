@@ -252,3 +252,16 @@ describe("rateToPump — safety property", () => {
     );
   });
 });
+
+describe("formula display", () => {
+  it("shows the numeric unit-conversion factor so the step can be re-checked by hand", () => {
+    const r = rateToPump({
+      spec: norepi,
+      rate: 0.1,
+      patient: { weightKg: 80 },
+      concentration: bag4in250,
+    });
+    const pump = r.steps.find((s) => s.label === "קצב משאבה");
+    expect(pump?.expression).toContain("0.001 (mcg→mg)");
+  });
+});

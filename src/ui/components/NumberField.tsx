@@ -3,7 +3,7 @@ import { parsePositiveNumber } from "../forms/parse";
 import { he } from "../i18n/he";
 
 const inputCls =
-  "min-h-12 w-full rounded-lg border-2 border-slate-400 bg-white px-2 text-lg dark:border-slate-500 dark:bg-slate-900";
+  "min-h-12 w-full rounded-lg border-2 border-line-strong bg-surface px-2 text-lg";
 
 interface Props {
   label: string;
@@ -26,7 +26,7 @@ export function NumberField({ label, value, onChange, unit, className }: Props) 
       <input
         type="text"
         inputMode="decimal"
-        className={`${inputCls} ${invalid ? "border-status-danger" : ""}`}
+        className={`${inputCls} ${invalid ? "border-danger" : ""}`}
         value={value}
         aria-invalid={invalid ? "true" : undefined}
         aria-describedby={invalid ? errId : undefined}
@@ -36,7 +36,7 @@ export function NumberField({ label, value, onChange, unit, className }: Props) 
       />
       </label>
       {invalid && (
-        <span id={errId} className="block text-sm font-bold text-status-danger">
+        <span id={errId} className="block text-sm font-bold text-danger">
           {he.invalidNumber}
         </span>
       )}

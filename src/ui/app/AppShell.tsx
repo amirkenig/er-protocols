@@ -3,12 +3,12 @@ import { he } from "../i18n/he";
 import { PatientBar } from "../components/PatientBar";
 
 const iconBtn =
-  "flex min-h-12 min-w-12 items-center justify-center rounded-lg border-2 border-slate-400 px-3 text-lg font-bold";
+  "flex min-h-12 min-w-12 items-center justify-center rounded-lg border-2 border-on-header/60 px-3 text-lg font-bold text-on-header hover:bg-on-header/10";
 
 export function AppShell() {
   return (
     <div className="flex min-h-dvh flex-col">
-      <header className="sticky top-0 z-40 border-b border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-950">
+      <header className="sticky top-0 z-40 border-b-4 border-brand-stripe bg-header text-on-header">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-2 px-4 py-2">
           <Link to="/" className="min-h-12 content-center text-xl font-bold">
             {he.appTitle}
@@ -27,8 +27,8 @@ export function AppShell() {
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-4">
         <Outlet />
       </main>
-      <footer className="border-t border-slate-300 px-4 py-2 text-sm dark:border-slate-700">
-        <Link to="/about#disclaimer" className="inline-flex min-h-12 items-center underline">
+      <footer className="border-t border-line px-4 py-2 text-sm">
+        <Link to="/about#disclaimer" className="inline-flex min-h-12 items-center text-accent underline">
           {he.footer}
         </Link>
       </footer>

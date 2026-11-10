@@ -3,9 +3,9 @@ import type { Severity, Warning } from "../../engine/result";
 const ORDER: Record<Severity, number> = { danger: 0, caution: 1, info: 2 };
 
 const CLS: Record<Severity, string> = {
-  danger: "border-status-danger bg-red-50 font-bold text-red-900 dark:bg-red-950 dark:text-red-100",
-  caution: "border-amber-600 bg-amber-50 text-amber-950 dark:bg-amber-950 dark:text-amber-100",
-  info: "border-slate-500 bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-100",
+  danger: "border-danger bg-danger-bg font-bold text-danger-fg",
+  caution: "border-caution bg-caution-bg text-fg",
+  info: "border-line-strong bg-surface-2 text-fg",
 };
 
 const ICON: Record<Severity, string> = { danger: "⚠", caution: "!", info: "ℹ" };

@@ -6,11 +6,11 @@ const STYLES: Record<Status, { label: string; icon: string; cls: string }> = {
   draft: {
     label: he.status.draft,
     icon: "✎",
-    cls: "text-slate-800 border-slate-700 dark:text-slate-200 dark:border-slate-300",
+    cls: "text-fg border-line-strong",
   },
-  unverified: { label: he.status.unverified, icon: "⚠", cls: "text-status-unverified border-status-unverified" },
-  verified: { label: he.status.verified, icon: "✓", cls: "text-status-verified border-status-verified" },
-  localOverride: { label: he.status.localOverride, icon: "⌂", cls: "text-status-local border-status-local" },
+  unverified: { label: he.status.unverified, icon: "⚠", cls: "text-caution border-unverified" },
+  verified: { label: he.status.verified, icon: "✓", cls: "text-verified border-verified" },
+  localOverride: { label: he.status.localOverride, icon: "⌂", cls: "text-local border-local" },
 };
 
 export function StatusBadge({ status }: { status: Status }) {

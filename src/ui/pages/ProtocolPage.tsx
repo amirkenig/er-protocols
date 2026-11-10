@@ -8,7 +8,7 @@ export function ProtocolPage() {
   if (!stub) return <p className="text-lg">{he.protocol.notFound}</p>;
   return (
     <div className="space-y-3">
-      <Link to={`/c/${stub.categoryId}`} className="flex min-h-12 items-center underline">
+      <Link to={`/c/${stub.categoryId}`} className="flex min-h-12 items-center text-accent underline">
         {he.back}
       </Link>
       <h1 className="text-2xl font-bold">{stub.titleHe}</h1>

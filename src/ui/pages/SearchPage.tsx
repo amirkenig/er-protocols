@@ -17,7 +17,7 @@ export function SearchPage() {
         onChange={(e) => {
           setParams({ q: e.target.value }, { replace: true });
         }}
-        className="min-h-16 w-full rounded-xl border-2 border-slate-500 bg-white px-4 text-xl dark:bg-slate-900"
+        className="min-h-16 w-full rounded-xl border-2 border-line-strong bg-surface px-4 text-xl"
       />
       {q.trim() === "" ? (
         <p className="text-lg">{he.search.prompt}</p>
@@ -29,7 +29,7 @@ export function SearchPage() {
             <li key={`${h.kind}:${h.id}`}>
               <Link
                 to={h.kind === "category" ? `/c/${h.id}` : `/p/${h.id}`}
-                className="flex min-h-16 flex-col justify-center rounded-xl border-2 border-slate-400 bg-white p-4 dark:border-slate-600 dark:bg-slate-900"
+                className="flex min-h-16 flex-col justify-center rounded-xl border-2 border-line bg-surface p-4"
               >
                 <span className="text-xl font-bold">{h.titleHe}</span>
                 <span className="text-sm">

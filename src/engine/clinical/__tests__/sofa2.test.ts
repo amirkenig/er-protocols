@@ -36,7 +36,16 @@ describe("brain", () => {
 
 describe("respiratory", () => {
   const pf = (ratio: number, adv = true, extra: Partial<RespiratoryInput> = {}) =>
-    v(respiratoryPoints({ ratioType: "PF", ratio, advancedSupport: adv, supportUnavailableOrCeiling: false, ecmo: false, ...extra }));
+    v(
+      respiratoryPoints({
+        ratioType: "PF",
+        ratio,
+        advancedSupport: adv,
+        supportUnavailableOrCeiling: false,
+        ecmo: false,
+        ...extra,
+      }),
+    );
   it("PF thresholds", () => {
     expect(pf(301)).toBe(0);
     expect(pf(300)).toBe(1);
@@ -57,7 +66,16 @@ describe("respiratory", () => {
   });
   it("SF thresholds (footnote f) and SpO2 < 98% rule", () => {
     const sf = (ratio: number, spo2?: number) =>
-      v(respiratoryPoints({ ratioType: "SF", ratio, spo2, advancedSupport: true, supportUnavailableOrCeiling: false, ecmo: false }));
+      v(
+        respiratoryPoints({
+          ratioType: "SF",
+          ratio,
+          spo2,
+          advancedSupport: true,
+          supportUnavailableOrCeiling: false,
+          ecmo: false,
+        }),
+      );
     expect(sf(301, 95)).toBe(0);
     expect(sf(300, 95)).toBe(1);
     expect(sf(250, 95)).toBe(2);
@@ -161,8 +179,11 @@ describe("liver", () => {
 });
 
 describe("kidney", () => {
-  const k = (creatinine: number | undefined, urineOutput: Parameters<typeof kidneyPoints>[0]["urineOutput"] = "normal", unit: "mg/dL" | "umol/L" = "mg/dL") =>
-    v(kidneyPoints({ creatinine, unit, urineOutput, rrtOrMeetsCriteria: false }));
+  const k = (
+    creatinine: number | undefined,
+    urineOutput: Parameters<typeof kidneyPoints>[0]["urineOutput"] = "normal",
+    unit: "mg/dL" | "umol/L" = "mg/dL",
+  ) => v(kidneyPoints({ creatinine, unit, urineOutput, rrtOrMeetsCriteria: false }));
   it("creatinine mg/dL", () => {
     expect(k(1.2)).toBe(0);
     expect(k(1.21)).toBe(1);
@@ -185,7 +206,9 @@ describe("kidney", () => {
     expect(k(undefined)).toBe(0);
   });
   it("RRT → 4; invalid creatinine blocks", () => {
-    expect(v(kidneyPoints({ unit: "mg/dL", urineOutput: "normal", rrtOrMeetsCriteria: true }))).toBe(4);
+    expect(
+      v(kidneyPoints({ unit: "mg/dL", urineOutput: "normal", rrtOrMeetsCriteria: true })),
+    ).toBe(4);
     expect(k(-1)).toBe("blocked");
   });
 });
@@ -212,8 +235,20 @@ describe("sofa2 total", () => {
   it("sums domains, max 24", () => {
     const r = sofa2({
       brain: { gcs: 3, deliriumTreatment: false },
-      respiratory: { ratioType: "PF", ratio: 60, advancedSupport: true, supportUnavailableOrCeiling: false, ecmo: false },
-      cardiovascular: { map: 50, norepiEpiSum: 0.5, otherVasoactive: false, mechanicalSupport: false, vasoactivesUnavailable: false },
+      respiratory: {
+        ratioType: "PF",
+        ratio: 60,
+        advancedSupport: true,
+        supportUnavailableOrCeiling: false,
+        ecmo: false,
+      },
+      cardiovascular: {
+        map: 50,
+        norepiEpiSum: 0.5,
+        otherVasoactive: false,
+        mechanicalSupport: false,
+        vasoactivesUnavailable: false,
+      },
       liver: { bilirubin: 15, unit: "mg/dL" },
       kidney: { unit: "mg/dL", urineOutput: "normal", rrtOrMeetsCriteria: true },
       hemostasis: { platelets: 20 },

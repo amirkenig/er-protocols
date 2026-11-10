@@ -91,6 +91,8 @@ interface Context {
   /** Multiplier: (rate in rateUnit) × factor = amount per hour in concentration unit. */
   readonly factor: number;
   readonly perMl: number;
+  /** Conversion factor from the rate's dose unit to the concentration unit (e.g. mcg→mg = 0.001). */
+  readonly unitFactor: number;
   readonly steps: FormulaStep[];
   readonly warnings: Warning[];
 }
@@ -133,6 +135,7 @@ function buildContext(
     kg,
     factor: clean(unitFactor.value * kg * perHour),
     perMl,
+    unitFactor: unitFactor.value,
     steps,
     warnings,
   });
@@ -166,7 +169,8 @@ function rateExpression(
   const parts = [fmtQ(rate, spec.rateUnit)];
   if (ctx.def.perKg) parts.push(`${fmt(ctx.kg, 1)} kg`);
   if (ctx.def.per === "min") parts.push("60 min/h");
-  if (ctx.def.dose !== concUnit) parts.push(`(${ctx.def.dose}→${concUnit})`);
+  if (ctx.def.dose !== concUnit)
+    parts.push(`${fmt(ctx.unitFactor, 6)} (${ctx.def.dose}→${concUnit})`);
   return `${parts.join(" × ")} ÷ ${fmt(ctx.perMl, 6)} ${concUnit}/mL`;
 }
 

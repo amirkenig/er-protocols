@@ -193,8 +193,8 @@ export function dosingWeight(patient: Patient, basis: WeightBasis): CalcResult<n
         w.value,
         [
           {
-            label: "משקל לחישוב: משקל בפועל",
-            expression: "משקל שהוזן",
+            label: "משקל לחישוב: משקל בפועל (כפי שהוזן)",
+            expression: fmtQ(w.value, "kg"),
             result: fmtQ(w.value, "kg"),
           },
         ],

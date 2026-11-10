@@ -141,7 +141,7 @@ export function InfusionCalcPage() {
                 {he.calc.infusion.resultDelivered}: <bdi dir="ltr">{fmtQ(v.deliveredRate, rateUnit)}</bdi>
               </p>
               {v.capped && (
-                <p className="inline-block rounded-md border-2 border-status-danger px-2 py-1 font-bold text-status-danger">
+                <p className="inline-block rounded-md border-2 border-danger px-2 py-1 font-bold text-danger">
                   <span aria-hidden="true">⚠ </span>
                   {he.calc.infusion.capped}
                 </p>
@@ -164,14 +164,14 @@ export function InfusionCalcPage() {
         </ResultView>
       )}
 
-      <details className="rounded-xl border-2 border-slate-300 p-3 dark:border-slate-700">
+      <details className="rounded-xl border-2 border-line p-3">
         <summary className="min-h-12 cursor-pointer text-lg font-bold">{he.calc.infusion.table}</summary>
         <div className="grid grid-cols-3 gap-3">
           <NumberField label={he.calc.infusion.from} value={fromText} onChange={setFromText} />
           <NumberField label={he.calc.infusion.to} value={toText} onChange={setToText} />
           <NumberField label={he.calc.infusion.step} value={stepText} onChange={setStepText} />
         </div>
-        {rangeInvalid && <p className="font-bold text-status-danger">{he.calc.infusion.invalidRange}</p>}
+        {rangeInvalid && <p className="font-bold text-danger">{he.calc.infusion.invalidRange}</p>}
         {rows && (
           <>
             <table className="mt-3 w-full text-start text-lg">
@@ -183,7 +183,7 @@ export function InfusionCalcPage() {
               </thead>
               <tbody>
                 {rows.map((r) => (
-                  <tr key={r.rate} className="border-t border-slate-300 dark:border-slate-700">
+                  <tr key={r.rate} className="border-t border-line">
                     <td>
                       <bdi dir="ltr">{fmt(r.rate)}</bdi>
                     </td>

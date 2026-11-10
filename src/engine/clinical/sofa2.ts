@@ -10,7 +10,14 @@
  * Each domain is optional. Missing domains score 0 (footnote b, day-1 rule) and are
  * listed in `missing` so the UI can show it.
  */
-import { blocked, isFiniteNumber, ok, type CalcResult, type FormulaStep, type Warning } from "../result";
+import {
+  blocked,
+  isFiniteNumber,
+  ok,
+  type CalcResult,
+  type FormulaStep,
+  type Warning,
+} from "../result";
 
 export type Points = 0 | 1 | 2 | 3 | 4;
 
@@ -117,7 +124,10 @@ export function respiratoryPoints(r: RespiratoryInput): CalcResult<Points> {
       : { p1: 300, p2: 250, p3: 200, p4: 120 };
   if (r.ratioType === "SF") {
     if (r.spo2 === undefined || !isFiniteNumber(r.spo2) || r.spo2 >= 98 || r.spo2 <= 0) {
-      return blocked("INVALID_INPUT", "יחס SpO2:FiO2 מותר רק כאשר SpO2 נמוך מ-98% ו-PaO2:FiO2 אינו זמין");
+      return blocked(
+        "INVALID_INPUT",
+        "יחס SpO2:FiO2 מותר רק כאשר SpO2 נמוך מ-98% ו-PaO2:FiO2 אינו זמין",
+      );
     }
   }
   let pts: Points;
@@ -210,11 +220,22 @@ export function sofa2(input: Sofa2Input): CalcResult<Sofa2Value> {
     kidney: kidneyPoints,
     hemostasis: hemostasisPoints,
   };
-  const order: readonly Sofa2Domain[] = ["brain", "respiratory", "cardiovascular", "liver", "kidney", "hemostasis"];
-  const domains = { brain: 0, respiratory: 0, cardiovascular: 0, liver: 0, kidney: 0, hemostasis: 0 } as Record<
-    Sofa2Domain,
-    Points
-  >;
+  const order: readonly Sofa2Domain[] = [
+    "brain",
+    "respiratory",
+    "cardiovascular",
+    "liver",
+    "kidney",
+    "hemostasis",
+  ];
+  const domains = {
+    brain: 0,
+    respiratory: 0,
+    cardiovascular: 0,
+    liver: 0,
+    kidney: 0,
+    hemostasis: 0,
+  } as Record<Sofa2Domain, Points>;
   const missing: Sofa2Domain[] = [];
   const steps: FormulaStep[] = [];
   for (const d of order) {
@@ -230,7 +251,11 @@ export function sofa2(input: Sofa2Input): CalcResult<Sofa2Value> {
     steps.push({ label: DOMAIN_HE[d], expression: "לפי טבלה 2", result: String(r.value) });
   }
   const total = order.reduce((sum, d) => sum + domains[d], 0);
-  steps.push({ label: "סה״כ SOFA-2", expression: "סכום 6 המערכות", result: `${String(total)} / 24` });
+  steps.push({
+    label: "סה״כ SOFA-2",
+    expression: "סכום 6 המערכות",
+    result: `${String(total)} / 24`,
+  });
   const warnings: Warning[] =
     missing.length > 0
       ? [

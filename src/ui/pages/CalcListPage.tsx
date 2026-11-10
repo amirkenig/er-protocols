@@ -4,7 +4,7 @@ import { StatusBadge } from "../components/StatusBadge";
 import { he } from "../i18n/he";
 
 const WITH_PAGE: readonly string[] = ["dose", "infusion"];
-const rowCls = "flex min-h-16 flex-col justify-center gap-1 rounded-xl border-2 border-slate-400 p-4";
+const rowCls = "flex min-h-16 flex-col justify-center gap-1 rounded-xl border-2 border-line p-4";
 
 export function CalcListPage() {
   return (

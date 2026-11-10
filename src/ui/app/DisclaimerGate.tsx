@@ -10,7 +10,7 @@ export function DisclaimerGate({ children }: { children: ReactNode }) {
   if (acked) return <>{children}</>;
 
   return (
-    <div role="dialog" aria-modal="true" aria-labelledby="disclaimer-title" className="fixed inset-0 z-50 overflow-y-auto bg-slate-50 p-6 dark:bg-slate-950">
+    <div role="dialog" aria-modal="true" aria-labelledby="disclaimer-title" className="fixed inset-0 z-50 overflow-y-auto bg-bg p-6">
       <div className="mx-auto max-w-xl">
         <h1 id="disclaimer-title" className="mb-4 text-2xl font-bold">{he.disclaimer.title}</h1>
         <ul className="mb-6 list-disc space-y-2 ps-6 text-lg">
@@ -32,7 +32,7 @@ export function DisclaimerGate({ children }: { children: ReactNode }) {
         <button
           type="button"
           disabled={!checked}
-          className="min-h-14 w-full rounded-lg bg-slate-900 px-6 text-xl font-bold text-white disabled:opacity-40 dark:bg-slate-50 dark:text-slate-900"
+          className="min-h-14 w-full rounded-lg bg-primary px-6 text-xl font-bold text-on-primary hover:bg-primary-hover disabled:opacity-40"
           onClick={() => {
             setSetting("disclaimerAckVersion", CONTENT_VERSION);
             setAcked(true);

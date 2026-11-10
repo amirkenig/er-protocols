@@ -5,8 +5,8 @@ import { usePatient } from "../../state/PatientSession";
 import { StatusBadge } from "../components/StatusBadge";
 import { he } from "../i18n/he";
 
-const fieldCls = "min-h-12 w-full rounded-lg border-2 border-slate-400 bg-white px-3 text-lg dark:bg-slate-900";
-const btnCls = "min-h-12 rounded-lg border-2 border-slate-500 px-4 text-lg font-bold";
+const fieldCls = "min-h-12 w-full rounded-lg border-2 border-line-strong bg-surface px-3 text-lg";
+const btnCls = "min-h-12 rounded-lg border-2 border-line-strong px-4 text-lg font-bold";
 
 const BPM_OPTIONS = [100, 105, 110, 115, 120];
 
@@ -90,7 +90,7 @@ export function SettingsPage() {
           ))}
         </select>
       </label>
-      <button type="button" className={`${btnCls} border-status-danger text-status-danger`} onClick={reset}>
+      <button type="button" className={`${btnCls} border-danger text-danger`} onClick={reset}>
         {he.settings.clearPatient}
       </button>
     </div>

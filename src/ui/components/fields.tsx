@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 export const selectCls =
-  "min-h-12 w-full rounded-lg border-2 border-slate-400 bg-white px-2 text-lg dark:border-slate-500 dark:bg-slate-900";
+  "min-h-12 w-full rounded-lg border-2 border-line-strong bg-surface px-2 text-lg";
 
 export function SelectField({
   label,
@@ -48,14 +48,14 @@ export function Segmented<T extends string>({
   options: readonly { value: T; label: string }[];
 }) {
   return (
-    <div role="group" aria-label={label} className="flex overflow-hidden rounded-lg border-2 border-slate-400">
+    <div role="group" aria-label={label} className="flex overflow-hidden rounded-lg border-2 border-line-strong">
       {options.map((o) => (
         <button
           key={o.value}
           type="button"
           aria-pressed={value === o.value}
           className={`min-h-12 flex-1 px-3 text-lg font-bold ${
-            value === o.value ? "bg-slate-900 text-white dark:bg-slate-50 dark:text-slate-900" : "bg-white dark:bg-slate-900"
+            value === o.value ? "bg-primary text-on-primary hover:bg-primary-hover" : "bg-surface hover:bg-surface-2"
           }`}
           onClick={() => {
             onChange(o.value);

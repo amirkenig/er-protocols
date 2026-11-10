@@ -17,12 +17,12 @@ export function ResultView<T>({ result, children }: Props<T>) {
       {result.ok ? (
         children(result.value)
       ) : (
-        <div className="space-y-3 rounded-xl border-4 border-status-danger p-4 text-xl font-bold">
+        <div className="space-y-3 rounded-xl border-4 border-danger p-4 text-xl font-bold">
           <p>{result.message}</p>
           {result.code === "WEIGHT_NEEDS_CONFIRMATION" && (
             <button
               type="button"
-              className="min-h-12 rounded-lg border-2 border-status-danger px-4 text-lg font-bold"
+              className="min-h-12 rounded-lg border-2 border-danger px-4 text-lg font-bold"
               onClick={() => {
                 setPatient({ weightConfirmed: true });
               }}

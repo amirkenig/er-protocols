@@ -124,7 +124,7 @@ export function DoseCalcPage() {
                 </bdi>
               </p>
               {v.capped && (
-                <p className="inline-block rounded-md border-2 border-status-danger px-2 py-1 font-bold text-status-danger">
+                <p className="inline-block rounded-md border-2 border-danger px-2 py-1 font-bold text-danger">
                   <span aria-hidden="true">⚠ </span>
                   {he.calc.cappedBadge}
                 </p>

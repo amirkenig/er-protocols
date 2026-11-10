@@ -23,14 +23,14 @@ export function HomePage() {
           onChange={(e) => {
             setQ(e.target.value);
           }}
-          className="min-h-16 w-full rounded-xl border-2 border-slate-500 bg-white px-4 text-xl dark:bg-slate-900"
+          className="min-h-16 w-full rounded-xl border-2 border-line-strong bg-surface px-4 text-xl"
         />
       </form>
       <div className="grid grid-cols-2 gap-3">
-        <Link to="/calc" className="flex min-h-14 items-center justify-center rounded-xl border-2 border-slate-500 text-lg font-bold">
+        <Link to="/calc" className="flex min-h-14 items-center justify-center rounded-xl border-2 border-primary text-lg font-bold text-primary">
           {he.home.calc}
         </Link>
-        <Link to="/code" className="flex min-h-14 items-center justify-center rounded-xl border-2 border-status-danger text-lg font-bold text-status-danger">
+        <Link to="/code" className="flex min-h-14 items-center justify-center rounded-xl border-2 border-danger text-lg font-bold text-danger">
           {he.home.code}
         </Link>
       </div>
@@ -39,10 +39,10 @@ export function HomePage() {
           <Link
             key={c.id}
             to={`/c/${c.id}`}
-            className="flex min-h-24 flex-col justify-center rounded-xl border-2 border-slate-400 bg-white p-4 dark:border-slate-600 dark:bg-slate-900"
+            className="flex min-h-24 flex-col justify-center rounded-xl border-2 border-line bg-surface p-4 hover:border-primary"
           >
             <span className="text-xl font-bold">{c.titleHe}</span>
-            <span className="text-sm text-slate-700 dark:text-slate-300">{c.titleEn}</span>
+            <span className="text-sm text-muted">{c.titleEn}</span>
           </Link>
         ))}
       </div>

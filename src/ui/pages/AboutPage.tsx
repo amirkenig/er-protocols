@@ -46,7 +46,7 @@ export function AboutPage() {
       <section className="space-y-2">
         <h2 className="text-xl font-bold">{he.about.poisonCenter}</h2>
         <p>{DEFAULT_POISON_CENTER.nameHe}</p>
-        <a href={`tel:${telHref(phone)}`} className="flex min-h-12 items-center text-xl font-bold underline" dir="ltr">
+        <a href={`tel:${telHref(phone)}`} className="flex min-h-12 items-center text-xl font-bold text-accent underline" dir="ltr">
           {phone}
         </a>
         {phone === DEFAULT_POISON_CENTER.phone && (

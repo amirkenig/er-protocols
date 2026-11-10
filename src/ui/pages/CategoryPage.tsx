@@ -10,7 +10,7 @@ export function CategoryPage() {
   const protocols = PROTOCOL_STUBS.filter((p) => p.categoryId === category.id);
   return (
     <div className="space-y-3">
-      <Link to="/" className="flex min-h-12 items-center underline">
+      <Link to="/" className="flex min-h-12 items-center text-accent underline">
         {he.back}
       </Link>
       <h1 className="text-2xl font-bold">{category.titleHe}</h1>
@@ -18,7 +18,7 @@ export function CategoryPage() {
         <p className="text-lg">{he.category.empty}</p>
       ) : (
         protocols.map((p) => (
-          <Link key={p.id} to={`/p/${p.id}`} className="flex min-h-16 flex-col justify-center rounded-xl border-2 border-slate-400 p-4">
+          <Link key={p.id} to={`/p/${p.id}`} className="flex min-h-16 flex-col justify-center rounded-xl border-2 border-line p-4">
             <span className="text-xl font-bold">{p.titleHe}</span>
             <span className="text-sm">{p.titleEn}</span>
           </Link>

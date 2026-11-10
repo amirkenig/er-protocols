@@ -21,7 +21,7 @@ export function HighAlertConfirm({ active, drugLabel, concentrationLabel, weight
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   if (!active || items.every((it) => checked[it.id] === true)) return <>{children}</>;
   return (
-    <div className="space-y-2 rounded-xl border-4 border-status-danger p-4">
+    <div className="space-y-2 rounded-xl border-4 border-danger p-4">
       <p className="text-xl font-bold">{he.calc.highAlertTitle}</p>
       {items.map((it) => (
         <label key={it.id} className="flex min-h-12 items-center gap-3 text-lg">

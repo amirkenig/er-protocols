@@ -13,7 +13,7 @@ export function NotFoundPage() {
   return (
     <div className="space-y-3">
       <h1 className="text-2xl font-bold">{he.notFound.title}</h1>
-      <Link to="/" className="flex min-h-12 items-center underline">
+      <Link to="/" className="flex min-h-12 items-center text-accent underline">
         {he.notFound.back}
       </Link>
     </div>
