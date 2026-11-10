@@ -84,6 +84,28 @@ describe("ProtocolPage", () => {
     expect(c.getByText("מנה גבוהה")).toBeInTheDocument();
   });
 
+  it("range drug, custom concentration that blocks: no volume anywhere", () => {
+    setup("cardiac-arrest");
+    const el = card("adrenaline-increment");
+    const c = within(el);
+    fireEvent.change(c.getByLabelText("ריכוז"), { target: { value: "custom" } });
+    fireEvent.change(c.getByLabelText("כמות תרופה"), { target: { value: "10" } });
+    fireEvent.change(c.getByLabelText("נפח (מ״ל)"), { target: { value: "1" } });
+    expect(c.queryByText("נפח לשאיבה")).toBeNull();
+    expect(c.queryAllByText(/mL$/)).toHaveLength(0);
+    expect(el.textContent).not.toMatch(/0\.005 mL|0\.01 mL/);
+  });
+
+  it("range drug, default concentration: volumes hidden until confirmation", () => {
+    setup("cardiac-arrest");
+    const c = within(card("adrenaline-increment"));
+    expect(c.queryAllByText("5 mL")).toHaveLength(0);
+    expect(c.queryAllByText("10 mL")).toHaveLength(0);
+    for (const box of c.getAllByRole("checkbox")) fireEvent.click(box);
+    expect(c.getAllByText("5 mL").length).toBeGreaterThan(0);
+    expect(c.getAllByText("10 mL").length).toBeGreaterThan(0);
+  });
+
   it("unknown id shows not found", () => {
     setup("nope");
     expect(screen.getByText("הפרוטוקול לא נמצא")).toBeInTheDocument();

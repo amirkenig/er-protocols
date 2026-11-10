@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { defaultConcentration, rangeEndSpecs, toBolusSpec } from "../../content/adapters";
+import { rangeEndSpecs, toBolusSpec } from "../../content/adapters";
 import type { DrugEntry } from "../../content/schema";
 import { computeBolus, type BolusSpec, type Concentration } from "../../engine/dose";
 import { fmt, fmtQ } from "../../engine/format";
@@ -96,7 +96,7 @@ function DoseCalc({ drug, spec, concentration, concLabel, heading, keyPart }: Ca
   const result = computeBolus({ spec, patient, concentration });
   const key = [drug.id, keyPart, concLabel, patient.weightKg].join("|");
   // High-alert volume (and the formula steps that contain it) stay behind the double-check.
-  const gate = drug.highAlert && result.ok && result.value.volumeMl !== undefined;
+  const gate = drug.highAlert && concentration !== undefined;
   return (
     <ResultView result={result} gateSteps={gate}>
       {(v) => (
@@ -162,8 +162,6 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
     if (c !== undefined) {
       concentration = { amount: c.amount, unit: c.unit, perVolumeMl: c.perVolumeMl };
       concLabel = c.label;
-    } else if (sel === "") {
-      concentration = defaultConcentration(drug);
     }
   }
 
@@ -310,6 +308,12 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
       )}
       <div className="flex flex-wrap items-center gap-3">
         <StatusBadge status={drug.verificationStatus} />
+        {drug.verificationStatus !== "verified" && drug.unverifiedReason !== undefined && (
+          <details className="text-sm">
+            <summary className="flex min-h-12 cursor-pointer items-center font-bold">{he.protocol.whyUnverified}</summary>
+            <p>{drug.unverifiedReason}</p>
+          </details>
+        )}
         <SourceSheet citations={drug.citations} />
       </div>
     </li>

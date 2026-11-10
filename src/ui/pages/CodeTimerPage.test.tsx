@@ -92,6 +92,58 @@ describe("CodeTimerPage", () => {
   });
 });
 
+describe("CodeTimerPage ROSC and audio", () => {
+  it("ROSC suppresses reminders until a rhythm check", () => {
+    setup();
+    click("התחל החייאה");
+    click("אדרנלין 1 מ״ג");
+    click("ROSC");
+    advance(360_000);
+    expect(screen.queryByText(/עברו יותר מ-5 דק׳/)).toBeNull();
+    expect(screen.getByText(/ROSC — אין תזכורת אדרנלין/)).toBeInTheDocument();
+    click("בדיקת קצב");
+    click("PEA");
+    expect(screen.queryByText(/ROSC — אין תזכורת אדרנלין/)).toBeNull();
+    expect(screen.getByText(/אדרנלין לפני/)).toBeInTheDocument();
+  });
+
+  it("beeps after navigating away and back", () => {
+    const osc = { frequency: { value: 0 }, connect: vi.fn(), start: vi.fn(), stop: vi.fn() };
+    const createOscillator = vi.fn(() => osc);
+    const close = vi.fn().mockResolvedValue(undefined);
+    class FakeCtx {
+      currentTime = 0;
+      destination = {};
+      createOscillator = createOscillator;
+      createGain = () => ({ gain: { value: 0 }, connect: vi.fn() });
+      resume = vi.fn().mockResolvedValue(undefined);
+      close = close;
+    }
+    vi.stubGlobal("AudioContext", FakeCtx);
+    try {
+      setup();
+      click("התחל החייאה");
+      fireEvent.click(screen.getByRole("link", { name: "פרוטוקול דום לב" }));
+      fireEvent.click(screen.getByRole("link", { name: "פתח טיימר החייאה" }));
+      click("הערה");
+      advance(121_000);
+      expect(createOscillator).toHaveBeenCalled();
+      cleanup();
+      expect(close).toHaveBeenCalledTimes(1);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("shows an undo toast and the lidocaine 50 button", () => {
+    setup();
+    click("התחל החייאה");
+    click("לידוקאין 50 מ״ג");
+    click("בטל פעולה אחרונה");
+    expect(screen.getByText("בוטל: תרופה: לידוקאין 50 מ״ג")).toBeInTheDocument();
+  });
+});
+
 describe("Metronome", () => {
   it("shows an unsupported message without AudioContext", () => {
     render(<Metronome />);

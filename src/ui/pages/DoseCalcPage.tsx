@@ -117,7 +117,7 @@ export function DoseCalcPage() {
       ) : (
         <ResultView
           result={result}
-          gateSteps={highAlert && result.ok && result.value.volumeMl !== undefined}
+          gateSteps={highAlert && concProvided}
         >
           {(v) => (
             <div className="space-y-3">

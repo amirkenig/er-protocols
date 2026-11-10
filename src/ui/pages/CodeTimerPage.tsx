@@ -5,12 +5,20 @@ import {
   CODE_TIMER_CONFIG,
   CODE_TIMER_STATUS,
 } from "../../content/protocols/resuscitation/code-timer-config";
-import { codeTimerStatus, describeEvent, eventLogText, fmtDuration, type Rhythm } from "../../engine/code-timer";
+import {
+  codeTimerStatus,
+  describeEvent,
+  eventLogText,
+  fmtDuration,
+  type AdrenalineStatus,
+  type Rhythm,
+} from "../../engine/code-timer";
 import { useCodeTimer } from "../../state/CodeTimer";
-import { SelectField } from "../components/fields";
 import { Metronome } from "../components/Metronome";
+import { NumberField } from "../components/NumberField";
 import { SourceSheet } from "../components/SourceSheet";
 import { StatusBadge } from "../components/StatusBadge";
+import { parsePositiveNumber } from "../forms/parse";
 import { he } from "../i18n/he";
 
 const clockFmt = new Intl.DateTimeFormat("he-IL", {
@@ -21,7 +29,6 @@ const clockFmt = new Intl.DateTimeFormat("he-IL", {
 });
 const clock = (ms: number) => clockFmt.format(new Date(ms));
 
-const ENERGIES = [120, 150, 200, 360] as const;
 const RHYTHMS: readonly { value: Rhythm; label: string }[] = [
   { value: "VF/pVT", label: he.code.rhythmVf },
   { value: "PEA", label: he.code.rhythmPea },
@@ -32,37 +39,45 @@ const RHYTHMS: readonly { value: Rhythm; label: string }[] = [
 const gridBtn = "min-h-16 rounded-xl border-2 border-line-strong bg-surface px-3 text-xl font-bold hover:bg-surface-2";
 const smallBtn = "min-h-12 rounded-lg border-2 border-line-strong bg-surface px-4 text-lg font-bold hover:bg-surface-2";
 
-function beep(ctx: AudioContext | null): void {
-  if (ctx === null) return;
-  try {
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.frequency.value = 880;
-    gain.gain.value = 0.3;
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.2);
-  } catch {
-    // Audio unavailable.
+function adrenalineClass(a: AdrenalineStatus): string {
+  switch (a) {
+    case "window":
+      return "border-caution bg-caution-bg font-bold";
+    case "overdue":
+      return "border-danger bg-danger-bg text-danger-fg font-bold";
+    case "rosc":
+      return "border-verified text-verified font-bold";
+    case "none-given":
+    case "too-early":
+      return "border-line text-muted";
   }
 }
 
-function adrenalineClass(a: string): string {
-  if (a === "window") return "border-caution bg-caution-bg font-bold";
-  if (a === "overdue") return "border-danger bg-danger-bg text-danger-fg font-bold";
-  return "border-line text-muted";
+function adrenalineText(a: AdrenalineStatus, since: string): string {
+  const { adrenalineMinMinutes: min, adrenalineMaxMinutes: max } = CODE_TIMER_CONFIG;
+  switch (a) {
+    case "none-given":
+      return he.code.adrNone;
+    case "too-early":
+      return he.code.adrTooEarly(since);
+    case "window":
+      return he.code.adrWindow(since, String(min), String(max));
+    case "overdue":
+      return he.code.adrOverdue(since, String(max));
+    case "rosc":
+      return he.code.adrRosc;
+  }
 }
 
 export function CodeTimerPage() {
-  const { state, dispatch } = useCodeTimer();
+  const { state, dispatch, ensureAudio, beep } = useCodeTimer();
   const [now, setNow] = useState(() => Date.now());
   const [energy, setEnergy] = useState("");
   const [panel, setPanel] = useState<null | "rhythm" | "note" | "end" | "reset">(null);
   const [noteText, setNoteText] = useState("");
   const [toast, setToast] = useState(false);
+  const [undoToast, setUndoToast] = useState<string | null>(null);
   const [fallbackText, setFallbackText] = useState<string | null>(null);
-  const audioRef = useRef<AudioContext | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -82,7 +97,7 @@ export function CodeTimerPage() {
   const prevDue = useRef(false);
   useEffect(() => {
     if (cycleDue && !prevDue.current) {
-      beep(audioRef.current);
+      beep();
       try {
         if ("vibrate" in navigator) navigator.vibrate([200, 100, 200]);
       } catch {
@@ -90,7 +105,7 @@ export function CodeTimerPage() {
       }
     }
     prevDue.current = cycleDue;
-  }, [cycleDue]);
+  }, [cycleDue, beep]);
 
   // Keep the screen awake while the code runs.
   useEffect(() => {
@@ -124,23 +139,37 @@ export function CodeTimerPage() {
   }, [running]);
 
   useEffect(() => {
+    if (!toast) return;
+    const id = setTimeout(() => {
+      setToast(false);
+    }, 3000);
+    return () => {
+      clearTimeout(id);
+    };
+  }, [toast]);
+
+  useEffect(() => {
+    if (undoToast === null) return;
+    const id = setTimeout(() => {
+      setUndoToast(null);
+    }, 3000);
+    return () => {
+      clearTimeout(id);
+    };
+  }, [undoToast]);
+
+  useEffect(() => {
     if (fallbackText !== null) textareaRef.current?.select();
   }, [fallbackText]);
 
   const act = (fn: (t: number) => void) => {
+    ensureAudio();
     fn(Date.now());
     setPanel(null);
   };
 
   const start = () => {
-    try {
-      if (audioRef.current === null && typeof window.AudioContext === "function") {
-        audioRef.current = new window.AudioContext();
-      }
-      void audioRef.current?.resume();
-    } catch {
-      // Audio unavailable: the visual alert still works.
-    }
+    ensureAudio();
     dispatch({ type: "START", now: Date.now() });
   };
 
@@ -150,9 +179,6 @@ export function CodeTimerPage() {
       await navigator.clipboard.writeText(text);
       setFallbackText(null);
       setToast(true);
-      setTimeout(() => {
-        setToast(false);
-      }, 3000);
     } catch {
       setFallbackText(text);
     }
@@ -165,14 +191,10 @@ export function CodeTimerPage() {
   };
 
   const adr = status.sinceAdrenalineMs === null ? "" : fmtDuration(status.sinceAdrenalineMs);
-  const adrText =
-    status.adrenaline === "none-given"
-      ? he.code.adrNone
-      : status.adrenaline === "too-early"
-        ? he.code.adrTooEarly(adr)
-        : status.adrenaline === "window"
-          ? he.code.adrWindow(adr)
-          : he.code.adrOverdue(adr);
+  const adrText = adrenalineText(status.adrenaline, adr);
+
+  const parsedEnergy = parsePositiveNumber(energy);
+  const energyValue = parsedEnergy !== undefined && Number.isInteger(parsedEnergy) ? parsedEnergy : undefined;
 
   const startAt = state.startedAt ?? 0;
 
@@ -233,29 +255,21 @@ export function CodeTimerPage() {
               {he.code.due}
             </div>
           )}
-          {status.shockPrompt !== null && (
+          {!status.inRosc && status.shockPrompt !== null && (
             <div className="rounded-xl border-2 border-primary p-3 text-xl font-bold text-primary">{status.shockPrompt}</div>
           )}
           <p className={`rounded-lg border-2 px-3 py-2 text-lg ${adrenalineClass(status.adrenaline)}`}>{adrText}</p>
 
           {running && (
             <div className="space-y-3">
-              <SelectField
-                label={he.code.energy}
-                value={energy}
-                onChange={setEnergy}
-                options={[
-                  { value: "", label: "—" },
-                  ...ENERGIES.map((e) => ({ value: String(e), label: `${String(e)} J` })),
-                ]}
-              />
+              <NumberField label={he.code.energy} value={energy} onChange={setEnergy} />
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   className={gridBtn}
                   onClick={() => {
                     act((t) => {
-                      dispatch({ type: "SHOCK", now: t, energyJ: energy === "" ? undefined : Number(energy) });
+                      dispatch({ type: "SHOCK", now: t, energyJ: energyValue });
                     });
                   }}
                 >
@@ -301,6 +315,16 @@ export function CodeTimerPage() {
                   type="button"
                   className={gridBtn}
                   onClick={() => {
+                    drug("lidocaine", he.code.lido50, false);
+                  }}
+                >
+                  {he.code.lido50}
+                </button>
+                <button
+                  type="button"
+                  className={gridBtn}
+                  onClick={() => {
+                    ensureAudio();
                     setPanel(panel === "rhythm" ? null : "rhythm");
                   }}
                 >
@@ -332,6 +356,7 @@ export function CodeTimerPage() {
                   type="button"
                   className={gridBtn}
                   onClick={() => {
+                    ensureAudio();
                     setPanel(panel === "note" ? null : "note");
                   }}
                 >
@@ -341,7 +366,10 @@ export function CodeTimerPage() {
                   type="button"
                   className={gridBtn}
                   onClick={() => {
+                    ensureAudio();
+                    const last = state.events[state.events.length - 1];
                     dispatch({ type: "UNDO" });
+                    if (last !== undefined && state.events.length > 1) setUndoToast(he.code.undone(describeEvent(last)));
                   }}
                 >
                   {he.code.undo}
@@ -350,6 +378,7 @@ export function CodeTimerPage() {
                   type="button"
                   className={`${gridBtn} col-span-2 border-danger text-danger`}
                   onClick={() => {
+                    ensureAudio();
                     setPanel("end");
                   }}
                 >
@@ -458,6 +487,11 @@ export function CodeTimerPage() {
             {toast && (
               <p role="status" className="font-bold">
                 {he.code.copied}
+              </p>
+            )}
+            {undoToast !== null && (
+              <p role="status" className="font-bold">
+                {undoToast}
               </p>
             )}
             {fallbackText !== null && (

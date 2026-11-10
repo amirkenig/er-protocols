@@ -49,6 +49,37 @@ export function Metronome() {
     };
   }, [on, interval]);
 
+  // Keep the screen awake while the metronome plays.
+  useEffect(() => {
+    if (!on) return;
+    let lock: WakeLockSentinel | null = null;
+    let cancelled = false;
+    const request = () => {
+      try {
+        if (!("wakeLock" in navigator)) return;
+        void navigator.wakeLock
+          .request("screen")
+          .then((l) => {
+            if (cancelled) void l.release().catch(() => undefined);
+            else lock = l;
+          })
+          .catch(() => undefined);
+      } catch {
+        // Wake lock unavailable.
+      }
+    };
+    const onVisible = () => {
+      if (document.visibilityState === "visible") request();
+    };
+    request();
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      cancelled = true;
+      document.removeEventListener("visibilitychange", onVisible);
+      void lock?.release().catch(() => undefined);
+    };
+  }, [on]);
+
   useEffect(
     () => () => {
       void ctxRef.current?.close();

@@ -96,6 +96,12 @@ export function StepCard({ step, number, drugNames }: Props) {
       )}
       <div className="flex flex-wrap items-center gap-3">
         <StatusBadge status={step.verificationStatus} />
+        {step.verificationStatus !== "verified" && step.unverifiedReason !== undefined && (
+          <details className="text-sm">
+            <summary className="flex min-h-12 cursor-pointer items-center font-bold">{he.protocol.whyUnverified}</summary>
+            <p>{step.unverifiedReason}</p>
+          </details>
+        )}
         <SourceSheet citations={step.citations} />
       </div>
     </li>
