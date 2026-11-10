@@ -6,6 +6,7 @@ import { weightBasisLabel, type WeightBasis } from "../../engine/weight";
 import { usePatient } from "../../state/PatientSession";
 import { CalcHeader } from "../components/CalcHeader";
 import { Segmented, SelectField } from "../components/fields";
+import { FormulaSteps } from "../components/FormulaSteps";
 import { HighAlertConfirm } from "../components/HighAlertConfirm";
 import { NumberField } from "../components/NumberField";
 import { ResultView } from "../components/ResultView";
@@ -114,7 +115,10 @@ export function DoseCalcPage() {
       {result === null ? (
         <p className="text-lg">{he.calc.hintFill}</p>
       ) : (
-        <ResultView result={result}>
+        <ResultView
+          result={result}
+          gateSteps={highAlert && result.ok && result.value.volumeMl !== undefined}
+        >
           {(v) => (
             <div className="space-y-3">
               <p className="text-lg">
@@ -144,6 +148,7 @@ export function DoseCalcPage() {
                       {fmtQ(v.volumeMl, "mL")}
                     </bdi>
                   </p>
+                  {highAlert && <FormulaSteps steps={result.steps} />}
                 </HighAlertConfirm>
               )}
               <ul className="list-disc ps-6 text-sm">

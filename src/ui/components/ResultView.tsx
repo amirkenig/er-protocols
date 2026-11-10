@@ -8,9 +8,14 @@ import { WarningList } from "./WarningList";
 interface Props<T> {
   result: CalcResult<T>;
   children: (value: T) => ReactNode;
+  /**
+   * When true and the result is ok, the formula steps are NOT rendered here: the caller
+   * renders them inside its HighAlertConfirm gate, because the steps contain the volume.
+   */
+  gateSteps?: boolean;
 }
 
-export function ResultView<T>({ result, children }: Props<T>) {
+export function ResultView<T>({ result, children, gateSteps = false }: Props<T>) {
   const { setPatient } = usePatient();
   return (
     <div className="space-y-3">
@@ -33,7 +38,7 @@ export function ResultView<T>({ result, children }: Props<T>) {
         </div>
       )}
       <WarningList warnings={result.warnings} />
-      <FormulaSteps steps={result.steps} />
+      {!(result.ok && gateSteps) && <FormulaSteps steps={result.steps} />}
     </div>
   );
 }

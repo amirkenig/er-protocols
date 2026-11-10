@@ -14,4 +14,8 @@ describe("search", () => {
   it("returns nothing for empty query", () => {
     expect(search("  ")).toEqual([]);
   });
+  it("finds drugs by Hebrew and English name", () => {
+    expect(search("אדרנלין").some((h) => h.kind === "drug" && h.id === "adrenaline" && h.protocolId === "cardiac-arrest")).toBe(true);
+    expect(search("amiodarone").some((h) => h.kind === "drug")).toBe(true);
+  });
 });

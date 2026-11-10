@@ -5,10 +5,6 @@ export function CalcPage() {
   return <p className="text-lg">{he.calc.placeholder}</p>;
 }
 
-export function CodePage() {
-  return <p className="text-lg">{he.code.placeholder}</p>;
-}
-
 export function NotFoundPage() {
   return (
     <div className="space-y-3">

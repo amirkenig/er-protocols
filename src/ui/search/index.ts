@@ -1,13 +1,16 @@
 import Fuse from "fuse.js";
 import { CATEGORIES } from "../../content/categories";
+import { PROTOCOLS } from "../../content/protocols";
 import { PROTOCOL_STUBS } from "../../content/registry";
 import { normalizeHebrew } from "./normalize";
 
 export interface SearchHit {
-  kind: "category" | "protocol";
+  kind: "category" | "protocol" | "drug";
   id: string;
   titleHe: string;
   titleEn: string;
+  /** Set for drug hits: the protocol page that holds the drug card. */
+  protocolId?: string;
 }
 
 interface Entry extends SearchHit {
@@ -23,6 +26,16 @@ const entries: Entry[] = [
     titleEn: p.titleEn,
     synonyms: p.synonyms,
   })),
+  ...PROTOCOLS.flatMap((p) =>
+    p.drugs.map((d) => ({
+      kind: "drug" as const,
+      id: d.id,
+      titleHe: d.hebrewName ?? d.genericName,
+      titleEn: d.genericName,
+      synonyms: d.synonyms,
+      protocolId: p.id,
+    })),
+  ),
 ];
 
 const fuse = new Fuse(entries, {
@@ -44,5 +57,6 @@ export function search(query: string): SearchHit[] {
     id: item.id,
     titleHe: item.titleHe,
     titleEn: item.titleEn,
+    ...(item.protocolId === undefined ? {} : { protocolId: item.protocolId }),
   }));
 }
