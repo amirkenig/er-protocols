@@ -1,0 +1,61 @@
+/**
+ * Registry of every source cited by content. `readLevel` records how much of the
+ * source was actually read during verification:
+ *   fullText       — the relevant section/table was read in the primary text
+ *   abstract       — only the primary article's abstract was read
+ *   identifiedOnly — edition/year identified by search; text not yet read
+ * Items citing only `identifiedOnly` sources must remain `unverified`.
+ */
+import { SourceSchema, type Source } from "./schema";
+
+const RAW: readonly Source[] = [
+  {
+    id: "sofa2-2025",
+    title: "Development and Validation of the Sequential Organ Failure Assessment (SOFA)-2 Score",
+    issuingBody: "Ranzani OT, Singer M, Salluh JIF, Shankar-Hari M, et al. — JAMA",
+    year: 2025,
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12573119/",
+    doi: "10.1001/jama.2025.20516",
+    accessed: "2026-11-10",
+    editionNote: "JAMA 2025;334(23):2090–2103. Updates the original SOFA (Vincent 1996).",
+    readLevel: "fullText",
+  },
+  {
+    id: "aha-2025-als",
+    title: "2025 AHA Guidelines for CPR and ECC — Part 9: Adult Advanced Life Support",
+    issuingBody: "American Heart Association — Circulation 2025;152(suppl 2)",
+    year: 2025,
+    url: "https://professional.heart.org/en/science-news/2025-aha-guidelines-for-cpr-and-ecc",
+    accessed: "2026-11-10",
+    editionNote: "Published 2025-10-22; replaces the 2020 guidelines.",
+    readLevel: "identifiedOnly",
+  },
+  {
+    id: "erc-2025-als",
+    title: "European Resuscitation Council Guidelines 2025: Adult Advanced Life Support",
+    issuingBody: "European Resuscitation Council — Resuscitation 2025;215(suppl 1):110769",
+    year: 2025,
+    url: "https://pubmed.ncbi.nlm.nih.gov/41117572/",
+    doi: "10.1016/j.resuscitation.2025.110769",
+    accessed: "2026-11-10",
+    editionNote: "Published 2025-10; replaces ERC 2021.",
+    readLevel: "identifiedOnly",
+  },
+  {
+    id: "ssc-2026",
+    title: "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026",
+    issuingBody: "SCCM / ESICM — Intensive Care Med 2026;52(5):863–936 (co-published Crit Care Med)",
+    year: 2026,
+    url: "https://pubmed.ncbi.nlm.nih.gov/41870560/",
+    doi: "10.1007/s00134-026-08361-1",
+    accessed: "2026-11-10",
+    editionNote: "Published 2026-03; replaces SSC 2021. Erratum: Intensive Care Med 2026;52(6).",
+    readLevel: "identifiedOnly",
+  },
+];
+
+export const SOURCES: readonly Source[] = RAW.map((s) => SourceSchema.parse(s));
+
+export function getSource(id: string): Source | undefined {
+  return SOURCES.find((s) => s.id === id);
+}
