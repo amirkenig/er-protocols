@@ -50,7 +50,10 @@ export function checkIntegrity(
           (a) => a?.citations ?? [],
         ),
       ]),
-      ...allSteps.flatMap((s) => s.citations),
+      ...allSteps.flatMap((s) => [
+        ...s.citations,
+        ...s.guidelineDifferences.flatMap((g) => g.citations),
+      ]),
       ...p.guidelineDifferences.flatMap((g) => g.citations),
     ];
     for (const c of citations)

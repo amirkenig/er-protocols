@@ -157,7 +157,10 @@ const QuantitySchema = z.object({ value: contentNumber, unit: DoseUnitSchema });
 const AdjustmentSchema = z.object({ text: he, citations: z.array(CitationSchema).min(1) });
 
 export const GuidelineDifferenceSchema = z.object({
+  /** e.g. "AHA 2025". */
   body: z.string().min(1),
+  /** "agrees" = same recommendation (shown for reassurance); "differs" = highlighted. */
+  relation: z.enum(["agrees", "differs"]).default("differs"),
   /** Hebrew summary of this body's recommendation. */
   recommendation: he,
   citations: z.array(CitationSchema).min(1),
@@ -263,6 +266,8 @@ export const StepSchema = z
       .array(z.object({ param: he, target: he, unit: z.string().optional() }))
       .default([]),
     citations: z.array(CitationSchema).min(1),
+    /** How other guidelines (e.g. AHA vs the primary ERC text) treat this step. */
+    guidelineDifferences: z.array(GuidelineDifferenceSchema).default([]),
     ...verifiable,
   })
   .superRefine(requireReason);

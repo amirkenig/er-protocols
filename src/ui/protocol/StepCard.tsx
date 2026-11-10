@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import type { Step } from "../../content/schema";
 import { SourceSheet } from "../components/SourceSheet";
 import { StatusBadge } from "../components/StatusBadge";
+import { GuidelineComparison } from "./GuidelineComparison";
 import { he } from "../i18n/he";
 import { scrollToId } from "./scroll";
 
@@ -97,6 +98,7 @@ export function StepCard({ step, number, drugNames }: Props) {
           </tbody>
         </table>
       )}
+      <GuidelineComparison items={step.guidelineDifferences} />
       <div className="flex flex-wrap items-center gap-3">
         <StatusBadge status={step.verificationStatus} />
         {step.verificationStatus !== "verified" && step.unverifiedReason !== undefined && (

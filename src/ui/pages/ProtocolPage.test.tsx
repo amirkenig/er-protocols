@@ -57,12 +57,9 @@ describe("ProtocolPage", () => {
     expect(c.getAllByText("10 mL").length).toBeGreaterThan(0);
   });
 
-  it("guideline comparison shows pending AHA source", () => {
+  it("no 'source pending' line once AHA 2025 has been read in full", () => {
     setup("cardiac-arrest");
-    const h = screen.getByRole("heading", { name: "השוואת הנחיות" });
-    expect(
-      within(h.closest("section")!).getByText(/טרם התקבל המקור — ההשוואה ממתינה/),
-    ).toBeInTheDocument();
+    expect(screen.queryByText(/טרם התקבל המקור — ההשוואה ממתינה/)).toBeNull();
   });
 
   it("calcium chloride: text dose, no volume", () => {

@@ -61,6 +61,8 @@ export const he = {
     hepatic: "כבד",
     elderly: "קשישים",
     guidelineDiffs: "הבדלי הנחיות",
+    guidelineAgrees: "זהה להנחיה הראשית",
+    guidelineDiffers: "שונה מההנחיה הראשית",
     pending: (title: string) => `${title}: טרם התקבל המקור — ההשוואה ממתינה`,
     lastReviewed: (d: string, by: string) => `נסקר לאחרונה: ${d} · סוקר: ${by}`,
     notReviewed: "טרם נסקר",

@@ -22,13 +22,29 @@ const RAW: readonly Source[] = [
   },
   {
     id: "aha-2025-als",
-    title: "2025 AHA Guidelines for CPR and ECC — Part 9: Adult Advanced Life Support",
-    issuingBody: "American Heart Association — Circulation 2025;152(suppl 2)",
+    title: "Part 9: Adult Advanced Life Support — 2025 AHA Guidelines for CPR and ECC",
+    issuingBody:
+      "American Heart Association — Wigginton JG, et al. Circulation 2025;152(16 Suppl 2):S538–S577",
     year: 2025,
-    url: "https://professional.heart.org/en/science-news/2025-aha-guidelines-for-cpr-and-ecc",
+    url: "https://doi.org/10.1161/CIR.0000000000001376",
+    doi: "10.1161/CIR.0000000000001376",
     accessed: "2026-11-10",
-    editionNote: "Published 2025-10-22; replaces the 2020 guidelines.",
-    readLevel: "identifiedOnly",
+    editionNote:
+      "Published 2025-10-21; replaces 2020. Locators are PDF page numbers of the web-printout PDF supplied by the clinical owner.",
+    readLevel: "fullText",
+  },
+  {
+    id: "aha-2025-pcac",
+    title: "Part 11: Post–Cardiac Arrest Care — 2025 AHA Guidelines for CPR and ECC",
+    issuingBody:
+      "American Heart Association — Hirsch KG, et al. Circulation 2025;152(16 Suppl 2):S673–S718",
+    year: 2025,
+    url: "https://doi.org/10.1161/CIR.0000000000001375",
+    doi: "10.1161/CIR.0000000000001375",
+    accessed: "2026-11-10",
+    editionNote:
+      "Published 2025-10-21; replaces 2020. Locators are PDF page numbers of the web-printout PDF supplied by the clinical owner.",
+    readLevel: "fullText",
   },
   {
     id: "erc-2025-als",
@@ -59,13 +75,14 @@ const RAW: readonly Source[] = [
     title:
       "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026",
     issuingBody:
-      "SCCM / ESICM — Intensive Care Med 2026;52(5):863–936 (co-published Crit Care Med)",
+      "SCCM / ESICM — Prescott HC, et al. Crit Care Med 2026;54(4):725–812 (co-published Intensive Care Med)",
     year: 2026,
-    url: "https://pubmed.ncbi.nlm.nih.gov/41870560/",
-    doi: "10.1007/s00134-026-08361-1",
+    url: "https://doi.org/10.1097/CCM.0000000000007075",
+    doi: "10.1097/CCM.0000000000007075",
     accessed: "2026-11-10",
-    editionNote: "Published 2026-03; replaces SSC 2021. Erratum: Intensive Care Med 2026;52(6).",
-    readLevel: "identifiedOnly",
+    editionNote:
+      "April 2026 issue; replaces SSC 2021. PDF supplied by the clinical owner (to be used in the sepsis phase).",
+    readLevel: "fullText",
   },
 ];
 

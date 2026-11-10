@@ -7,6 +7,7 @@ import { StatusBadge } from "../components/StatusBadge";
 import { he } from "../i18n/he";
 import { DrugDoseCard } from "../protocol/DrugDoseCard";
 import { scrollToId } from "../protocol/scroll";
+import { GuidelineComparison } from "../protocol/GuidelineComparison";
 import { StepCard } from "../protocol/StepCard";
 import { PROTOCOL_TOOLS } from "../protocol/tools";
 
@@ -93,15 +94,8 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
       )}
       {hasDiffs && (
         <Section title={he.protocol.differences}>
+          <GuidelineComparison items={protocol.guidelineDifferences} />
           <ul className="space-y-2">
-            {protocol.guidelineDifferences.map((g, i) => (
-              <li key={i}>
-                <bdi dir="ltr" className="font-bold">
-                  {g.body}
-                </bdi>
-                : {g.recommendation}
-              </li>
-            ))}
             {pending.map((s) => (
               <li
                 key={s.id}

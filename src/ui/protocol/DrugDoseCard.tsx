@@ -10,6 +10,7 @@ import { usePatient } from "../../state/PatientSession";
 import { SelectField } from "../components/fields";
 import { FormulaSteps } from "../components/FormulaSteps";
 import { HighAlertConfirm } from "../components/HighAlertConfirm";
+import { GuidelineComparison } from "./GuidelineComparison";
 import { NumberField } from "../components/NumberField";
 import { ResultView } from "../components/ResultView";
 import { SourceSheet } from "../components/SourceSheet";
@@ -315,18 +316,7 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
           </ul>
         </div>
       )}
-      {drug.guidelineDifferences.length > 0 && (
-        <div className="space-y-1">
-          <p className="font-bold">{he.protocol.guidelineDiffs}</p>
-          <ul className="list-disc ps-6">
-            {drug.guidelineDifferences.map((g, i) => (
-              <li key={i}>
-                <bdi dir="ltr">{g.body}</bdi>: {g.recommendation}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <GuidelineComparison items={drug.guidelineDifferences} />
       <div className="flex flex-wrap items-center gap-3">
         <StatusBadge status={drug.verificationStatus} />
         {drug.verificationStatus !== "verified" && drug.unverifiedReason !== undefined && (
