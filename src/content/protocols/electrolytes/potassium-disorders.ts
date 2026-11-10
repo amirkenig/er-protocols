@@ -98,7 +98,7 @@ export const potassiumDisorders: ProtocolInput = {
     {
       id: "hyperk-shift",
       action:
-        "היפרקלמיה בינונית או חמורה — הכנס אשלגן לתאים: insulin soluble 10 יחידות + glucose 25 גרם IV. אם הגלוקוז לפני הטיפול נמוך מ-7 mmol/L — המשך בעירוי glucose 10% בקצב 50 מ״ל/שעה במשך 5 שעות. כתוספת: salbutamol באינהלציה 10–20 מ״ג.",
+        "היפרקלמיה בינונית או חמורה — הכנס אשלגן לתאים: insulin soluble 10 יחידות + glucose 25 גרם IV. אם הגלוקוז לפני הטיפול נמוך מ-7 mmol/L — המשך בעירוי glucose 10% בקצב 50 מ״ל/שעה במשך 5 שעות. כתוספת: salbutamol בנבולייזר 10–20 מ״ג.",
       rationale:
         "אינסולין מפעיל את משאבת Na⁺/K⁺-ATPase ומעביר אשלגן לתוך התאים; הגלוקוז מונע היפוגליקמיה. סלבוטמול (אגוניסט β2) מפעיל את אותה משאבה ומשמש תוספת לאינסולין-גלוקוז, לא תחליף.",
       drugRefs: ["insulin-soluble", "glucose-bolus", "glucose-10-infusion", "salbutamol"],
@@ -275,7 +275,7 @@ export const potassiumDisorders: ProtocolInput = {
     {
       id: "salbutamol",
       genericName: "Salbutamol (nebulised)",
-      hebrewName: "סלבוטמול באינהלציה",
+      hebrewName: "סלבוטמול בנבולייזר",
       synonyms: ["albuterol", "Ventolin", "ונטולין"],
       indication: "היפרקלמיה בינונית או חמורה — תוספת לאינסולין-גלוקוז",
       routes: ["INH"],
