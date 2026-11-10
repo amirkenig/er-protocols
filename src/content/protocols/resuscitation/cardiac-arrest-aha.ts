@@ -4,8 +4,9 @@
  * supplied by the clinical owner (tables and algorithm are images in those PDFs and
  * were read visually). Locators are PDF page numbers of the web-printout PDFs.
  *
- * AHA Part 10 (special circumstances: hyperkalaemia, PE, hypothermia, ECPR) was not
- * provided, so those steps carry no AHA comparison yet.
+ * AHA Part 10 (special circumstances: hyperkalaemia, PE, hypothermia, ECPR) and Part 7
+ * (BLS, compression depth limits) were not provided, so those points carry no AHA
+ * comparison yet.
  */
 import type { Citation } from "../../schema";
 
@@ -26,9 +27,9 @@ export const AHA_STEP_COMPARISONS: Readonly<Record<string, Comparison[]>> = {
   "start-cpr": [
     {
       body: AHA,
-      relation: "differs",
+      relation: "agrees",
       recommendation:
-        "קצב 100–120 לדקה ו-30:2 ללא נתיב מתקדם — זהה. עומק: ״לפחות 5 ס״מ״ ללא גבול עליון של 6 ס״מ (ה-ERC: 5–6 ס״מ).",
+        "קצב 100–120 לדקה ו-30:2 ללא נתיב מתקדם — זהה. עומק: בתרשים פרק 9 — ״לפחות 5 ס״מ״; הגבול העליון מוגדר בפרק 7 (BLS) שטרם התקבל.",
       citations: [
         c(
           P9,
@@ -101,7 +102,7 @@ export const AHA_STEP_COMPARISONS: Readonly<Record<string, Comparison[]>> = {
       body: AHA,
       relation: "differs",
       recommendation:
-        "התועלת של שינוי וקטור וגם של דפיברילציה כפולה רצופה (DSD) אחרי 3 שוקים או יותר ״לא הוכחה״ (2b) — ה-AHA אינו ממליץ על אף אחד מהם. ה-ERC ממליץ לשקול שינוי וקטור ואינו ממליץ על DSD כשגרה.",
+        "התועלת של שינוי וקטור וגם של דפיברילציה כפולה רצופה (DSD) אחרי 3 שוקים או יותר ״לא הוכחה״ (2b) — ה-AHA אינו ממליץ בעד או נגד אף אחד מהם. ה-ERC ממליץ לשקול שינוי וקטור ואינו ממליץ על DSD כשגרה.",
       citations: [
         c(
           P9,
@@ -174,7 +175,7 @@ export const AHA_STEP_COMPARISONS: Readonly<Record<string, Comparison[]>> = {
       body: AHA,
       relation: "agrees",
       recommendation:
-        "סידן, ביקרבונט ומגנזיום — לא באופן שגרתי (3: ללא תועלת). סטרואידים — תועלת לא ודאית (2b). וזופרסין אינו מחליף אדרנלין; אדרנלין במינון גבוה — לא מומלץ.",
+        "סידן, ביקרבונט ומגנזיום — לא באופן שגרתי (3: ללא תועלת). סטרואידים — ״תועלת לא ודאית״ (2b), קרוב אך לא זהה ל״אין לתת באופן שגרתי״ של ה-ERC. מגנזיום מופיע ב-AHA במפורש (ה-ERC אינו מזכיר). וזופרסין אינו מחליף אדרנלין; אדרנלין במינון גבוה — לא מומלץ.",
       citations: [
         c(
           P9,
@@ -187,27 +188,12 @@ export const AHA_STEP_COMPARISONS: Readonly<Record<string, Comparison[]>> = {
       ],
     },
   ],
-  "hyperkalaemic-arrest": [
-    {
-      body: AHA,
-      relation: "differs",
-      recommendation:
-        "פרק 9 מפנה את הטיפול בדום לב היפרקלמי לפרק 10 (מצבים מיוחדים), שטרם התקבל — ההשוואה ממתינה.",
-      citations: [
-        c(
-          P9,
-          "Nonvasopressor Medications, supporting text, PDF p. 27",
-          "Guidance for the treatment of cardiac arrest due to hyperkalemia … is presented in Electrolyte Abnormalities within Part 10.",
-        ),
-      ],
-    },
-  ],
   "post-rosc": [
     {
       body: AHA,
       relation: "differs",
       recommendation:
-        "חמצן 100% עד מדידה אמינה, ואז SpO2 ‏90–98% (PaO2 ‏60–105) — טווח רחב יותר מה-ERC (94–98%). MAP לפחות 65 (ללא יעד סיסטולי). PaCO2 ‏35–45 — זהה. צנתור דחוף בעליות ST — זהה. חום: בקרת חום מתוכננת בטווח 32–37.5°C למשך 36 שעות לפחות (ה-ERC: מניעת חום ≤37.5°C ל-36–72 שעות). ללא נוזלים קרים טרום-בית חולים — זהה.",
+        "חמצן 100% עד מדידה אמינה, ואז SpO2 ‏90–98% (PaO2 ‏60–105) — טווח רחב יותר מה-ERC (94–98%). MAP לפחות 65 (ללא יעד סיסטולי). PaCO2 ‏35–45 במטופל שנשאר מחוסר הכרה — זהה. צנתור דחוף בעליות ST — זהה. חום: בקרת חום מתוכננת בטווח 32–37.5°C (1) למשך 36 שעות לפחות (2a) (ה-ERC: מניעת חום ≤37.5°C ל-36–72 שעות). ללא נוזלים קרים טרום-בית חולים — זהה.",
       citations: [
         c(
           P11,
@@ -226,8 +212,18 @@ export const AHA_STEP_COMPARISONS: Readonly<Record<string, Comparison[]>> = {
         ),
         c(
           P11,
-          "Recommendations for Temperature Control, recs 1–3, 7, PDF p. 20",
-          "Maintaining a temperature between 32 °C and 37.5 °C … for at least 36 h",
+          "Recommendations for Temperature Control, rec 2 (COR 1, LOE B-R), PDF p. 20",
+          "Maintaining a temperature between 32 °C and 37.5 °C in patients unresponsive to verbal commands after ROSC is recommended",
+        ),
+        c(
+          P11,
+          "Recommendations for Temperature Control, rec 3 (COR 2a, LOE B-R), PDF p. 20",
+          "It is reasonable that temperature control be maintained for at least 36 h",
+        ),
+        c(
+          P11,
+          "Recommendations for Temperature Control, rec 7 (COR 3: No Benefit, LOE B-R), PDF p. 20",
+          "Routine rapid infusion of intravenous fluids for prehospital hypothermic temperature control in adult patients after ROSC is not recommended.",
         ),
         c(
           P11,

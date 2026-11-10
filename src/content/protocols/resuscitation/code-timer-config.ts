@@ -11,7 +11,7 @@ export const CODE_TIMER_CONFIG: CodeTimerConfig = {
   adrenalineMinMinutes: 3,
   adrenalineMaxMinutes: 5,
   shockPrompts: {
-    2: "AHA: אדרנלין 1 מ״ג כבר אחרי שוק 2 (ERC: אחרי שוק 3)",
+    2: "AHA (תרשים): אדרנלין 1 מ״ג כבר אחרי שוק 2 (ERC: אחרי שוק 3)",
     3: "אחרי שוק 3: אדרנלין 1 מ״ג (ERC) + אמיודרון 300 מ״ג",
     5: "אחרי שוק 5: אמיודרון 150 מ״ג (ואם הוחלט על לידוקאין במקום אמיודרון: לידוקאין 50 מ״ג)",
   },

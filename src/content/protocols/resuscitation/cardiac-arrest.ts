@@ -377,7 +377,7 @@ const base: ProtocolInput = {
     {
       id: "post-rosc",
       action:
-        "לאחר ROSC: גישת ABCDE. חמצן 100% עד שניתן למדוד ואז טיטרציה ל-SpO2 94–98%. נורמוקפניה. ECG 12 חיבורים מיד; צנתור דחוף אם יש עליות ST מתמשכות. הימנע מתת-לחץ דם: יעד MAP מעל 60–65 (בתרשים ה-ALS: לחץ סיסטולי מעל 100). במטופל שנשאר מחוסר הכרה — מנע חום (≤37.5°C) למשך 36–72 שעות.",
+        "לאחר ROSC: גישת ABCDE. חמצן 100% עד שניתן למדוד ואז טיטרציה ל-SpO2 94–98%. נורמוקפניה. ECG 12 חיבורים מיד; צנתור דחוף אם יש עליות ST מתמשכות. הימנע מתת-לחץ דם: יעד MAP מעל 60–65 (בתרשים ה-ALS: לחץ סיסטולי מעל 100). במטופל שנשאר מחוסר הכרה — מנע חום (≤37.5°C) למשך 36–72 שעות. ללא קירור טרום-בית חולים בעירוי מהיר של נוזלים קרים.",
       rationale:
         "המוח והלב פגיעים במיוחד בשעות הראשונות אחרי דום לב: גם היפוקסיה וגם עודף חמצן, תת-לחץ דם וחום מחמירים את הנזק המוחי.",
       reassessmentTargets: [
@@ -408,6 +408,10 @@ const base: ProtocolInput = {
         erc(
           "Temperature control, p. 36",
           "Actively prevent fever by targeting a temperature ≤37.5 °C … Prevent active fever for 36–72 h",
+        ),
+        erc(
+          "Temperature control, p. 36",
+          "We recommend against the routine use of prehospital cooling with rapid infusion of large volumes of cold intravenous fluid immediately after ROSC.",
         ),
       ],
       verificationStatus: "unverified",
