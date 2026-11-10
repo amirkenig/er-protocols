@@ -38,10 +38,22 @@ describe("ProtocolPage", () => {
     setup("cardiac-arrest");
     const step = document.getElementById("step-after-third-shock");
     expect(step).not.toBeNull();
-    expect(within(step!).getByText(/אחרי השוק השלישי/)).toBeVisible();
+    expect(within(step!).getAllByText(/אחרי השוק השלישי/)[0]).toBeVisible();
     expect(within(step!).getByText("למה:")).toBeVisible();
-    fireEvent.click(within(step!).getByRole("button", { name: "מקור" }));
+    // The step's own source button is the last one (comparison entries have their own).
+    const sourceButtons = within(step!).getAllByRole("button", { name: "מקור" });
+    fireEvent.click(sourceButtons[sourceButtons.length - 1]!);
     expect(within(step!).getAllByText(/p\. 19/).length).toBeGreaterThan(0);
+  });
+
+  it("shows the AHA 2025 comparison on the step where AHA differs", () => {
+    setup("cardiac-arrest");
+    const step = document.getElementById("step-after-third-shock")!;
+    expect(within(step).getByText("AHA 2025")).toBeInTheDocument();
+    expect(within(step).getByText("שונה מההנחיה הראשית")).toBeInTheDocument();
+    expect(within(step).getByText(/אחרי השוק השני/)).toBeInTheDocument();
+    const agrees = document.getElementById("step-non-shockable")!;
+    expect(within(agrees).getByText("זהה להנחיה הראשית")).toBeInTheDocument();
   });
 
   it("adrenaline card: dose 1 mg, volume behind high-alert confirmation", () => {

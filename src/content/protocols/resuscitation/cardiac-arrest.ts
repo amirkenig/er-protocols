@@ -10,17 +10,20 @@
  * values. They are editable in the app and must be checked against the ED's stock.
  */
 import type { ProtocolInput } from "../../schema";
+import { AHA_DRUG_COMPARISONS, AHA_STEP_COMPARISONS } from "./cardiac-arrest-aha";
 
 const ERC = "erc-2025-exec";
 const PENDING =
-  "Transcribed from ERC 2025 Executive Summary (full text). AHA 2025 comparison pending; awaiting clinician review.";
+  "Transcribed from ERC 2025 Executive Summary (full text); compared with AHA 2025 Parts 9 and 11 (full text). Awaiting clinician review.";
+const PART10 =
+  "Transcribed from ERC 2025 Executive Summary (full text). AHA position is in AHA 2025 Part 10 (special circumstances), not yet provided. Awaiting clinician review.";
 const LOCAL_CONC =
   "Concentration is a local default (product presentation), not a guideline value — check against ED stock.";
 
 const erc = (locator: string, quote?: string) =>
   quote === undefined ? { sourceId: ERC, locator } : { sourceId: ERC, locator, quote };
 
-export const cardiacArrest: ProtocolInput = {
+const base: ProtocolInput = {
   id: "cardiac-arrest",
   titleHe: "דום לב במבוגר (ALS)",
   titleEn: "Adult cardiac arrest (ALS)",
@@ -283,7 +286,7 @@ export const cardiacArrest: ProtocolInput = {
         ),
       ],
       verificationStatus: "unverified",
-      unverifiedReason: PENDING,
+      unverifiedReason: PART10,
     },
     {
       id: "hyperkalaemic-arrest",
@@ -299,7 +302,7 @@ export const cardiacArrest: ProtocolInput = {
         ),
       ],
       verificationStatus: "unverified",
-      unverifiedReason: PENDING,
+      unverifiedReason: PART10,
     },
     {
       id: "hypokalaemic-arrest",
@@ -315,7 +318,7 @@ export const cardiacArrest: ProtocolInput = {
         ),
       ],
       verificationStatus: "unverified",
-      unverifiedReason: PENDING,
+      unverifiedReason: PART10,
     },
     {
       id: "hypothermic-arrest",
@@ -335,7 +338,7 @@ export const cardiacArrest: ProtocolInput = {
         ),
       ],
       verificationStatus: "unverified",
-      unverifiedReason: PENDING,
+      unverifiedReason: PART10,
     },
     {
       id: "pe-thrombolysis",
@@ -679,5 +682,22 @@ export const cardiacArrest: ProtocolInput = {
   reviewedBy: null,
   verificationStatus: "unverified",
   unverifiedReason:
-    "AHA 2025 Part 9 comparison pending (PDF requested). ERC content transcribed from full text; awaiting clinician review.",
+    "ERC 2025 content compared with AHA 2025 Parts 9 and 11. AHA Part 10 (special circumstances) not yet provided. Awaiting clinician review.",
+};
+
+/** Protocol with AHA 2025 comparisons merged into the matching steps and drugs. */
+export const cardiacArrest: ProtocolInput = {
+  ...base,
+  immediateActions: (base.immediateActions ?? []).map((st) => ({
+    ...st,
+    guidelineDifferences: AHA_STEP_COMPARISONS[st.id] ?? [],
+  })),
+  steps: base.steps.map((st) => ({
+    ...st,
+    guidelineDifferences: AHA_STEP_COMPARISONS[st.id] ?? [],
+  })),
+  drugs: (base.drugs ?? []).map((d) => ({
+    ...d,
+    guidelineDifferences: AHA_DRUG_COMPARISONS[d.id] ?? [],
+  })),
 };

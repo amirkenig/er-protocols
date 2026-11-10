@@ -11,7 +11,8 @@ export const CODE_TIMER_CONFIG: CodeTimerConfig = {
   adrenalineMinMinutes: 3,
   adrenalineMaxMinutes: 5,
   shockPrompts: {
-    3: "אחרי שוק 3: אדרנלין 1 מ״ג + אמיודרון 300 מ״ג",
+    2: "AHA: אדרנלין 1 מ״ג כבר אחרי שוק 2 (ERC: אחרי שוק 3)",
+    3: "אחרי שוק 3: אדרנלין 1 מ״ג (ERC) + אמיודרון 300 מ״ג",
     5: "אחרי שוק 5: אמיודרון 150 מ״ג (ואם הוחלט על לידוקאין במקום אמיודרון: לידוקאין 50 מ״ג)",
   },
   /** UI choice (not a guideline value): early warning before the rhythm check. */
@@ -43,5 +44,5 @@ export const CODE_TIMER_CITATIONS: readonly Citation[] = [
 export const CODE_TIMER_STATUS = {
   verificationStatus: "unverified" as const,
   unverifiedReason:
-    "Intervals transcribed from ERC 2025 Executive Summary; AHA comparison pending; awaiting clinician review.",
+    "Intervals from ERC 2025 Executive Summary; AHA 2025 Part 9 difference (adrenaline after shock 2) shown as a prompt; awaiting clinician review.",
 };
