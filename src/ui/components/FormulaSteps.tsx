@@ -5,7 +5,9 @@ export function FormulaSteps({ steps }: { steps: readonly FormulaStep[] }) {
   if (steps.length === 0) return null;
   return (
     <details open className="rounded-xl border-2 border-line bg-surface-2 p-3">
-      <summary className="min-h-12 cursor-pointer text-lg font-bold">{he.calc.howCalculated}</summary>
+      <summary className="min-h-12 cursor-pointer text-lg font-bold">
+        {he.calc.howCalculated}
+      </summary>
       <ol className="list-decimal space-y-2 ps-6">
         {steps.map((s, i) => (
           <li key={i}>

@@ -60,8 +60,14 @@ export function InfusionCalcPage() {
     pumpRounding: { step: Number(rounding), mode: "nearest" },
   };
 
-  const toPump = ready && direction === "toPump" ? rateToPump({ spec, rate: value, patient, concentration }) : null;
-  const toRate = ready && direction === "toRate" ? pumpToRate({ spec, mlPerHour: value, patient, concentration }) : null;
+  const toPump =
+    ready && direction === "toPump"
+      ? rateToPump({ spec, rate: value, patient, concentration })
+      : null;
+  const toRate =
+    ready && direction === "toRate"
+      ? pumpToRate({ spec, mlPerHour: value, patient, concentration })
+      : null;
 
   const from = parsePositiveNumber(fromText);
   const to = parsePositiveNumber(toText);
@@ -69,7 +75,13 @@ export function InfusionCalcPage() {
   let rows: ReturnType<typeof infusionTable> | null = null;
   let truncated = false;
   let rangeInvalid = false;
-  if (from !== undefined && to !== undefined && stepV !== undefined && concentration !== undefined && maxOk) {
+  if (
+    from !== undefined &&
+    to !== undefined &&
+    stepV !== undefined &&
+    concentration !== undefined &&
+    maxOk
+  ) {
     try {
       const all = rateSteps(from, to, stepV);
       truncated = all.length > MAX_ROWS;
@@ -96,7 +108,9 @@ export function InfusionCalcPage() {
         <SelectField
           label={he.calc.infusion.rateUnit}
           value={rateUnit}
-          onChange={(v) => { setRateUnit(v as RateUnit); }}
+          onChange={(v) => {
+            setRateUnit(v as RateUnit);
+          }}
           options={RATE_UNITS.map((u) => ({ value: u, label: u }))}
         />
         <NumberField
@@ -108,16 +122,34 @@ export function InfusionCalcPage() {
           <SelectField
             label={he.calc.infusion.weightBasis}
             value={basis}
-            onChange={(v) => { setBasis(v as WeightBasis); }}
+            onChange={(v) => {
+              setBasis(v as WeightBasis);
+            }}
             options={BASES.map((b) => ({ value: b, label: weightBasisLabel(b) }))}
           />
         )}
-        <NumberField label={he.calc.infusion.hardMax} value={maxText} onChange={setMaxText} unit={rateUnit} />
+        <NumberField
+          label={he.calc.infusion.hardMax}
+          value={maxText}
+          onChange={setMaxText}
+          unit={rateUnit}
+        />
       </div>
       <div className="grid grid-cols-3 gap-3">
         <NumberField label={he.calc.infusion.concAmount} value={concText} onChange={setConcText} />
-        <SelectField label={he.calc.infusion.concUnit} value={concUnit} onChange={(v) => { setConcUnit(v as DoseUnit); }} options={unitOptions} />
-        <NumberField label={he.calc.infusion.concVolume} value={concVolText} onChange={setConcVolText} />
+        <SelectField
+          label={he.calc.infusion.concUnit}
+          value={concUnit}
+          onChange={(v) => {
+            setConcUnit(v as DoseUnit);
+          }}
+          options={unitOptions}
+        />
+        <NumberField
+          label={he.calc.infusion.concVolume}
+          value={concVolText}
+          onChange={setConcVolText}
+        />
       </div>
       <SelectField
         label={he.calc.infusion.pumpRounding}
@@ -138,7 +170,8 @@ export function InfusionCalcPage() {
                 </bdi>
               </p>
               <p>
-                {he.calc.infusion.resultDelivered}: <bdi dir="ltr">{fmtQ(v.deliveredRate, rateUnit)}</bdi>
+                {he.calc.infusion.resultDelivered}:{" "}
+                <bdi dir="ltr">{fmtQ(v.deliveredRate, rateUnit)}</bdi>
               </p>
               {v.capped && (
                 <p className="inline-block rounded-md border-2 border-danger px-2 py-1 font-bold text-danger">
@@ -165,7 +198,9 @@ export function InfusionCalcPage() {
       )}
 
       <details className="rounded-xl border-2 border-line p-3">
-        <summary className="min-h-12 cursor-pointer text-lg font-bold">{he.calc.infusion.table}</summary>
+        <summary className="min-h-12 cursor-pointer text-lg font-bold">
+          {he.calc.infusion.table}
+        </summary>
         <div className="grid grid-cols-3 gap-3">
           <NumberField label={he.calc.infusion.from} value={fromText} onChange={setFromText} />
           <NumberField label={he.calc.infusion.to} value={toText} onChange={setToText} />
@@ -177,7 +212,9 @@ export function InfusionCalcPage() {
             <table className="mt-3 w-full text-start text-lg">
               <thead>
                 <tr>
-                  <th className="text-start">{he.calc.infusion.colRate} ({rateUnit})</th>
+                  <th className="text-start">
+                    {he.calc.infusion.colRate} ({rateUnit})
+                  </th>
                   <th className="text-start">{he.calc.infusion.colMlh}</th>
                 </tr>
               </thead>
@@ -188,7 +225,11 @@ export function InfusionCalcPage() {
                       <bdi dir="ltr">{fmt(r.rate)}</bdi>
                     </td>
                     <td>
-                      {r.result.ok ? <bdi dir="ltr">{fmt(r.result.value.mlPerHour)}</bdi> : r.result.message}
+                      {r.result.ok ? (
+                        <bdi dir="ltr">{fmt(r.result.value.mlPerHour)}</bdi>
+                      ) : (
+                        r.result.message
+                      )}
                     </td>
                   </tr>
                 ))}

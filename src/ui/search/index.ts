@@ -18,7 +18,13 @@ interface Entry extends SearchHit {
 }
 
 const entries: Entry[] = [
-  ...CATEGORIES.map((c) => ({ kind: "category" as const, id: c.id, titleHe: c.titleHe, titleEn: c.titleEn, synonyms: [] })),
+  ...CATEGORIES.map((c) => ({
+    kind: "category" as const,
+    id: c.id,
+    titleHe: c.titleHe,
+    titleEn: c.titleEn,
+    synonyms: [],
+  })),
   ...PROTOCOL_STUBS.map((p) => ({
     kind: "protocol" as const,
     id: p.id,

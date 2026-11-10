@@ -18,7 +18,9 @@ describe("ResultView", () => {
     render(
       <PatientSessionProvider>
         <Consumer />
-        <ResultView result={blocked("WEIGHT_NEEDS_CONFIRMATION", "המשקל חריג")}>{() => <p>ok</p>}</ResultView>
+        <ResultView result={blocked("WEIGHT_NEEDS_CONFIRMATION", "המשקל חריג")}>
+          {() => <p>ok</p>}
+        </ResultView>
       </PatientSessionProvider>,
     );
     expect(screen.getByText("המשקל חריג")).toBeInTheDocument();

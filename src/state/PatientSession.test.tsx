@@ -5,13 +5,20 @@ import type { ReactNode } from "react";
 import { describe, expect, it } from "vitest";
 import { PatientSessionProvider, usePatient } from "./PatientSession";
 
-const wrapper = ({ children }: { children: ReactNode }) => <PatientSessionProvider>{children}</PatientSessionProvider>;
+const wrapper = ({ children }: { children: ReactNode }) => (
+  <PatientSessionProvider>{children}</PatientSessionProvider>
+);
 
 describe("PatientSession", () => {
   it("reset clears all fields", () => {
     const { result } = renderHook(() => usePatient(), { wrapper });
     act(() => {
-      result.current.setPatient({ weightKg: 70, heightCm: 170, sex: "male", weightConfirmed: true });
+      result.current.setPatient({
+        weightKg: 70,
+        heightCm: 170,
+        sex: "male",
+        weightConfirmed: true,
+      });
     });
     expect(result.current.patient.weightConfirmed).toBe(true);
     act(() => {

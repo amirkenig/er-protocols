@@ -89,7 +89,11 @@ export function computeBolus(input: BolusInput): CalcResult<BolusValue> {
   if (spec.dose.kind === "fixed") {
     if (!positive(spec.dose.amount)) return blocked("INVALID_INPUT", "מינון לא תקין");
     raw = spec.dose.amount;
-    steps.push({ label: "מינון קבוע", expression: "לפי הפרוטוקול", result: fmtQ(raw, unit) });
+    steps.push({
+      label: "מינון קבוע (לפי הפרוטוקול)",
+      expression: fmtQ(raw, unit),
+      result: fmtQ(raw, unit),
+    });
   } else {
     if (!positive(spec.dose.amountPerKg)) return blocked("INVALID_INPUT", "מינון לא תקין");
     const wt = dosingWeight(patient, spec.dose.weightBasis);

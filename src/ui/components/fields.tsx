@@ -48,14 +48,20 @@ export function Segmented<T extends string>({
   options: readonly { value: T; label: string }[];
 }) {
   return (
-    <div role="group" aria-label={label} className="flex overflow-hidden rounded-lg border-2 border-line-strong">
+    <div
+      role="group"
+      aria-label={label}
+      className="flex overflow-hidden rounded-lg border-2 border-line-strong"
+    >
       {options.map((o) => (
         <button
           key={o.value}
           type="button"
           aria-pressed={value === o.value}
           className={`min-h-12 flex-1 px-3 text-lg font-bold ${
-            value === o.value ? "bg-primary text-on-primary hover:bg-primary-hover" : "bg-surface hover:bg-surface-2"
+            value === o.value
+              ? "bg-primary text-on-primary hover:bg-primary-hover"
+              : "bg-surface hover:bg-surface-2"
           }`}
           onClick={() => {
             onChange(o.value);

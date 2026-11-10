@@ -16,7 +16,9 @@ const STYLES: Record<Status, { label: string; icon: string; cls: string }> = {
 export function StatusBadge({ status }: { status: Status }) {
   const s = STYLES[status];
   return (
-    <span className={`inline-flex items-center gap-1 rounded-md border-2 px-2 py-0.5 text-sm font-bold ${s.cls}`}>
+    <span
+      className={`inline-flex items-center gap-1 rounded-md border-2 px-2 py-0.5 text-sm font-bold ${s.cls}`}
+    >
       <span aria-hidden="true">{s.icon}</span>
       {s.label}
     </span>

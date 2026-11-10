@@ -28,7 +28,10 @@ export function AppShell() {
         <Outlet />
       </main>
       <footer className="border-t border-line px-4 py-2 text-sm">
-        <Link to="/about#disclaimer" className="inline-flex min-h-12 items-center text-accent underline">
+        <Link
+          to="/about#disclaimer"
+          className="inline-flex min-h-12 items-center text-accent underline"
+        >
           {he.footer}
         </Link>
       </footer>

@@ -47,6 +47,8 @@ export const he = {
     maxSingle: "מקסימום למנה",
     maxCumulative: "מקסימום מצטבר",
     concentration: "ריכוז",
+    localConcNote:
+      "הריכוזים ברשימה הם ברירת מחדל מקומית ולא ערך מההנחיה — יש לאמת מול המלאי במחלקה",
     otherConcentration: "ריכוז אחר",
     customAmount: "כמות תרופה",
     customUnit: "יחידה",
@@ -63,7 +65,8 @@ export const he = {
     lastReviewed: (d: string, by: string) => `נסקר לאחרונה: ${d} · סוקר: ${by}`,
     notReviewed: "טרם נסקר",
     notSet: "טרם נקבע",
-    customConcLabel: (amount: string, unit: string, vol: string) => `${amount} ${unit} / ${vol} מ״ל`,
+    customConcLabel: (amount: string, unit: string, vol: string) =>
+      `${amount} ${unit} / ${vol} מ״ל`,
   },
   search: {
     drug: "תרופה",
@@ -150,7 +153,8 @@ export const he = {
     due: "זמן בדיקת קצב!",
     adrNone: "אדרנלין: טרם ניתן",
     adrTooEarly: (t: string) => `אדרנלין לפני ${t}`,
-    adrWindow: (t: string, min: string, max: string) => `אדרנלין לפני ${t} — בחלון ${min}–${max} דק׳`,
+    adrWindow: (t: string, min: string, max: string) =>
+      `אדרנלין לפני ${t} — בחלון ${min}–${max} דק׳`,
     adrOverdue: (t: string, max: string) => `אדרנלין לפני ${t} — עברו יותר מ-${max} דק׳`,
     adrRosc: "ROSC — אין תזכורת אדרנלין. בדום לב חוזר: לחץ 'בדיקת קצב' או 'מחזור חדש'",
     energy: "אנרגיה שניתנה (J) — לתיעוד בלבד",
@@ -199,7 +203,7 @@ export const he = {
       "האפליקציה היא כלי תומך החלטה בלבד.",
       "היא אינה מחליפה שיקול דעת קליני, הוראות רופא או נהלים מקומיים.",
       "מיועדת למבוגרים בלבד; רפואת ילדים מחוץ להיקף.",
-      "תוכן המסומן \"לא מאומת\" לא עבר בדיקה קלינית.",
+      'תוכן המסומן "לא מאומת" לא עבר בדיקה קלינית.',
       "האפליקציה אינה שומרת נתוני מטופל.",
     ],
     ack: "קראתי והבנתי",

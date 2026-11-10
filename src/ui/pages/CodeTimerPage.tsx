@@ -36,8 +36,10 @@ const RHYTHMS: readonly { value: Rhythm; label: string }[] = [
   { value: "other", label: he.code.rhythmOther },
 ];
 
-const gridBtn = "min-h-16 rounded-xl border-2 border-line-strong bg-surface px-3 text-xl font-bold hover:bg-surface-2";
-const smallBtn = "min-h-12 rounded-lg border-2 border-line-strong bg-surface px-4 text-lg font-bold hover:bg-surface-2";
+const gridBtn =
+  "min-h-16 rounded-xl border-2 border-line-strong bg-surface px-3 text-xl font-bold hover:bg-surface-2";
+const smallBtn =
+  "min-h-12 rounded-lg border-2 border-line-strong bg-surface px-4 text-lg font-bold hover:bg-surface-2";
 
 function adrenalineClass(a: AdrenalineStatus): string {
   switch (a) {
@@ -194,7 +196,8 @@ export function CodeTimerPage() {
   const adrText = adrenalineText(status.adrenaline, adr);
 
   const parsedEnergy = parsePositiveNumber(energy);
-  const energyValue = parsedEnergy !== undefined && Number.isInteger(parsedEnergy) ? parsedEnergy : undefined;
+  const energyValue =
+    parsedEnergy !== undefined && Number.isInteger(parsedEnergy) ? parsedEnergy : undefined;
 
   const startAt = state.startedAt ?? 0;
 
@@ -251,14 +254,23 @@ export function CodeTimerPage() {
             </div>
           )}
           {cycleDue && (
-            <div role="alert" className="rounded-xl border-4 border-danger bg-danger-bg p-3 text-2xl font-bold text-danger-fg">
+            <div
+              role="alert"
+              className="rounded-xl border-4 border-danger bg-danger-bg p-3 text-2xl font-bold text-danger-fg"
+            >
               {he.code.due}
             </div>
           )}
           {!status.inRosc && status.shockPrompt !== null && (
-            <div className="rounded-xl border-2 border-primary p-3 text-xl font-bold text-primary">{status.shockPrompt}</div>
+            <div className="rounded-xl border-2 border-primary p-3 text-xl font-bold text-primary">
+              {status.shockPrompt}
+            </div>
           )}
-          <p className={`rounded-lg border-2 px-3 py-2 text-lg ${adrenalineClass(status.adrenaline)}`}>{adrText}</p>
+          <p
+            className={`rounded-lg border-2 px-3 py-2 text-lg ${adrenalineClass(status.adrenaline)}`}
+          >
+            {adrText}
+          </p>
 
           {running && (
             <div className="space-y-3">
@@ -369,7 +381,8 @@ export function CodeTimerPage() {
                     ensureAudio();
                     const last = state.events[state.events.length - 1];
                     dispatch({ type: "UNDO" });
-                    if (last !== undefined && state.events.length > 1) setUndoToast(he.code.undone(describeEvent(last)));
+                    if (last !== undefined && state.events.length > 1)
+                      setUndoToast(he.code.undone(describeEvent(last)));
                   }}
                 >
                   {he.code.undo}

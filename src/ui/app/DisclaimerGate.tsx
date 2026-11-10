@@ -10,9 +10,16 @@ export function DisclaimerGate({ children }: { children: ReactNode }) {
   if (acked) return <>{children}</>;
 
   return (
-    <div role="dialog" aria-modal="true" aria-labelledby="disclaimer-title" className="fixed inset-0 z-50 overflow-y-auto bg-bg p-6">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="disclaimer-title"
+      className="fixed inset-0 z-50 overflow-y-auto bg-bg p-6"
+    >
       <div className="mx-auto max-w-xl">
-        <h1 id="disclaimer-title" className="mb-4 text-2xl font-bold">{he.disclaimer.title}</h1>
+        <h1 id="disclaimer-title" className="mb-4 text-2xl font-bold">
+          {he.disclaimer.title}
+        </h1>
         <ul className="mb-6 list-disc space-y-2 ps-6 text-lg">
           {he.disclaimer.points.map((p) => (
             <li key={p}>{p}</li>

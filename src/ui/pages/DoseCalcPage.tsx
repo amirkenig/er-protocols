@@ -58,7 +58,18 @@ export function DoseCalcPage() {
   }
 
   const concLabel = `\u2066${concText} ${concUnit} / ${concVolText} mL\u2069`;
-  const key = [mode, amountText, unit, basis, maxText, concText, concUnit, concVolText, rounding, patient.weightKg].join("|");
+  const key = [
+    mode,
+    amountText,
+    unit,
+    basis,
+    maxText,
+    concText,
+    concUnit,
+    concVolText,
+    rounding,
+    patient.weightKg,
+  ].join("|");
 
   return (
     <div className="space-y-4">
@@ -78,21 +89,46 @@ export function DoseCalcPage() {
           value={amountText}
           onChange={setAmountText}
         />
-        <SelectField label={he.calc.dose.unit} value={unit} onChange={(v) => { setUnit(v as DoseUnit); }} options={unitOptions} />
+        <SelectField
+          label={he.calc.dose.unit}
+          value={unit}
+          onChange={(v) => {
+            setUnit(v as DoseUnit);
+          }}
+          options={unitOptions}
+        />
         {mode === "perKg" && (
           <SelectField
             label={he.calc.dose.weightBasis}
             value={basis}
-            onChange={(v) => { setBasis(v as WeightBasis); }}
+            onChange={(v) => {
+              setBasis(v as WeightBasis);
+            }}
             options={BASES.map((b) => ({ value: b, label: weightBasisLabel(b) }))}
           />
         )}
-        <NumberField label={he.calc.dose.maxSingle} value={maxText} onChange={setMaxText} unit={unit} />
+        <NumberField
+          label={he.calc.dose.maxSingle}
+          value={maxText}
+          onChange={setMaxText}
+          unit={unit}
+        />
       </div>
       <div className="grid grid-cols-3 gap-3">
         <NumberField label={he.calc.dose.concAmount} value={concText} onChange={setConcText} />
-        <SelectField label={he.calc.dose.concUnit} value={concUnit} onChange={(v) => { setConcUnit(v as DoseUnit); }} options={unitOptions} />
-        <NumberField label={he.calc.dose.concVolume} value={concVolText} onChange={setConcVolText} />
+        <SelectField
+          label={he.calc.dose.concUnit}
+          value={concUnit}
+          onChange={(v) => {
+            setConcUnit(v as DoseUnit);
+          }}
+          options={unitOptions}
+        />
+        <NumberField
+          label={he.calc.dose.concVolume}
+          value={concVolText}
+          onChange={setConcVolText}
+        />
       </div>
       <SelectField
         label={he.calc.dose.volumeRounding}
@@ -115,10 +151,7 @@ export function DoseCalcPage() {
       {result === null ? (
         <p className="text-lg">{he.calc.hintFill}</p>
       ) : (
-        <ResultView
-          result={result}
-          gateSteps={highAlert && concProvided}
-        >
+        <ResultView result={result} gateSteps={highAlert && concProvided}>
           {(v) => (
             <div className="space-y-3">
               <p className="text-lg">
@@ -139,7 +172,9 @@ export function DoseCalcPage() {
                   active={highAlert}
                   drugLabel={fmtQ(v.dose.value, v.dose.unit)}
                   concentrationLabel={concLabel}
-                  {...(v.dosingWeightKg === undefined ? {} : { weightLabel: fmtQ(v.dosingWeightKg, "kg") })}
+                  {...(v.dosingWeightKg === undefined
+                    ? {}
+                    : { weightLabel: fmtQ(v.dosingWeightKg, "kg") })}
                   unitLabel={v.dose.unit}
                 >
                   <p className="text-lg">

@@ -9,7 +9,13 @@ afterEach(cleanup);
 describe("HighAlertConfirm", () => {
   it("hides children until all checkboxes are checked", () => {
     render(
-      <HighAlertConfirm active drugLabel="X" concentrationLabel="1 mg / 10 mL" weightLabel="72 kg" unitLabel="mg">
+      <HighAlertConfirm
+        active
+        drugLabel="X"
+        concentrationLabel="1 mg / 10 mL"
+        weightLabel="72 kg"
+        unitLabel="mg"
+      >
         <p>secret</p>
       </HighAlertConfirm>,
     );

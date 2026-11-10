@@ -11,11 +11,20 @@ interface Props {
 }
 
 /** Parent should pass a `key` built from the inputs so the checks reset when they change. */
-export function HighAlertConfirm({ active, drugLabel, concentrationLabel, weightLabel, unitLabel, children }: Props) {
+export function HighAlertConfirm({
+  active,
+  drugLabel,
+  concentrationLabel,
+  weightLabel,
+  unitLabel,
+  children,
+}: Props) {
   const items: { id: string; label: string }[] = [
     { id: "drug", label: `${he.calc.checkDrug}: ${drugLabel}` },
     { id: "conc", label: `${he.calc.checkConcentration}: ${concentrationLabel}` },
-    ...(weightLabel === undefined ? [] : [{ id: "weight", label: `${he.calc.checkWeight}: ${weightLabel}` }]),
+    ...(weightLabel === undefined
+      ? []
+      : [{ id: "weight", label: `${he.calc.checkWeight}: ${weightLabel}` }]),
     { id: "unit", label: `${he.calc.checkUnit}: ${unitLabel}` },
   ];
   const [checked, setChecked] = useState<Record<string, boolean>>({});

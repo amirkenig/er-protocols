@@ -18,7 +18,10 @@ interface Props {
 export function StepCard({ step, number, drugNames }: Props) {
   const navigate = useNavigate();
   return (
-    <li id={`step-${step.id}`} className="space-y-3 rounded-xl border-2 border-line bg-surface p-4">
+    <li
+      id={`step-${step.id}`}
+      className="scroll-mt-28 space-y-3 rounded-xl border-2 border-line bg-surface p-4"
+    >
       <div className="flex gap-3">
         {number !== undefined && (
           <span
@@ -98,7 +101,9 @@ export function StepCard({ step, number, drugNames }: Props) {
         <StatusBadge status={step.verificationStatus} />
         {step.verificationStatus !== "verified" && step.unverifiedReason !== undefined && (
           <details className="text-sm">
-            <summary className="flex min-h-12 cursor-pointer items-center font-bold">{he.protocol.whyUnverified}</summary>
+            <summary className="flex min-h-12 cursor-pointer items-center font-bold">
+              {he.protocol.whyUnverified}
+            </summary>
             <p>{step.unverifiedReason}</p>
           </details>
         )}

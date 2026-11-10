@@ -2,5 +2,6 @@
 export function scrollToId(id: string): void {
   const el = document.getElementById(id);
   if (el === null) return;
-  if (typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (typeof el.scrollIntoView === "function")
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
 }

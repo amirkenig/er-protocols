@@ -103,7 +103,10 @@ export function Metronome() {
   };
 
   return (
-    <section aria-label={he.metronome.title} className="space-y-3 rounded-xl border-2 border-line bg-surface p-4">
+    <section
+      aria-label={he.metronome.title}
+      className="space-y-3 rounded-xl border-2 border-line bg-surface p-4"
+    >
       <h2 className="text-xl font-bold">{he.metronome.title}</h2>
       {!supported ? (
         <p>{he.metronome.unsupported}</p>
@@ -131,7 +134,9 @@ export function Metronome() {
           <span
             aria-hidden="true"
             className={`mb-3 size-6 shrink-0 rounded-full ${on ? "metronome-dot bg-primary" : "bg-line"}`}
-            style={on ? { animation: `metronome-pulse ${String(interval)}s linear infinite` } : undefined}
+            style={
+              on ? { animation: `metronome-pulse ${String(interval)}s linear infinite` } : undefined
+            }
           />
         </div>
       )}

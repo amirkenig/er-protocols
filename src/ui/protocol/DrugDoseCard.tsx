@@ -62,12 +62,14 @@ function DoseLine({ drug }: { drug: DrugEntry }) {
           <p className={big}>
             {d.start !== undefined && (
               <span>
-                {he.protocol.infusionStart}: <bdi dir="ltr">{`${fmt(d.start)} ${d.rateUnit}`}</bdi>{" "}
+                {he.protocol.infusionStart}:{" "}
+                <bdi dir="ltr">{`${fmt(d.start)} ${d.rateUnit}`}</bdi>{" "}
               </span>
             )}
             {d.min !== undefined && d.max !== undefined && (
               <span>
-                {he.protocol.infusionRange}: <bdi dir="ltr">{`${fmt(d.min)}–${fmt(d.max)} ${d.rateUnit}`}</bdi>
+                {he.protocol.infusionRange}:{" "}
+                <bdi dir="ltr">{`${fmt(d.min)}–${fmt(d.max)} ${d.rateUnit}`}</bdi>
               </span>
             )}
           </p>
@@ -173,7 +175,7 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
   return (
     <li
       id={`drug-${drug.id}`}
-      className={`space-y-3 rounded-xl bg-surface p-4 ${drug.highAlert ? "border-2 border-danger" : "border-2 border-line"}`}
+      className={`scroll-mt-28 space-y-3 rounded-xl bg-surface p-4 ${drug.highAlert ? "border-2 border-danger" : "border-2 border-line"}`}
     >
       {drug.highAlert && (
         <div className="space-y-1 border-b border-danger pb-2">
@@ -208,7 +210,8 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
       )}
       {drug.maxSingleDose !== undefined && (
         <p>
-          {he.protocol.maxSingle}: <bdi dir="ltr">{fmtQ(drug.maxSingleDose.value, drug.maxSingleDose.unit)}</bdi>
+          {he.protocol.maxSingle}:{" "}
+          <bdi dir="ltr">{fmtQ(drug.maxSingleDose.value, drug.maxSingleDose.unit)}</bdi>
         </p>
       )}
       {drug.maxCumulativeDose !== undefined && (
@@ -224,13 +227,21 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
             value={sel}
             onChange={setSel}
             options={[
-              ...drug.concentrations.map((c, i) => ({ value: String(i), label: c.label })),
+              ...drug.concentrations.map((c, i) => ({
+                value: String(i),
+                label: `\u2066${c.label}\u2069`,
+              })),
               { value: CUSTOM, label: he.protocol.otherConcentration },
             ]}
           />
+          <p className="text-sm text-caution">{he.protocol.localConcNote}</p>
           {sel === CUSTOM && (
             <div className="grid grid-cols-3 gap-3">
-              <NumberField label={he.protocol.customAmount} value={customAmount} onChange={setCustomAmount} />
+              <NumberField
+                label={he.protocol.customAmount}
+                value={customAmount}
+                onChange={setCustomAmount}
+              />
               <SelectField
                 label={he.protocol.customUnit}
                 value={customUnit}
@@ -239,7 +250,11 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
                 }}
                 options={unitOptions}
               />
-              <NumberField label={he.protocol.customVolume} value={customVolume} onChange={setCustomVolume} />
+              <NumberField
+                label={he.protocol.customVolume}
+                value={customVolume}
+                onChange={setCustomVolume}
+              />
             </div>
           )}
         </div>
@@ -249,7 +264,13 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
         </p>
       )}
       {showCalc && spec !== null && (
-        <DoseCalc drug={drug} spec={spec} concentration={concentration} concLabel={concLabel} keyPart="single" />
+        <DoseCalc
+          drug={drug}
+          spec={spec}
+          concentration={concentration}
+          concLabel={concLabel}
+          keyPart="single"
+        />
       )}
       {hasConc && ends !== null && (
         <div className="space-y-3">
@@ -310,7 +331,9 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
         <StatusBadge status={drug.verificationStatus} />
         {drug.verificationStatus !== "verified" && drug.unverifiedReason !== undefined && (
           <details className="text-sm">
-            <summary className="flex min-h-12 cursor-pointer items-center font-bold">{he.protocol.whyUnverified}</summary>
+            <summary className="flex min-h-12 cursor-pointer items-center font-bold">
+              {he.protocol.whyUnverified}
+            </summary>
             <p>{drug.unverifiedReason}</p>
           </details>
         )}

@@ -27,10 +27,16 @@ export function HomePage() {
         />
       </form>
       <div className="grid grid-cols-2 gap-3">
-        <Link to="/calc" className="flex min-h-14 items-center justify-center rounded-xl border-2 border-primary text-lg font-bold text-primary">
+        <Link
+          to="/calc"
+          className="flex min-h-14 items-center justify-center rounded-xl border-2 border-primary text-lg font-bold text-primary"
+        >
           {he.home.calc}
         </Link>
-        <Link to="/code" className="flex min-h-14 items-center justify-center rounded-xl border-2 border-danger text-lg font-bold text-danger">
+        <Link
+          to="/code"
+          className="flex min-h-14 items-center justify-center rounded-xl border-2 border-danger text-lg font-bold text-danger"
+        >
           {he.home.code}
         </Link>
       </div>

@@ -28,13 +28,24 @@ export function SearchPage() {
           {hits.map((h) => (
             <li key={`${h.kind}:${h.protocolId ?? ""}:${h.id}`}>
               <Link
-                to={h.kind === "category" ? `/c/${h.id}` : h.kind === "drug" ? `/p/${h.protocolId ?? ""}` : `/p/${h.id}`}
+                to={
+                  h.kind === "category"
+                    ? `/c/${h.id}`
+                    : h.kind === "drug"
+                      ? `/p/${h.protocolId ?? ""}`
+                      : `/p/${h.id}`
+                }
                 {...(h.kind === "drug" ? { state: { scrollTo: `drug-${h.id}` } } : {})}
                 className="flex min-h-16 flex-col justify-center rounded-xl border-2 border-line bg-surface p-4"
               >
                 <span className="text-xl font-bold">{h.titleHe}</span>
                 <span className="text-sm">
-                  {h.kind === "category" ? he.search.category : h.kind === "drug" ? he.search.drug : he.search.protocol} · {h.titleEn}
+                  {h.kind === "category"
+                    ? he.search.category
+                    : h.kind === "drug"
+                      ? he.search.drug
+                      : he.search.protocol}{" "}
+                  · {h.titleEn}
                 </span>
               </Link>
             </li>

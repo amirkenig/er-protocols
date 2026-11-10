@@ -60,7 +60,9 @@ describe("ProtocolPage", () => {
   it("guideline comparison shows pending AHA source", () => {
     setup("cardiac-arrest");
     const h = screen.getByRole("heading", { name: "השוואת הנחיות" });
-    expect(within(h.closest("section")!).getByText(/טרם התקבל המקור — ההשוואה ממתינה/)).toBeInTheDocument();
+    expect(
+      within(h.closest("section")!).getByText(/טרם התקבל המקור — ההשוואה ממתינה/),
+    ).toBeInTheDocument();
   });
 
   it("calcium chloride: text dose, no volume", () => {

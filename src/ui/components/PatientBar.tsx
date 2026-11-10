@@ -20,7 +20,11 @@ export function PatientBar() {
         <NumberField
           className="w-32"
           label={he.patient.weight}
-          value={patient.weightKg === undefined && parsePositiveNumber(weightText) !== undefined ? "" : weightText}
+          value={
+            patient.weightKg === undefined && parsePositiveNumber(weightText) !== undefined
+              ? ""
+              : weightText
+          }
           onChange={(t) => {
             setWeightText(t);
             setPatient({ weightKg: parsePositiveNumber(t) });
@@ -29,21 +33,46 @@ export function PatientBar() {
         <NumberField
           className="w-32"
           label={he.patient.height}
-          value={patient.heightCm === undefined && parsePositiveNumber(heightText) !== undefined ? "" : heightText}
+          value={
+            patient.heightCm === undefined && parsePositiveNumber(heightText) !== undefined
+              ? ""
+              : heightText
+          }
           onChange={(t) => {
             setHeightText(t);
             setPatient({ heightCm: parsePositiveNumber(t) });
           }}
         />
-        <div role="group" aria-label={he.patient.sex} className="mt-5 flex overflow-hidden rounded-lg border-2 border-line-strong">
-          <button type="button" aria-pressed={patient.sex === "male"} className={segCls(patient.sex === "male")} onClick={() => { setPatient({ sex: "male" }); }}>
+        <div
+          role="group"
+          aria-label={he.patient.sex}
+          className="mt-5 flex overflow-hidden rounded-lg border-2 border-line-strong"
+        >
+          <button
+            type="button"
+            aria-pressed={patient.sex === "male"}
+            className={segCls(patient.sex === "male")}
+            onClick={() => {
+              setPatient({ sex: "male" });
+            }}
+          >
             {he.patient.male}
           </button>
-          <button type="button" aria-pressed={patient.sex === "female"} className={segCls(patient.sex === "female")} onClick={() => { setPatient({ sex: "female" }); }}>
+          <button
+            type="button"
+            aria-pressed={patient.sex === "female"}
+            className={segCls(patient.sex === "female")}
+            onClick={() => {
+              setPatient({ sex: "female" });
+            }}
+          >
             {he.patient.female}
           </button>
         </div>
-        <button type="button" className="mt-5 min-h-12 rounded-lg border-2 border-danger px-4 text-lg font-bold text-danger" onClick={() => {
+        <button
+          type="button"
+          className="mt-5 min-h-12 rounded-lg border-2 border-danger px-4 text-lg font-bold text-danger"
+          onClick={() => {
             reset();
             setWeightText("");
             setHeightText("");

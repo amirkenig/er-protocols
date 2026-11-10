@@ -56,7 +56,10 @@ export function SettingsPage() {
             className={btnCls}
             onClick={() => {
               const v = phoneDraft.trim();
-              setSetting("poisonCenterPhone", v === "" || v === DEFAULT_POISON_CENTER.phone ? null : v);
+              setSetting(
+                "poisonCenterPhone",
+                v === "" || v === DEFAULT_POISON_CENTER.phone ? null : v,
+              );
             }}
           >
             {he.settings.save}

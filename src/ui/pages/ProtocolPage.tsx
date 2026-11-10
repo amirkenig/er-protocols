@@ -103,7 +103,10 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
               </li>
             ))}
             {pending.map((s) => (
-              <li key={s.id} className="rounded-lg border-2 border-caution bg-caution-bg p-2 font-bold">
+              <li
+                key={s.id}
+                className="rounded-lg border-2 border-caution bg-caution-bg p-2 font-bold"
+              >
                 {he.protocol.pending(s.title)}
               </li>
             ))}
@@ -169,7 +172,10 @@ export function ProtocolPage() {
   return (
     <article className="space-y-5">
       <header className="space-y-2">
-        <Link to={`/c/${protocol.category}`} className="flex min-h-12 items-center text-accent underline">
+        <Link
+          to={`/c/${protocol.category}`}
+          className="flex min-h-12 items-center text-accent underline"
+        >
           {he.back}
         </Link>
         <h1 className="text-2xl font-bold">{protocol.titleHe}</h1>
@@ -197,7 +203,9 @@ export function ProtocolPage() {
           <p className="font-bold">{he.protocol.unverifiedBanner}</p>
           {protocol.unverifiedReason !== undefined && (
             <details>
-              <summary className="flex min-h-12 cursor-pointer items-center">{he.protocol.details}</summary>
+              <summary className="flex min-h-12 cursor-pointer items-center">
+                {he.protocol.details}
+              </summary>
               <p>{protocol.unverifiedReason}</p>
             </details>
           )}
@@ -213,7 +221,9 @@ export function ProtocolPage() {
                 {local.steps.map((s, i) => (
                   <li key={i}>
                     <span className="font-bold">{s.action}</span>
-                    {s.rationale !== undefined && <span className="text-muted"> — {s.rationale}</span>}
+                    {s.rationale !== undefined && (
+                      <span className="text-muted"> — {s.rationale}</span>
+                    )}
                   </li>
                 ))}
               </ol>

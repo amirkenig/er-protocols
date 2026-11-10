@@ -24,7 +24,11 @@ export function PatientSessionProvider({ children }: { children: ReactNode }) {
   const setPatient = (partial: Partial<Patient>) => {
     setPatientState((prev) => {
       const next = { ...prev, ...partial };
-      if ("weightKg" in partial && partial.weightKg !== prev.weightKg && !("weightConfirmed" in partial)) {
+      if (
+        "weightKg" in partial &&
+        partial.weightKg !== prev.weightKg &&
+        !("weightConfirmed" in partial)
+      ) {
         next.weightConfirmed = false;
       }
       return next;
