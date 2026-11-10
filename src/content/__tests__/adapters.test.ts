@@ -40,7 +40,11 @@ describe("adapters", () => {
   });
   it("amiodarone-first: 6 mL at 150 mg / 3 mL", () => {
     const d = drug("amiodarone-first");
-    const r = computeBolus({ spec: toBolusSpec(d)!, patient: {}, concentration: defaultConcentration(d) });
+    const r = computeBolus({
+      spec: toBolusSpec(d)!,
+      patient: {},
+      concentration: defaultConcentration(d),
+    });
     expect(r.ok && r.value.volumeMl).toBe(6);
   });
   it("no default concentration → undefined", () => {

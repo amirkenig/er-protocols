@@ -2,7 +2,10 @@
 import type { BolusSpec, Concentration } from "../engine/dose";
 import type { DrugEntry } from "./schema";
 
-type Caps = Pick<BolusSpec, "maxSingleDose" | "maxCumulativeDose" | "doseRounding" | "volumeRounding">;
+type Caps = Pick<
+  BolusSpec,
+  "maxSingleDose" | "maxCumulativeDose" | "doseRounding" | "volumeRounding"
+>;
 
 function caps(drug: DrugEntry): Caps {
   const out: { -readonly [K in keyof Caps]: Caps[K] } = {};
@@ -20,7 +23,12 @@ export function toBolusSpec(drug: DrugEntry): BolusSpec | null {
       return { dose: { kind: "fixed", amount: d.amount, unit: d.unit }, ...caps(drug) };
     case "perKg":
       return {
-        dose: { kind: "perKg", amountPerKg: d.amountPerKg, unit: d.unit, weightBasis: d.weightBasis },
+        dose: {
+          kind: "perKg",
+          amountPerKg: d.amountPerKg,
+          unit: d.unit,
+          weightBasis: d.weightBasis,
+        },
         ...caps(drug),
       };
     case "range":
@@ -42,5 +50,7 @@ export function rangeEndSpecs(drug: DrugEntry): [BolusSpec, BolusSpec] | null {
 
 export function defaultConcentration(drug: DrugEntry): Concentration | undefined {
   const c = drug.concentrations.find((x) => x.isDefault);
-  return c === undefined ? undefined : { amount: c.amount, unit: c.unit, perVolumeMl: c.perVolumeMl };
+  return c === undefined
+    ? undefined
+    : { amount: c.amount, unit: c.unit, perVolumeMl: c.perVolumeMl };
 }

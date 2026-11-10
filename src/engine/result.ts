@@ -22,7 +22,8 @@ export type WarningCode =
   | "ROUNDED_DOWN_FOR_CAP"
   | "VALUE_OUT_OF_RANGE"
   | "CLINICAL_THRESHOLD"
-  | "MISSING_DATA";
+  | "MISSING_DATA"
+  | "ROUNDING_CHANGED_DOSE";
 
 export interface Warning {
   readonly code: WarningCode;

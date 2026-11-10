@@ -74,7 +74,7 @@ export const cardiacArrest: ProtocolInput = {
   steps: [
     {
       id: "assess-rhythm",
-      action: "הערך קצב. צמצם את ההפסקה בעיסויים לפחות מ-5 שניות.",
+      action: "הערך קצב. ההפסקה בעיסויים — פחות מ-5 שניות.",
       rationale:
         "הקצב קובע את המסלול: בקצב בר-שוק דפיברילציה מוקדמת היא הטיפול היעיל ביותר, ובקצב שאינו בר-שוק העדיפות היא אדרנלין מוקדם וטיפול בסיבה.",
       decisionPoints: [
@@ -112,10 +112,11 @@ export const cardiacArrest: ProtocolInput = {
     },
     {
       id: "after-third-shock",
-      action: "אחרי השוק השלישי: אדרנלין 1 מ״ג ואמיודרון 300 מ״ג IV/IO. אדרנלין חוזר כל 3–5 דקות.",
+      action:
+        "אחרי השוק השלישי: אדרנלין 1 מ״ג ואמיודרון 300 מ״ג IV/IO. אדרנלין חוזר כל 3–5 דקות. חלופה לאמיודרון (אם אינו זמין או לפי החלטה מקומית): לידוקאין 100 מ״ג.",
       rationale:
         "אדרנלין מעלה את התנגודת ההיקפית ובכך את לחץ הזילוח הכלילי והמוחי בזמן עיסויים. אמיודרון מייצב את הממברנה של שריר הלב ומעלה את הסיכוי שהשוק הבא יצליח.",
-      drugRefs: ["adrenaline", "amiodarone-first"],
+      drugRefs: ["adrenaline", "amiodarone-first", "lidocaine-first"],
       decisionPoints: [
         {
           condition: "VF/pVT נמשך אחרי שוק חמישי",
@@ -132,6 +133,10 @@ export const cardiacArrest: ProtocolInput = {
           "Antiarrhythmic drugs, p. 19",
           "Give amiodarone 300 mg IV … after three shocks have been administered.",
         ),
+        erc(
+          "Antiarrhythmic drugs, p. 19",
+          "Lidocaine 100 mg IV may be used as an alternative if amiodarone is not available or a local decision has been made to use lidocaine instead of amiodarone.",
+        ),
       ],
       verificationStatus: "unverified",
       unverifiedReason: PENDING,
@@ -139,10 +144,10 @@ export const cardiacArrest: ProtocolInput = {
     {
       id: "after-fifth-shock",
       action:
-        "אחרי השוק החמישי: אמיודרון 150 מ״ג IV. המנות ניתנות לפי מספר השוקים, גם אם הקצב בר-השוק חוזר לסירוגין. חלופה: לידוקאין 100 מ״ג, ועוד 50 מ״ג אחרי 5 שוקים.",
+        "אחרי השוק החמישי: אמיודרון 150 מ״ג IV. המנות ניתנות לפי מספר השוקים, גם אם הקצב בר-השוק חוזר לסירוגין. אם ניתן לידוקאין במקום אמיודרון: לידוקאין 50 מ״ג נוסף.",
       rationale:
-        "מנה שנייה משלימה את העמסת האמיודרון. לידוקאין משמש חלופה כשאין אמיודרון או לפי החלטה מקומית.",
-      drugRefs: ["amiodarone-second", "lidocaine-first", "lidocaine-second"],
+        "מנה שנייה משלימה את העמסת התרופה האנטי-אריתמית שנבחרה: אמיודרון, או לידוקאין כשהוחלט עליו במקום אמיודרון.",
+      drugRefs: ["amiodarone-second", "lidocaine-second"],
       citations: [
         erc(
           "Antiarrhythmic drugs, p. 19",
@@ -220,7 +225,7 @@ export const cardiacArrest: ProtocolInput = {
       ],
       citations: [
         erc(
-          "Airway and ventilation, pp. 18–19",
+          "Airway and ventilation, p. 19",
           "ventilate the lungs at a rate of 10 min⁻¹ … tidal volume of 6–8 mL kg⁻¹ (predicted body weight) … PEEP 0–5 cm H2O … flow trigger off",
         ),
         erc(
@@ -264,6 +269,10 @@ export const cardiacArrest: ProtocolInput = {
       ],
       citations: [
         erc("Fig. 11, p. 17 (reversible causes)"),
+        erc(
+          "Accidental hypothermia, p. 24",
+          "Increase administration intervals for adrenaline to 6–10 min if the core temperature is 30–35 °C.",
+        ),
         erc(
           "Special circumstances — general recommendation, p. 22",
           "Where appropriate, prioritise treating reversible causes, even if chest compressions are briefly interrupted.",
@@ -408,7 +417,8 @@ export const cardiacArrest: ProtocolInput = {
       genericName: "Adrenaline (epinephrine)",
       hebrewName: "אדרנלין",
       synonyms: ["epinephrine", "אפינפרין"],
-      indication: "דום לב: בקצב שאינו בר-שוק בהקדם, בקצב בר-שוק אחרי השוק השלישי; חוזר כל 3–5 דקות",
+      indication:
+        "דום לב: בקצב שאינו בר-שוק בהקדם, בקצב בר-שוק אחרי השוק השלישי; חוזר כל 3–5 דקות. בהיפותרמיה המרווחים שונים — ראה שלב היפותרמיה.",
       routes: ["IV", "IO"],
       dose: { kind: "fixed", amount: 1, unit: "mg" },
       concentrations: [
@@ -541,7 +551,7 @@ export const cardiacArrest: ProtocolInput = {
       genericName: "Lidocaine — additional bolus",
       hebrewName: "לידוקאין — מנה נוספת",
       synonyms: ["lignocaine", "xylocaine"],
-      indication: "חלופה לאמיודרון: אחרי 5 שוקים",
+      indication: "אם ניתן לידוקאין במקום אמיודרון: מנה נוספת אחרי 5 שוקים",
       routes: ["IV", "IO"],
       dose: { kind: "fixed", amount: 50, unit: "mg" },
       concentrations: [

@@ -38,6 +38,8 @@ export interface CodeTimerState {
   readonly cycleStartedAt: number | null;
   readonly lastAdrenalineAt: number | null;
   readonly shockCount: number;
+  /** Set by ROSC; cleared by a rhythm check, new cycle or shock (re-arrest). */
+  readonly roscAt: number | null;
   readonly events: readonly CodeEvent[];
 }
 
@@ -77,6 +79,7 @@ export const INITIAL_STATE: CodeTimerState = {
   cycleStartedAt: null,
   lastAdrenalineAt: null,
   shockCount: 0,
+  roscAt: null,
   events: [],
 };
 
@@ -97,18 +100,18 @@ function applyEvent(s: CodeTimerState, e: CodeEvent): CodeTimerState {
     case "start":
       return { ...s, startedAt: e.at, cycleStartedAt: e.at, events };
     case "shock":
-      return { ...s, shockCount: e.number, cycleStartedAt: e.at, events };
+      return { ...s, shockCount: e.number, cycleStartedAt: e.at, roscAt: null, events };
     case "cycle":
-      return { ...s, cycleStartedAt: e.at, events };
+      return { ...s, cycleStartedAt: e.at, roscAt: null, events };
     case "drug":
       return { ...s, lastAdrenalineAt: e.adrenaline ? e.at : s.lastAdrenalineAt, events };
     case "end":
       return { ...s, endedAt: e.at, cycleStartedAt: null, events };
     case "rosc":
-      return { ...s, cycleStartedAt: null, events };
+      return { ...s, cycleStartedAt: null, roscAt: e.at, events };
     case "rhythm":
-      // Compressions resume right after a rhythm check: a new cycle starts.
-      return { ...s, cycleStartedAt: e.at, events };
+      // Compressions resume right after a rhythm check: a new cycle starts (re-arrest).
+      return { ...s, cycleStartedAt: e.at, roscAt: null, events };
     case "note":
       return { ...s, events };
   }
@@ -156,7 +159,8 @@ export function codeTimerReducer(s: CodeTimerState, a: CodeTimerAction): CodeTim
   }
 }
 
-export type AdrenalineStatus = "none-given" | "too-early" | "window" | "overdue";
+/** "rosc": a pulse has returned — no adrenaline reminder or shock prompt is shown. */
+export type AdrenalineStatus = "none-given" | "too-early" | "window" | "overdue" | "rosc";
 
 export interface CodeTimerStatus {
   readonly running: boolean;
@@ -172,6 +176,8 @@ export interface CodeTimerStatus {
   readonly sinceAdrenalineMs: number | null;
   readonly adrenaline: AdrenalineStatus;
   readonly shockCount: number;
+  /** True after ROSC until re-arrest (rhythm check, new cycle or shock). */
+  readonly inRosc: boolean;
   /** Drug prompt for the current shock count, if any (from config). */
   readonly shockPrompt: string | null;
 }
@@ -200,7 +206,9 @@ export function codeTimerStatus(
     else if (sinceAdrenalineMs <= cfg.adrenalineMaxMinutes * 60_000) adrenaline = "window";
     else adrenaline = "overdue";
   }
-  const shockPrompt = cfg.shockPrompts[s.shockCount] ?? null;
+  const inRosc = s.roscAt !== null;
+  if (inRosc) adrenaline = "rosc";
+  const shockPrompt = inRosc ? null : (cfg.shockPrompts[s.shockCount] ?? null);
   return {
     running,
     elapsedMs,
@@ -212,6 +220,7 @@ export function codeTimerStatus(
     sinceAdrenalineMs,
     adrenaline,
     shockCount: s.shockCount,
+    inRosc,
     shockPrompt,
   };
 }

@@ -271,6 +271,29 @@ describe("computeBolus — rounding", () => {
     expect(r).toMatchObject({ ok: true, value: { volumeMl: 7, dose: { value: 7 }, capped: true } });
     expect(codes(r)).toContain("ROUNDED_DOWN_FOR_CAP");
   });
+  it("warns when volume rounding changes the dose by more than 10%", () => {
+    // 50 mcg at 1 mg/mL = 0.05 mL → rounded 0.1 mL = 100 mcg (+100%).
+    const big = computeBolus({
+      spec: {
+        dose: { kind: "fixed", amount: 50, unit: "mcg" },
+        volumeRounding: { step: 0.1, mode: "nearest" },
+      },
+      patient: {},
+      concentration: { amount: 1, unit: "mg", perVolumeMl: 1 },
+    });
+    expect(big).toMatchObject({ ok: true, value: { volumeMl: 0.1, dose: { value: 100 } } });
+    expect(codes(big)).toContain("ROUNDING_CHANGED_DOSE");
+    // 0.73 mg → 7.3 mL → 7.5 mL = 0.75 mg (+2.7%): no warning.
+    const small = computeBolus({
+      spec: {
+        dose: { kind: "perKg", amountPerKg: 0.01, unit: "mg", weightBasis: "actual" },
+        volumeRounding: { step: 0.5, mode: "nearest" },
+      },
+      patient: { weightKg: 73 },
+      concentration: { amount: 1, unit: "mg", perVolumeMl: 10 },
+    });
+    expect(codes(small)).not.toContain("ROUNDING_CHANGED_DOSE");
+  });
   it("volume too small blocks", () => {
     const r = computeBolus({
       spec: { dose: { kind: "fixed", amount: 1, unit: "mcg" } },

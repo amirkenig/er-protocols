@@ -70,6 +70,9 @@ export interface BolusValue {
 
 export const DEFAULT_VOLUME_ROUNDING: RoundingRule = { step: 0.01, mode: "nearest" };
 
+/** Relative dose change from volume rounding above which a caution warning is shown. */
+export const ROUNDING_CHANGE_LIMIT = 0.1;
+
 function positive(x: number): boolean {
   return isFiniteNumber(x) && x > 0;
 }
@@ -239,6 +242,14 @@ export function computeBolus(input: BolusInput): CalcResult<BolusValue> {
   // (12 significant digits) can lift the recomputed value ~1e-11 above it. Clamp so the
   // displayed dose never exceeds the cap.
   const delivered = Math.min(deliveredRaw, cap);
+  // Rounding a small volume can change the dose a lot (e.g. 0.05 → 0.1 mL doubles it).
+  if (Math.abs(delivered - dose) > ROUNDING_CHANGE_LIMIT * dose) {
+    warnings.push({
+      code: "ROUNDING_CHANGED_DOSE",
+      severity: "caution",
+      message: `עיגול הנפח שינה את המינון ביותר מ-10% (${isoQ(dose, unit)} → ${isoQ(delivered, unit)}). שקול ריכוז מהול יותר או מזרק מדויק יותר.`,
+    });
+  }
   if (volumeMl !== exactVolume) {
     steps.push({
       label: "עיגול נפח",

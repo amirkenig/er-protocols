@@ -146,6 +146,33 @@ describe("adrenaline reminder (3–5 min window)", () => {
   });
 });
 
+describe("ROSC", () => {
+  it("after ROSC: no adrenaline reminder and no shock prompt, until re-arrest", () => {
+    let s = started();
+    for (let i = 1; i <= 3; i++) s = r(s, { type: "SHOCK", now: sec(i * 10) });
+    s = r(s, adr(sec(40)));
+    s = r(s, { type: "ROSC", now: sec(60) });
+    const st = codeTimerStatus(s, min(10), cfg);
+    expect(st).toMatchObject({
+      inRosc: true,
+      adrenaline: "rosc",
+      shockPrompt: null,
+      cycleElapsedMs: null,
+    });
+    // Re-arrest: a rhythm check resumes reminders.
+    s = r(s, { type: "RHYTHM", now: min(10), rhythm: "PEA" });
+    expect(codeTimerStatus(s, min(10), cfg)).toMatchObject({
+      inRosc: false,
+      adrenaline: "overdue",
+    });
+  });
+  it("new cycle or shock also ends the ROSC state", () => {
+    const rosc = r(started(), { type: "ROSC", now: sec(30) });
+    expect(r(rosc, { type: "NEW_CYCLE", now: sec(40) }).roscAt).toBeNull();
+    expect(r(rosc, { type: "SHOCK", now: sec(40) }).roscAt).toBeNull();
+  });
+});
+
 describe("shocks and prompts", () => {
   it("numbers shocks and shows prompts after shocks 3 and 5 only", () => {
     let s = started();

@@ -12,8 +12,9 @@ export const CODE_TIMER_CONFIG: CodeTimerConfig = {
   adrenalineMaxMinutes: 5,
   shockPrompts: {
     3: "אחרי שוק 3: אדרנלין 1 מ״ג + אמיודרון 300 מ״ג",
-    5: "אחרי שוק 5: אמיודרון 150 מ״ג (או לידוקאין 50 מ״ג)",
+    5: "אחרי שוק 5: אמיודרון 150 מ״ג (ואם הוחלט על לידוקאין במקום אמיודרון: לידוקאין 50 מ״ג)",
   },
+  /** UI choice (not a guideline value): early warning before the rhythm check. */
   cycleWarnSeconds: 15,
 };
 
@@ -29,7 +30,8 @@ export const CODE_TIMER_CITATIONS: readonly Citation[] = [
   {
     sourceId: "erc-2025-exec",
     locator: "Vasopressor drugs; Antiarrhythmic drugs, p. 19",
-    quote: "Repeat adrenaline 1 mg every 3–5 min … amiodarone 300 mg … after three shocks … 150 mg … after five shocks",
+    quote:
+      "Repeat adrenaline 1 mg every 3–5 min … amiodarone 300 mg … after three shocks … 150 mg … after five shocks",
   },
   {
     sourceId: "erc-2025-exec",
@@ -40,5 +42,6 @@ export const CODE_TIMER_CITATIONS: readonly Citation[] = [
 
 export const CODE_TIMER_STATUS = {
   verificationStatus: "unverified" as const,
-  unverifiedReason: "Intervals transcribed from ERC 2025 Executive Summary; AHA comparison pending; awaiting clinician review.",
+  unverifiedReason:
+    "Intervals transcribed from ERC 2025 Executive Summary; AHA comparison pending; awaiting clinician review.",
 };
