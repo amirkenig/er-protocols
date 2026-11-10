@@ -25,7 +25,9 @@ test("works offline after first load", async ({ page, context }) => {
   });
   // Ensure the page is controlled by the service worker before going offline.
   await page.reload();
-  await expect.poll(() => page.evaluate(() => navigator.serviceWorker.controller !== null)).toBe(true);
+  await expect
+    .poll(() => page.evaluate(() => navigator.serviceWorker.controller !== null))
+    .toBe(true);
   await context.setOffline(true);
   await page.reload();
   await expect(page.getByRole("button", { name: "המשך" })).toBeVisible();

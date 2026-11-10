@@ -803,7 +803,7 @@ export const tachycardia: ProtocolInput = {
       hebrewName: "דילטיאזם — בולוס",
       synonyms: ["cardizem"],
       indication:
-        "בקרת קצב ב-AF/רפרוף ללא pre-excitation; טכיקרדיה צרה סדירה. 0.25 מ״ג/ק״ג IV במשך 2 דקות. הימנע בתת-לחץ דם, אי-ספיקת לב, קרדיומיופתיה ו-ACS. אסור ב-WCT.",
+        "המינון מטבלה 2 של AHA (בקרת קצב ב-AF/רפרוף); AHA אינו מפרט מינון נפרד לטכיקרדיה צרה סדירה. בקרת קצב ב-AF/רפרוף ללא pre-excitation; טכיקרדיה צרה סדירה. 0.25 מ״ג/ק״ג IV במשך 2 דקות. הימנע בתת-לחץ דם, אי-ספיקת לב, קרדיומיופתיה ו-ACS. אסור ב-WCT.",
       routes: ["IV"],
       dose: {
         kind: "perKg",
@@ -857,7 +857,7 @@ export const tachycardia: ProtocolInput = {
       hebrewName: "ורפמיל — בולוס",
       synonyms: ["isoptin", "איזופטין"],
       indication:
-        "בקרת קצב ב-AF/רפרוף ללא pre-excitation; טכיקרדיה צרה סדירה. 0.075–0.15 מ״ג/ק״ג IV במשך 2 דקות; אפשר מנה נוספת אחרי 30 דקות אם אין תגובה. אסור ב-WCT.",
+        "המינון מטבלה 2 של AHA (בקרת קצב ב-AF/רפרוף); AHA אינו מפרט מינון נפרד לטכיקרדיה צרה סדירה. בקרת קצב ב-AF/רפרוף ללא pre-excitation; טכיקרדיה צרה סדירה. 0.075–0.15 מ״ג/ק״ג IV במשך 2 דקות; אפשר מנה נוספת אחרי 30 דקות אם אין תגובה. אסור ב-WCT.",
       routes: ["IV"],
       dose: {
         kind: "range",
@@ -916,7 +916,7 @@ export const tachycardia: ProtocolInput = {
       hebrewName: "מטופרולול",
       synonyms: ["lopresor", "לופרסור"],
       indication:
-        "בקרת קצב ב-AF/רפרוף ללא pre-excitation. 2.5–5 מ״ג במשך 2 דקות, עד 3 מנות. הימנע באי-ספיקת לב לא מאוזנת.",
+        "המינון מטבלה 2 של AHA (בקרת קצב ב-AF/רפרוף); AHA אינו מפרט מינון נפרד לטכיקרדיה צרה סדירה. בקרת קצב ב-AF/רפרוף ללא pre-excitation. 2.5–5 מ״ג במשך 2 דקות, עד 3 מנות. הימנע באי-ספיקת לב לא מאוזנת.",
       routes: ["IV"],
       dose: { kind: "range", min: 2.5, max: 5, unit: "mg", perKg: false },
       dilution: "במשך 2 דקות; עד 3 מנות.",
@@ -943,7 +943,7 @@ export const tachycardia: ProtocolInput = {
         },
       ],
       verificationStatus: "unverified",
-      unverifiedReason: `${PENDING} Repeat interval between doses not stated in source.`,
+      unverifiedReason: `${PENDING} Table 2 dose is for AF/flutter rate control; AHA gives no separate NCT dose. Repeat interval between doses not stated in source.`,
     },
     {
       id: "esmolol",

@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from "react-router";
 import { afterEach, describe, expect, it } from "vitest";
 import { PatientSessionProvider } from "../../state/PatientSession";
 import { ProtocolPage } from "./ProtocolPage";
+import { PROTOCOLS } from "../../content/protocols";
 
 afterEach(cleanup);
 
@@ -122,4 +123,14 @@ describe("ProtocolPage", () => {
     expect(screen.getByText("הפרוטוקול לא נמצא")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "חזרה לדף הבית" })).toBeInTheDocument();
   });
+
+  it.each(PROTOCOLS.map((p) => [p.id, p.titleHe] as const))(
+    "renders protocol %s with its title, steps and unverified banner",
+    (id, titleHe) => {
+      setup(id);
+      expect(screen.getByRole("heading", { level: 1, name: titleHe })).toBeInTheDocument();
+      expect(screen.getByText(/תוכן זה טרם נסקר/)).toBeInTheDocument();
+      cleanup();
+    },
+  );
 });

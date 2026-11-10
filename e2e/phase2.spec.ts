@@ -30,7 +30,28 @@ test("no page scrolls horizontally at phone width", async ({ page }) => {
   await page.goto("./");
   await page.getByRole("checkbox").check();
   await page.getByRole("button", { name: "המשך" }).click();
-  for (const route of ["#/", "#/c/resuscitation", "#/p/cardiac-arrest", "#/code", "#/calc", "#/calc/dose", "#/calc/infusion", "#/about", "#/settings"]) {
+  for (const route of [
+    "#/",
+    "#/c/resuscitation",
+    "#/p/cardiac-arrest",
+    "#/p/bradycardia",
+    "#/p/tachycardia",
+    "#/p/post-rosc-care",
+    "#/p/sepsis",
+    "#/p/potassium-disorders",
+    "#/p/anaphylaxis",
+    "#/p/high-risk-pe",
+    "#/p/traumatic-arrest",
+    "#/p/last-toxicity",
+    "#/p/accidental-hypothermia",
+    "#/p/hyperthermia",
+    "#/code",
+    "#/calc",
+    "#/calc/dose",
+    "#/calc/infusion",
+    "#/about",
+    "#/settings",
+  ]) {
     await page.goto(`./${route}`);
     await page.waitForTimeout(200);
     const { scrollW, vw } = await page.evaluate(() => ({

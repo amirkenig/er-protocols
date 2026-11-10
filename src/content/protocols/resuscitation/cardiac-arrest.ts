@@ -306,6 +306,12 @@ const base: ProtocolInput = {
       id: "hyperkalaemic-arrest",
       action:
         "דום לב היפרקלמי: 10 מ״ל calcium chloride 10% ו-50 mmol sodium bicarbonate IV, בקווים נפרדים או עם שטיפה ביניהם. שקול ECPR לפי נוהל מקומי אם ההחייאה הראשונית אינה מצליחה.",
+      decisionPoints: [
+        {
+          condition: "היפרקלמיה ללא דום לב / אחרי ROSC",
+          target: { kind: "protocol", id: "potassium-disorders" },
+        },
+      ],
       rationale:
         "סידן מייצב את ממברנת שריר הלב נגד השפעת האשלגן תוך דקות. ביקרבונט מסייע להכניס אשלגן לתאים. השטיפה ביניהם נדרשת כי השניים יוצרים משקע.",
       drugRefs: ["calcium-chloride", "sodium-bicarbonate"],
@@ -440,6 +446,9 @@ const base: ProtocolInput = {
       id: "post-rosc",
       action:
         "לאחר ROSC: גישת ABCDE. חמצן 100% עד שניתן למדוד ואז טיטרציה ל-SpO2 94–98%. נורמוקפניה. ECG 12 חיבורים מיד; צנתור דחוף אם יש עליות ST מתמשכות. הימנע מתת-לחץ דם: יעד MAP מעל 60–65 (בתרשים ה-ALS: לחץ סיסטולי מעל 100). במטופל שנשאר מחוסר הכרה — מנע חום (≤37.5°C) למשך 36–72 שעות. ללא קירור טרום-בית חולים בעירוי מהיר של נוזלים קרים.",
+      decisionPoints: [
+        { condition: "טיפול מלא לאחר ROSC", target: { kind: "protocol", id: "post-rosc-care" } },
+      ],
       rationale:
         "המוח והלב פגיעים במיוחד בשעות הראשונות אחרי דום לב: גם היפוקסיה וגם עודף חמצן, תת-לחץ דם וחום מחמירים את הנזק המוחי.",
       reassessmentTargets: [
