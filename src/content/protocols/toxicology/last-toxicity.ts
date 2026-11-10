@@ -173,7 +173,7 @@ export const lastToxicity: ProtocolInput = {
       hebrewName: "אדרנלין — מנה מופחתת ב-LAST",
       synonyms: ["epinephrine", "אפינפרין"],
       indication:
-        "מנה מקסימלית: דום לב בהרעלת חומרי הרדמה מקומיים: עד 1 מק״ג/ק״ג (≤1 µg/kg) במקום 1 מ״ג. הערך המחושב הוא התקרה, לא יעד.",
+        "מנה מקסימלית: דום לב בהרעלת חומרי הרדמה מקומיים — עד 1 מק״ג/ק״ג לכל היותר (≤1 µg/kg) במקום 1 מ״ג. זוהי תקרה, לא יעד.",
       routes: ["IV"],
       dose: {
         kind: "text",
@@ -184,7 +184,7 @@ export const lastToxicity: ProtocolInput = {
       highAlertReason: "וזופרסור; מנה במיקרוגרמים לק״ג במקום 1 מ״ג סטנדרטי — סכנת בלבול מ״ג/מק״ג",
       citations: [erc("Give a lower adrenaline dose (≤1 µg kg⁻¹ instead of 1 mg IV bolus).")],
       verificationStatus: "unverified",
-      unverifiedReason: `${PENDING} The source gives an upper limit (≤1 µg/kg), not a fixed dose; a per-kg ceiling cannot be expressed as maxSingleDose, so none is set. Repeat interval and concentration not stated.`,
+      unverifiedReason: `${PENDING} The source gives an upper limit (≤1 µg/kg), not a fixed dose; shown as text (no calculation) so the ceiling is never displayed as a dose to give. Repeat interval and concentration not stated.`,
     },
     {
       id: "benzodiazepine",
@@ -195,7 +195,7 @@ export const lastToxicity: ProtocolInput = {
       routes: ["IV"],
       dose: {
         kind: "text",
-        text: "המינון אינו מפורט במקור — לפי נוהל מקומי (מסלול לפי נוהל מקומי)",
+        text: "התרופה, המינון והמסלול אינם מפורטים במקור — לפי נוהל מקומי",
       },
       concentrations: [],
       highAlert: true,

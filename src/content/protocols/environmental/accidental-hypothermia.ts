@@ -179,7 +179,7 @@ export const accidentalHypothermia: ProtocolInput = {
     {
       id: "arrest-triage",
       action:
-        "אין סימנים חיוניים: אם יש סימני מוות ודאיים, הוראת DNACPR תקפה, תנאים לא בטוחים למחלץ, או קבורה במפולת מעל 60 דקות עם נתיב אוויר חסום בשלג ואסיסטולה — שקול הפסקת החייאה. אחרת: התחל החייאה בלי לעכב פינוי, נהל נתיב אוויר ואסוף מידע על מנגנון האירוע.",
+        "אין סימנים חיוניים: אם יש סימני מוות ודאיים (עריפת ראש, חיתוך הגו, גוף מפורק או קפוא כולו כשדופן החזה אינה ניתנת לדחיסה), הוראת DNACPR תקפה, תנאים לא בטוחים למחלץ, או קבורה במפולת מעל 60 דקות עם נתיב אוויר חסום בשלג ואסיסטולה — שקול הפסקת החייאה. אחרת: התחל החייאה בלי לעכב פינוי, נהל נתיב אוויר ואסוף מידע על מנגנון האירוע.",
       rationale:
         "בהיפותרמיה יש סיכוי להחלמה נוירולוגית טובה גם אחרי החייאה ממושכת, כי הקור מגן על המוח. לכן מפסיקים רק כשקיים קריטריון ברור לחוסר תוחלת.",
       decisionPoints: [
@@ -230,7 +230,7 @@ export const accidentalHypothermia: ProtocolInput = {
     {
       id: "shocks-adrenaline",
       action:
-        "התאמות לאלגוריתם ALS: אם VF נמשך אחרי 3 שוקים — דחה שוקים נוספים עד שחום הליבה מעל 30°C. מתחת ל-30°C — אדרנלין 1 מ״ג IV פעם אחת בלבד, אלא אם מתוכננת התחלת ECPR מיידית. בחום ליבה 30–35°C — הארך את המרווח בין מנות האדרנלין ל-6–10 דקות.",
+        "התאמות לאלגוריתם ALS: אם VF נמשך אחרי 3 שוקים — דחה שוקים נוספים עד שחום הליבה מעל 30°C. מתחת ל-30°C — אדרנלין 1 מ״ג IV פעם אחת בלבד, אלא אם מתוכננת התחלת ECPR מיידית. בחום ליבה 30–35°C — הארך את המרווח בין מנות האדרנלין ל-6–10 דקות. ⚠ סתירה במקור: תרשים 16 של ה-ERC (עמ׳ 26) קובע מתחת ל-30°C ״מקסימום 3 דפיברילציות, ללא אפינפרין״, בעוד הטקסט (עמ׳ 24) קובע אדרנלין 1 מ״ג פעם אחת — ההחלטה לפי רופא/נוהל מקומי.",
       rationale:
         "מתחת ל-30°C אדרנלין מצטבר בגוף ועלול להזיק יותר משיועיל, והלב הקר מגיב פחות לדפיברילציה. עם החימום חילוף החומרים חוזר ולכן אפשר לחזור בהדרגה לאלגוריתם הרגיל.",
       drugRefs: ["adrenaline-hypothermia"],
@@ -258,9 +258,9 @@ export const accidentalHypothermia: ProtocolInput = {
     {
       id: "avalanche",
       action:
-        "נפגע מפולת שלגים: החלטה על התחלת החייאה לפי חום הליבה, משך הקבורה ופתיחות נתיב האוויר. קבורה מעל 60 דקות עם נתיב אוויר חסום בשלג ואסיסטולה — שקול הפסקת החייאה. קבורה מתחת ל-60 דקות — דום הלב נגרם כנראה מסיבה אחרת (חנק) לפני ההתקררות: פינוי לבית החולים המתאים הקרוב או טיפול לפי הגורם המטפל.",
+        "נפגע מפולת שלגים: החלטה על התחלת החייאה לפי חום הליבה, משך הקבורה ופתיחות נתיב האוויר. קבורה מעל 60 דקות עם נתיב אוויר חסום בשלג ואסיסטולה — שקול הפסקת החייאה. קבורה מתחת ל-60 דקות — דום הלב נגרם כנראה מסיבה אחרת לפני ההתקררות: פינוי לבית החולים המתאים הקרוב או טיפול לפי הגורם המטפל.",
       rationale:
-        "בקבורה קצרה הגוף אינו מספיק להתקרר, ולכן דום הלב נובע מחנק ולא מהיפותרמיה ואין יתרון ל-ECLS. בקבורה ארוכה עם נתיב אוויר פתוח ייתכן דום לב היפותרמי עם סיכוי להחלמה.",
+        "בקבורה קצרה סביר שדום הלב נגרם מסיבה אחרת ולא מהתקררות. בקבורה ארוכה עם נתיב אוויר פתוח ייתכן דום לב היפותרמי עם סיכוי להחלמה.",
       reassessmentTargets: [{ param: "משך קבורה (סף)", target: "60", unit: "min" }],
       decisionPoints: [
         {
@@ -309,10 +309,15 @@ export const accidentalHypothermia: ProtocolInput = {
     {
       id: "hope-score",
       action:
-        "בבית החולים: קבע פרוגנוזה להצלחת החימום לפי ציון HOPE. הסתברות שרידות לפי HOPE ≥10 — המשך לחימום ב-ECLS. אם לא — שקול הפסקת החייאה.",
+        "בבית החולים: קבע פרוגנוזה להצלחת החימום לפי ציון HOPE. הסתברות שרידות לפי HOPE ≥10 — המשך לחימום ב-ECLS. אם לא — שקול הפסקת החייאה (היחידה אינה מצוינת באיור — ככל הנראה אחוזים; לאמת).",
       rationale:
         "ציון HOPE משלב נתונים קליניים ומעבדתיים כדי לחזות שרידות אחרי חימום חוץ-גופי, ומאפשר להפנות את המשאב למטופלים שעשויים להרוויח ממנו.",
-      reassessmentTargets: [{ param: "הסתברות שרידות לפי HOPE", target: "≥ 10" }],
+      reassessmentTargets: [
+        {
+          param: "הסתברות שרידות לפי HOPE (היחידה אינה מצוינת באיור — ככל הנראה אחוזים; לאמת)",
+          target: "≥ 10",
+        },
+      ],
       decisionPoints: [{ condition: "HOPE ≥10", target: { kind: "step", id: "ecls-rewarming" } }],
       citations: [
         erc(
@@ -349,21 +354,17 @@ export const accidentalHypothermia: ProtocolInput = {
     {
       id: "non-ecls-rewarming",
       action:
-        "אם לא ניתן להגיע למרכז ECPR בזמן סביר (לדוגמה 6 שעות): התחל חימום ללא ECLS בבית החולים המקומי, במקביל להחייאה — סביבה חמה, כריות או שמיכות חימום (כימיות, חשמליות או אוויר חם) ונוזלים חמים לווריד 38–42°C.",
-      rationale:
-        "כשאין גישה ל-ECLS, חימום חיצוני ופנימי לא-חוץ-גופי עם החייאה רציפה הוא החלופה. נוזלים בטמפרטורה זו מונעים המשך קירור מהעירוי עצמו.",
-      reassessmentTargets: [
-        { param: "זמן סביר להגעה למרכז ECPR (דוגמה)", target: "6", unit: "h" },
-        { param: "טמפרטורת נוזלים לווריד", target: "38–42", unit: "°C" },
-      ],
+        "אם לא ניתן להגיע למרכז ECPR בזמן סביר (לדוגמה 6 שעות): התחל חימום ללא ECLS בבית החולים המקומי, במקביל להחייאה.",
+      rationale: "כשאין גישה ל-ECLS, חימום ללא ECLS עם החייאה רציפה הוא החלופה.",
+      reassessmentTargets: [{ param: "זמן סביר להגעה למרכז ECPR (דוגמה)", target: "6", unit: "h" }],
       citations: [
         erc(
           "Accidental hypothermia, p. 25",
           "Initiate non-extracorporeal life support rewarming if an ECPR centre cannot be reached within a reasonable time (e.g. 6 h) (Fig. 16).",
         ),
         erc(
-          "Fig. 16 (footnote e), p. 26",
-          "If ECLS not available within 6hrs, CPR and non-ECLS rewarming in peripheral hospital … warm IV fluids (38–42 C)",
+          "Fig. 16 (Hypothermia IV box), p. 26",
+          "If ECLS not available within 6hrs, CPR and non-ECLS rewarming in peripheral hospital",
         ),
       ],
       ...unverified,
@@ -376,17 +377,20 @@ export const accidentalHypothermia: ProtocolInput = {
       hebrewName: "אדרנלין",
       synonyms: ["epinephrine", "אפינפרין"],
       indication:
-        "דום לב היפותרמי: מתחת ל-30°C — מנה אחת בלבד (אלא אם ECPR מתוכנן מיד). בחום ליבה 30–35°C — כל 6–10 דקות.",
+        "⚠ סתירה במקור: איור 16 (עמ׳ 26) — מתחת ל-30°C ׳no epinephrine׳; הטקסט (עמ׳ 24) — 1 מ״ג פעם אחת. ההחלטה לפי רופא/נוהל מקומי. חזרה כל 6–10 דקות רק בחום ליבה 30–35°C. דום לב היפותרמי: מתחת ל-30°C — מנה אחת בלבד (אלא אם ECPR מתוכנן מיד). בחום ליבה 30–35°C — כל 6–10 דקות.",
       routes: ["IV"],
       dose: { kind: "fixed", amount: 1, unit: "mg" },
       concentrations: [],
-      repeatInterval: { minMinutes: 6, maxMinutes: 10 },
       highAlert: true,
       highAlertReason: "וזופרסור; מצטבר בגוף בחום ליבה מתחת ל-30°C",
       citations: [
         erc(
           "Accidental hypothermia, p. 24",
           "Give IV 1 mg adrenaline once to facilitate ROSC unless planning imminent initiation of ECPR. Increase administration intervals for adrenaline to 6–10 min if the core temperature is 30–35 °C.",
+        ),
+        erc(
+          "Fig. 16 Emergency treatment of accidental hypothermia, p. 26",
+          "Core temperature < 30°C max 3 defibrillations, no epinephrine",
         ),
       ],
       verificationStatus: "unverified",
