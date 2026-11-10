@@ -42,6 +42,18 @@ const RAW: readonly Source[] = [
     readLevel: "identifiedOnly",
   },
   {
+    id: "erc-2025-exec",
+    title: "European Resuscitation Council Guidelines 2025: Executive Summary",
+    issuingBody: "European Resuscitation Council — Greif R, Lauridsen KG, et al. Resuscitation 2025;215:110770",
+    year: 2025,
+    url: "https://doi.org/10.1016/j.resuscitation.2025.110770",
+    doi: "10.1016/j.resuscitation.2025.110770",
+    accessed: "2026-11-10",
+    editionNote:
+      "Condensed recommendations of all ERC 2025 chapters (adult ALS pp. 15–22, special circumstances pp. 21–32, post-resuscitation care pp. 33–35; PDF page numbers). PDF supplied by the clinical owner.",
+    readLevel: "fullText",
+  },
+  {
     id: "ssc-2026",
     title: "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026",
     issuingBody: "SCCM / ESICM — Intensive Care Med 2026;52(5):863–936 (co-published Crit Care Med)",
