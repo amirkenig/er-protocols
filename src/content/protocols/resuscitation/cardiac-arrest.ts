@@ -219,7 +219,7 @@ const base: ProtocolInput = {
     {
       id: "airway",
       action:
-        "נתיב אוויר מדורג לפי מיומנות המטפל, חמצן מרבי. אינטובציה רק בידי מטפל מיומן ועם קפנוגרפיה רציפה. לאחר נתיב מתקדם: 10 הנשמות לדקה ועיסויים ללא הפסקה. בהנשמה מכנית בזמן החייאה: נפח 6–8 מ״ל/ק״ג משקל חזוי, קצב 10, PEEP 0–5, טריגר זרימה כבוי.",
+        "נתיב אוויר מדורג לפי מיומנות המטפל, חמצן מרבי. אינטובציה רק בידי מטפל מיומן ועם קפנוגרפיה רציפה; כשווידאו-לרינגוסקופ זמין מיד — עדיף על לרינגוסקופיה ישירה. בנתיב על-גלוטי: i-gel עדיף על laryngeal tube. אם כל אמצעי הנתיב הסטנדרטיים נכשלו — קריקותירוטומיה כירורגית בידי מטפל מיומן. לאחר נתיב מתקדם: 10 הנשמות לדקה ועיסויים ללא הפסקה. בהנשמה מכנית בזמן החייאה: נפח 6–8 מ״ל/ק״ג משקל חזוי, קצב 10, PEEP 0–5, טריגר זרימה כבוי.",
       rationale:
         "הנשמת-יתר מעלה לחץ תוך-חזי ומפחיתה את החזרה הוורידית ללב. קפנוגרפיה מאשרת מיקום טובוס ומשקפת את איכות העיסויים.",
       reassessmentTargets: [
@@ -230,6 +230,10 @@ const base: ProtocolInput = {
         erc(
           "Airway and ventilation, p. 19",
           "ventilate the lungs at a rate of 10 min⁻¹ … tidal volume of 6–8 mL kg⁻¹ (predicted body weight) … PEEP 0–5 cm H2O … flow trigger off",
+        ),
+        erc(
+          "Airway and ventilation, p. 19",
+          "In settings where video laryngoscopy is immediately available, it is preferable to use video laryngoscopy instead of direct laryngoscopy. … an i-gel is preferred to a laryngeal tube. … appropriately trained rescuers should attempt surgical cricothyroidotomy",
         ),
         erc(
           "ALS in highly-monitored cardiac arrest, p. 20",
@@ -269,6 +273,12 @@ const base: ProtocolInput = {
           target: { kind: "step", id: "hypothermic-arrest" },
         },
         { condition: "תסחיף ריאתי חשוד או מוכח", target: { kind: "step", id: "pe-thrombolysis" } },
+        {
+          condition: "אישה בגיל הפוריות / הריון",
+          target: { kind: "step", id: "pregnancy-arrest" },
+        },
+        { condition: "טביעה", target: { kind: "step", id: "drowning-arrest" } },
+        { condition: "חשד להרעלה", target: { kind: "step", id: "toxic-arrest" } },
       ],
       citations: [
         erc("Fig. 11, p. 17 (reversible causes)"),
@@ -355,6 +365,54 @@ const base: ProtocolInput = {
       ],
       verificationStatus: "unverified",
       unverifiedReason: PENDING,
+    },
+    {
+      id: "pregnancy-arrest",
+      action:
+        "דום לב בהריון: שקול הריון בכל אישה בגיל הפוריות שקרסה. הזעק צוות דום לב מיילדותי (כולל מיילד/ת וניאונטולוג/ית). הזזה ידנית של הרחם שמאלה לאורך כל ההחייאה. גישה ורידית מעל הסרעפת אם אפשר. הסר מוניטורים עובריים לפני דפיברילציה. בנוסף ל-4H ו-4T חפש את 4P: רעלת הריון ואקלמפסיה, אלח דם לאחר לידה, סיבוכי שליה ורחם, קרדיומיופתיה של הריון. בהריון מעל 20 שבועות או כשקרקעית הרחם מעל הטבור — הכן מוקדם ובצע ניתוח קיסרי החייאתי (resuscitative hysterotomy) בהקדם האפשרי, במקום הדום, בידי צוות מיומן.",
+      rationale:
+        "הרחם ההרה לוחץ על הווריד הנבוב התחתון ועל אבי העורקים ומפחית את ההחזר הוורידי ואת יעילות העיסויים; הזזתו משפרת את תפוקת הלב. ריקון הרחם משפר את ההחייאה של האם ועשוי להציל את העובר.",
+      citations: [
+        erc(
+          "Table 3 — Modifications to ALS in obstetric patients, p. 32",
+          "Manual (left) uterine displacement throughout … Remove internal & external fetal monitors before defibrillation … 4Hs, 4Ts and 4Ps … Consider IV/IO access above the diaphragm if possible. … In patients >20 weeks’ gestation or fundus above umbilicus.",
+        ),
+        erc(
+          "Cardiac arrest in pregnancy, p. 33",
+          "Consider pregnancy in any collapsed woman of childbearing age. … Resuscitative hysterotomy should be performed as soon as possible at the site of cardiac arrest by a skilled team.",
+        ),
+      ],
+      verificationStatus: "unverified",
+      unverifiedReason: PART10,
+    },
+    {
+      id: "drowning-arrest",
+      action:
+        "דום לב בטביעה: התחל ב-5 הנשמות עם חמצן 100% כשזמין, ואז המשך החייאה רגילה. כשנדרש לחץ הנשמה גבוה — הגבר את הלחץ בהדרגה כדי למנוע ניפוח הקיבה. שקול ECPR לפי נוהל מקומי אם ההחייאה הראשונית אינה מצליחה. פעל גם לפי ההנחיות להיפותרמיה.",
+      rationale: "בטביעה הדום הוא בעיקרו היפוקסי, ולכן החמצון וההנשמה הם הטיפול הסיבתי הראשון.",
+      citations: [
+        erc(
+          "Drowning, p. 27",
+          "Start with 5 ventilations using 100 % inspired oxygen when available, continue with standard CPR protocol. … Increase ventilation pressure gradually … Consider ECPR … Follow the recommendations for hypothermia.",
+        ),
+      ],
+      verificationStatus: "unverified",
+      unverifiedReason: PART10,
+    },
+    {
+      id: "toxic-arrest",
+      action:
+        "דום לב בחשד להרעלה: שמור על בטיחותך (הימנע ממגע ישיר, כמו הנשמה פה-לפה). העריך כל מטופל בדום לב לאפשרות של הרעלה. הפחת ספיגה ושקול טיפולים ייעודיים: נוגדנים (בהקדם האפשרי כשזמינים), טיהור והגברת פינוי. היה מוכן להחייאה ממושכת. התייעץ עם המרכז הארצי למידע בהרעלות.",
+      rationale:
+        "ריכוז הרעלן עשוי לרדת עם הזמן כשהוא עובר חילוף חומרים או מופרש, ולכן החייאה ממושכת עשויה להצליח גם כשההחייאה הרגילה נכשלת.",
+      citations: [
+        erc(
+          "Toxic agents, p. 27",
+          "Assess all patients in cardiac arrest for potential intoxication. … Administer antidotes, where available, as soon as possible. Be prepared to continue resuscitation for a prolonged period of time … Consult regional or national poison centres",
+        ),
+      ],
+      verificationStatus: "unverified",
+      unverifiedReason: PART10,
     },
     {
       id: "not-routine",
