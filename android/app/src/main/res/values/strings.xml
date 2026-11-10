@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">פרוטוקולים לרפואה דחופה</string>
+    <string name="title_activity_main">פרוטוקולים לרפואה דחופה</string>
+    <string name="package_name">com.erprotocols.app</string>
+    <string name="custom_url_scheme">com.erprotocols.app</string>
+</resources>

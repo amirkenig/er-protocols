@@ -12,7 +12,7 @@ const COLOR_RE =
 const COLOR_MSG = "Use semantic color tokens (bg-surface, text-fg, border-line, bg-primary, text-danger, ...) defined in src/index.css";
 
 export default tseslint.config(
-  { ignores: ["dist", "coverage", "node_modules", "playwright-report", "test-results", "*.config.js"] },
+  { ignores: ["dist", "coverage", "node_modules", "playwright-report", "test-results", "*.config.js", "android"] },
   js.configs.recommended,
   tseslint.configs.strictTypeChecked,
   {
