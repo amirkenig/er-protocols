@@ -57,7 +57,9 @@ const RAW: readonly z.input<typeof CalculatorMetaSchema>[] = [
   },
 ];
 
-export const CALCULATOR_META: readonly CalculatorMeta[] = RAW.map((c) => CalculatorMetaSchema.parse(c));
+export const CALCULATOR_META: readonly CalculatorMeta[] = RAW.map((c) =>
+  CalculatorMetaSchema.parse(c),
+);
 
 export function getCalculatorMeta(id: string): CalculatorMeta | undefined {
   return CALCULATOR_META.find((c) => c.id === id);

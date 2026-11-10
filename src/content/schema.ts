@@ -66,7 +66,19 @@ function requireReason(
 export const DoseUnitSchema = z.enum(DOSE_UNITS);
 export const RateUnitSchema = z.enum(RATE_UNITS);
 export const WeightBasisSchema = z.enum(["actual", "ideal", "adjusted"]);
-export const RouteSchema = z.enum(["IV", "IO", "IM", "SC", "PO", "IN", "ETT", "INH", "PR", "SL", "topical"]);
+export const RouteSchema = z.enum([
+  "IV",
+  "IO",
+  "IM",
+  "SC",
+  "PO",
+  "IN",
+  "ETT",
+  "INH",
+  "PR",
+  "SL",
+  "topical",
+]);
 
 export const RoundingRuleSchema = z.object({
   step: contentNumber.min(1e-6),
@@ -81,7 +93,12 @@ const weightBasisFields = {
 
 export const DoseSpecSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("fixed"), amount: contentNumber, unit: DoseUnitSchema }),
-  z.object({ kind: z.literal("perKg"), amountPerKg: contentNumber, unit: DoseUnitSchema, ...weightBasisFields }),
+  z.object({
+    kind: z.literal("perKg"),
+    amountPerKg: contentNumber,
+    unit: DoseUnitSchema,
+    ...weightBasisFields,
+  }),
   z
     .object({
       kind: z.literal("range"),
@@ -93,9 +110,12 @@ export const DoseSpecSchema = z.discriminatedUnion("kind", [
       weightBasisRationale: he.optional(),
     })
     .refine((d) => d.min < d.max, "range min must be < max")
-    .refine((d) => !d.perKg || (d.weightBasis !== undefined && d.weightBasisRationale !== undefined), {
-      message: "per-kg range needs weightBasis and weightBasisRationale",
-    }),
+    .refine(
+      (d) => !d.perKg || (d.weightBasis !== undefined && d.weightBasisRationale !== undefined),
+      {
+        message: "per-kg range needs weightBasis and weightBasisRationale",
+      },
+    ),
   z
     .object({
       kind: z.literal("infusion"),
@@ -110,9 +130,14 @@ export const DoseSpecSchema = z.discriminatedUnion("kind", [
       titration: he.optional(),
     })
     .refine((d) => d.min === undefined || d.max === undefined || d.min < d.max, "min must be < max")
-    .refine((d) => !parseRateUnit(d.rateUnit).perKg || (d.weightBasis !== undefined && d.weightBasisRationale !== undefined), {
-      message: "per-kg infusion needs weightBasis and weightBasisRationale",
-    }),
+    .refine(
+      (d) =>
+        !parseRateUnit(d.rateUnit).perKg ||
+        (d.weightBasis !== undefined && d.weightBasisRationale !== undefined),
+      {
+        message: "per-kg infusion needs weightBasis and weightBasisRationale",
+      },
+    ),
   /** Not computable (e.g. "titrate to effect"): shown as text only, never calculated. */
   z.object({ kind: z.literal("text"), text: he }),
 ]);
@@ -170,7 +195,11 @@ export const DrugEntrySchema = z
       .refine((r) => r.maxMinutes === undefined || r.minMinutes <= r.maxMinutes)
       .optional(),
     adjustments: z
-      .object({ renal: AdjustmentSchema.optional(), hepatic: AdjustmentSchema.optional(), elderly: AdjustmentSchema.optional() })
+      .object({
+        renal: AdjustmentSchema.optional(),
+        hepatic: AdjustmentSchema.optional(),
+        elderly: AdjustmentSchema.optional(),
+      })
       .optional(),
     highAlert: z.boolean(),
     highAlertReason: he.optional(),
@@ -192,12 +221,18 @@ export const DrugEntrySchema = z
     if (unit !== undefined) {
       for (const c of d.concentrations) {
         if (!sameDimension(unit, c.unit)) {
-          ctx.addIssue({ code: "custom", message: `concentration unit ${c.unit} incompatible with dose unit ${unit}` });
+          ctx.addIssue({
+            code: "custom",
+            message: `concentration unit ${c.unit} incompatible with dose unit ${unit}`,
+          });
         }
       }
       for (const cap of [d.maxSingleDose, d.maxCumulativeDose]) {
         if (cap !== undefined && !sameDimension(unit, cap.unit)) {
-          ctx.addIssue({ code: "custom", message: `cap unit ${cap.unit} incompatible with dose unit ${unit}` });
+          ctx.addIssue({
+            code: "custom",
+            message: `cap unit ${cap.unit} incompatible with dose unit ${unit}`,
+          });
         }
       }
     }
@@ -270,13 +305,19 @@ export const ProtocolSchema = z
   .superRefine((p, ctx) => {
     requireReason(p, ctx);
     if (p.verificationStatus === "verified" && (p.reviewedBy === null || p.lastReviewed === null)) {
-      ctx.addIssue({ code: "custom", message: "verified protocols need reviewedBy and lastReviewed" });
+      ctx.addIssue({
+        code: "custom",
+        message: "verified protocols need reviewedBy and lastReviewed",
+      });
     }
     const anyVerified =
       p.drugs.some((d) => d.verificationStatus === "verified") ||
       [...p.immediateActions, ...p.steps].some((s) => s.verificationStatus === "verified");
     if (anyVerified && p.reviewedBy === null) {
-      ctx.addIssue({ code: "custom", message: "items can only be verified once the protocol has a reviewer" });
+      ctx.addIssue({
+        code: "custom",
+        message: "items can only be verified once the protocol has a reviewer",
+      });
     }
   });
 export type Protocol = z.infer<typeof ProtocolSchema>;

@@ -9,11 +9,15 @@ export interface IntegrityIssue {
   readonly message: string;
 }
 
-export function checkIntegrity(protocols: readonly Protocol[], sources: readonly Source[]): IntegrityIssue[] {
+export function checkIntegrity(
+  protocols: readonly Protocol[],
+  sources: readonly Source[],
+): IntegrityIssue[] {
   const issues: IntegrityIssue[] = [];
   const sourceIds = new Set<string>();
   for (const s of sources) {
-    if (sourceIds.has(s.id)) issues.push({ protocolId: "(sources)", message: `duplicate source id ${s.id}` });
+    if (sourceIds.has(s.id))
+      issues.push({ protocolId: "(sources)", message: `duplicate source id ${s.id}` });
     sourceIds.add(s.id);
   }
   const protocolIds = new Set<string>();
@@ -49,10 +53,12 @@ export function checkIntegrity(protocols: readonly Protocol[], sources: readonly
       ...allSteps.flatMap((s) => s.citations),
       ...p.guidelineDifferences.flatMap((g) => g.citations),
     ];
-    for (const c of citations) if (!sourceIds.has(c.sourceId)) add(`citation to unknown source ${c.sourceId}`);
+    for (const c of citations)
+      if (!sourceIds.has(c.sourceId)) add(`citation to unknown source ${c.sourceId}`);
 
     for (const s of allSteps) {
-      for (const ref of s.drugRefs) if (!drugIds.has(ref)) add(`step ${s.id} references unknown drug ${ref}`);
+      for (const ref of s.drugRefs)
+        if (!drugIds.has(ref)) add(`step ${s.id} references unknown drug ${ref}`);
       for (const dp of s.decisionPoints) {
         if (dp.target.kind === "step" && !stepIds.has(dp.target.id)) {
           add(`step ${s.id} decision targets unknown step ${dp.target.id}`);

@@ -62,12 +62,24 @@ describe("schema — rejects unsafe content", () => {
   });
   it("two default concentrations", () => {
     const p = clone();
-    p.drugs![0]!.concentrations!.push({ amount: 1, unit: "mg", perVolumeMl: 1, label: "x", isDefault: true });
+    p.drugs![0]!.concentrations!.push({
+      amount: 1,
+      unit: "mg",
+      perVolumeMl: 1,
+      label: "x",
+      isDefault: true,
+    });
     expect(parse(p).success).toBe(false);
   });
   it("per-kg dose without weight basis rationale", () => {
     const p = clone();
-    p.drugs![0]!.dose = { kind: "perKg", amountPerKg: 1, unit: "mg", weightBasis: "actual", weightBasisRationale: "" };
+    p.drugs![0]!.dose = {
+      kind: "perKg",
+      amountPerKg: 1,
+      unit: "mg",
+      weightBasis: "actual",
+      weightBasisRationale: "",
+    };
     expect(parse(p).success).toBe(false);
   });
   it("per-kg infusion without weight basis", () => {
@@ -138,7 +150,11 @@ describe("integrity — catches dangling references", () => {
     p.drugs.push(p.drugs[0]!);
     const msgs = checkIntegrity([p, p], [...SOURCES, SOURCES[0]!]).map((i) => i.message);
     expect(msgs).toEqual(
-      expect.arrayContaining(["duplicate protocol id", "duplicate step id step-a", "duplicate drug id drug-x"]),
+      expect.arrayContaining([
+        "duplicate protocol id",
+        "duplicate step id step-a",
+        "duplicate drug id drug-x",
+      ]),
     );
     expect(msgs.some((m) => m.startsWith("duplicate source id"))).toBe(true);
   });

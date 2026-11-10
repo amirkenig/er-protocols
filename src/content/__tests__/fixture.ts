@@ -34,8 +34,16 @@ export const FIXTURE_PROTOCOL: ProtocolInput = {
       genericName: "Fixturol",
       indication: "בדיקה",
       routes: ["IV"],
-      dose: { kind: "perKg", amountPerKg: 0.5, unit: "mg", weightBasis: "actual", weightBasisRationale: "בדיקה" },
-      concentrations: [{ amount: 10, unit: "mg", perVolumeMl: 1, label: "10 mg/mL", isDefault: true }],
+      dose: {
+        kind: "perKg",
+        amountPerKg: 0.5,
+        unit: "mg",
+        weightBasis: "actual",
+        weightBasisRationale: "בדיקה",
+      },
+      concentrations: [
+        { amount: 10, unit: "mg", perVolumeMl: 1, label: "10 mg/mL", isDefault: true },
+      ],
       maxSingleDose: { value: 50, unit: "mg" },
       highAlert: true,
       highAlertReason: "בדיקה",
