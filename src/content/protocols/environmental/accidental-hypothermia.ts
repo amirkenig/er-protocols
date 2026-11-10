@@ -188,7 +188,10 @@ export const accidentalHypothermia: ProtocolInput = {
           condition: "החייאה רציפה אינה אפשרית (חום ליבה מתחת ל-28°C)",
           target: { kind: "step", id: "delayed-intermittent-cpr" },
         },
-        { condition: "התאמות לדפיברילציה ואדרנלין", target: { kind: "step", id: "shocks-adrenaline" } },
+        {
+          condition: "התאמות לדפיברילציה ואדרנלין",
+          target: { kind: "step", id: "shocks-adrenaline" },
+        },
         { condition: "נפגע מפולת שלגים", target: { kind: "step", id: "avalanche" } },
       ],
       citations: [
@@ -209,7 +212,9 @@ export const accidentalHypothermia: ProtocolInput = {
         "בדום לב היפותרמי עם חום ליבה מתחת ל-28°C, כשהחייאה מיידית או רציפה אינה אפשרית (חילוץ קשה או מסוכן) — דחה את ההחייאה או בצע החייאה לסירוגין. אם הפינוי ממושך או השטח קשה — שקול מכשיר עיסויים מכני.",
       rationale:
         "בטמפרטורה נמוכה צריכת החמצן של המוח יורדת מאוד, ולכן הפסקות בעיסויים נסבלות טוב יותר מאשר בנורמותרמיה. מכשיר מכני מאפשר עיסויים איכותיים לאורך פינוי ארוך.",
-      reassessmentTargets: [{ param: "חום ליבה (סף להחייאה לסירוגין)", target: "< 28", unit: "°C" }],
+      reassessmentTargets: [
+        { param: "חום ליבה (סף להחייאה לסירוגין)", target: "< 28", unit: "°C" },
+      ],
       citations: [
         erc(
           "Accidental hypothermia, p. 24",
@@ -308,9 +313,7 @@ export const accidentalHypothermia: ProtocolInput = {
       rationale:
         "ציון HOPE משלב נתונים קליניים ומעבדתיים כדי לחזות שרידות אחרי חימום חוץ-גופי, ומאפשר להפנות את המשאב למטופלים שעשויים להרוויח ממנו.",
       reassessmentTargets: [{ param: "הסתברות שרידות לפי HOPE", target: "≥ 10" }],
-      decisionPoints: [
-        { condition: "HOPE ≥10", target: { kind: "step", id: "ecls-rewarming" } },
-      ],
+      decisionPoints: [{ condition: "HOPE ≥10", target: { kind: "step", id: "ecls-rewarming" } }],
       citations: [
         erc(
           "Accidental hypothermia, p. 25",
