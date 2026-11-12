@@ -1,0 +1,352 @@
+{
+  "cardiac-arrest-als": {
+    "durationMs": 104599,
+    "audio": "explainers/cardiac-arrest-als.m4a",
+    "scenes": [
+      {
+        "id": "title",
+        "startMs": 600,
+        "endMs": 6155,
+        "sentences": [
+          {
+            "text": "Adult cardiac arrest.",
+            "startMs": 600,
+            "endMs": 2260
+          },
+          {
+            "text": "The advanced life support approach, in under two minutes.",
+            "startMs": 2510,
+            "endMs": 6155
+          }
+        ],
+        "textSha256": "862d78912c7ef47d155b4f1e5b0fa7c2c674e64d2dc959715ec7a3b042daab86"
+      },
+      {
+        "id": "start-cpr",
+        "startMs": 6855,
+        "endMs": 23468,
+        "sentences": [
+          {
+            "text": "If the patient is unresponsive and not breathing normally, start chest compressions at once.",
+            "startMs": 6855,
+            "endMs": 12776
+          },
+          {
+            "text": "Thirty compressions to two breaths, five to six centimetres deep, one hundred to one hundred and twenty per minute.",
+            "startMs": 13026,
+            "endMs": 19585
+          },
+          {
+            "text": "Attach the defibrillator and call the resuscitation team.",
+            "startMs": 19835,
+            "endMs": 23468
+          }
+        ],
+        "textSha256": "1d5ed53064f2394a5e493e5de76dfd5fbabaae6b66f5c4401f6392bb2317407c"
+      },
+      {
+        "id": "rhythm-check",
+        "startMs": 24168,
+        "endMs": 29015,
+        "sentences": [
+          {
+            "text": "Pause compressions for less than five seconds to assess the rhythm.",
+            "startMs": 24168,
+            "endMs": 27813
+          },
+          {
+            "text": "Is it shockable?",
+            "startMs": 28063,
+            "endMs": 29015
+          }
+        ],
+        "textSha256": "7ac829ff3a40c1e68059ae98191d903a03aefc453e7e459844fe6d17871a514a"
+      },
+      {
+        "id": "shockable",
+        "startMs": 29715,
+        "endMs": 38120,
+        "sentences": [
+          {
+            "text": "Ventricular fibrillation or pulseless V T: give one shock, then resume compressions immediately, for two minutes.",
+            "startMs": 29715,
+            "endMs": 38120
+          }
+        ],
+        "textSha256": "583ae9d9be4d31892e179da0eb8716c687cc1743b7ef3ef1b63a2a6cc4c8b7b6"
+      },
+      {
+        "id": "shockable-drugs",
+        "startMs": 38820,
+        "endMs": 52717,
+        "sentences": [
+          {
+            "text": "After the third shock, give adrenaline one milligram and amiodarone three hundred milligrams.",
+            "startMs": 38820,
+            "endMs": 44648
+          },
+          {
+            "text": "Repeat adrenaline every three to five minutes.",
+            "startMs": 44898,
+            "endMs": 47870
+          },
+          {
+            "text": "After the fifth shock, give amiodarone one hundred and fifty milligrams.",
+            "startMs": 48120,
+            "endMs": 52717
+          }
+        ],
+        "textSha256": "c7939893c33b1b204570104384a75118dc81f552d43b4f2c8fa4c70733127493"
+      },
+      {
+        "id": "non-shockable",
+        "startMs": 53417,
+        "endMs": 62849,
+        "sentences": [
+          {
+            "text": "For P E A or asystole, give adrenaline one milligram as soon as possible.",
+            "startMs": 53417,
+            "endMs": 58246
+          },
+          {
+            "text": "Continue C P R, and reassess the rhythm every two minutes.",
+            "startMs": 58496,
+            "endMs": 62849
+          }
+        ],
+        "textSha256": "5b80e7ba2c7f2a88d4d64987118ed0c7fb3f5f1c656dbe3ecde15aa517fd04c0"
+      },
+      {
+        "id": "reversible-causes",
+        "startMs": 63549,
+        "endMs": 79581,
+        "sentences": [
+          {
+            "text": "Throughout the arrest, look for reversible causes: the four H's and four T's.",
+            "startMs": 63549,
+            "endMs": 69330
+          },
+          {
+            "text": "Hypoxia, hypovolaemia, potassium and metabolic disorders, and temperature.",
+            "startMs": 69580,
+            "endMs": 75303
+          },
+          {
+            "text": "Thrombosis, tamponade, toxins, and tension pneumothorax.",
+            "startMs": 75553,
+            "endMs": 79581
+          }
+        ],
+        "textSha256": "59e8580725dbb3144278b1af74ae290e4a6144f965ffbfcdaea14f9227259e20"
+      },
+      {
+        "id": "rosc",
+        "startMs": 80281,
+        "endMs": 94381,
+        "sentences": [
+          {
+            "text": "If circulation returns, move straight to post resuscitation care.",
+            "startMs": 80281,
+            "endMs": 84774
+          },
+          {
+            "text": "Titrate oxygen to a saturation of ninety four to ninety eight percent, record a twelve lead E C G, and avoid low blood pressure.",
+            "startMs": 85024,
+            "endMs": 94381
+          }
+        ],
+        "textSha256": "9f45e75013d40d3f78121c6261c00ed121c9fc83a3938c496cd7d2ca98040bec"
+      },
+      {
+        "id": "outro",
+        "startMs": 95081,
+        "endMs": 103399,
+        "sentences": [
+          {
+            "text": "This summary follows the E R C twenty twenty five guidelines.",
+            "startMs": 95081,
+            "endMs": 99713
+          },
+          {
+            "text": "Always follow the physician's orders and your local protocol.",
+            "startMs": 99963,
+            "endMs": 103399
+          }
+        ],
+        "textSha256": "6517238b2460b35f1b37066caf4f2bd0f16c5200088ecfc5462fa827702fcd65"
+      }
+    ]
+  },
+  "mechanism-adrenaline": {
+    "durationMs": 37913,
+    "audio": "explainers/mechanism-adrenaline.m4a",
+    "scenes": [
+      {
+        "id": "title",
+        "startMs": 600,
+        "endMs": 4240,
+        "sentences": [
+          {
+            "text": "Adrenaline in cardiac arrest.",
+            "startMs": 600,
+            "endMs": 2771
+          },
+          {
+            "text": "How does it work?",
+            "startMs": 3021,
+            "endMs": 4240
+          }
+        ],
+        "textSha256": "b28a947ff7b54537116d95b4ce6c7a0211661e6ede7c9f1ca1712bd07c14d5be"
+      },
+      {
+        "id": "alpha",
+        "startMs": 4940,
+        "endMs": 11853,
+        "sentences": [
+          {
+            "text": "Adrenaline stimulates alpha one receptors on the smooth muscle of blood vessels.",
+            "startMs": 4940,
+            "endMs": 10152
+          },
+          {
+            "text": "The vessels constrict.",
+            "startMs": 10402,
+            "endMs": 11853
+          }
+        ],
+        "textSha256": "a84b5df65d539d3fa14d4d042082267ca1fc6f6ea7f21e0ffd10457e8795f715"
+      },
+      {
+        "id": "perfusion",
+        "startMs": 12553,
+        "endMs": 20169,
+        "sentences": [
+          {
+            "text": "Constriction raises the pressure in the aorta between compressions, which pushes more blood into the coronary and brain arteries.",
+            "startMs": 12553,
+            "endMs": 20169
+          }
+        ],
+        "textSha256": "ddc14cbc99d09a493bd75ff6232b839f1f4560108029300d6b2253268db0598f"
+      },
+      {
+        "id": "restart",
+        "startMs": 20869,
+        "endMs": 26128,
+        "sentences": [
+          {
+            "text": "Better blood flow to the heart muscle increases the chance that a normal rhythm returns.",
+            "startMs": 20869,
+            "endMs": 26128
+          }
+        ],
+        "textSha256": "430e53ed1654e065b1c340be6d1f2ec01b0ff481e6d51052cfee3d1eb36f94c3"
+      },
+      {
+        "id": "beta",
+        "startMs": 26828,
+        "endMs": 36713,
+        "sentences": [
+          {
+            "text": "Its beta effects make the heart beat faster and harder.",
+            "startMs": 26828,
+            "endMs": 30310
+          },
+          {
+            "text": "That helps after a pulse returns, but it also increases the heart's oxygen demand.",
+            "startMs": 30560,
+            "endMs": 36713
+          }
+        ],
+        "textSha256": "84b0086c5a928e0bb7b866bdbc79d84d1d586bf6237573888957dfbe771ae13b"
+      }
+    ]
+  },
+  "mechanism-amiodarone": {
+    "durationMs": 38457,
+    "audio": "explainers/mechanism-amiodarone.m4a",
+    "scenes": [
+      {
+        "id": "title",
+        "startMs": 600,
+        "endMs": 2973,
+        "sentences": [
+          {
+            "text": "Amiodarone.",
+            "startMs": 600,
+            "endMs": 1528
+          },
+          {
+            "text": "How does it work?",
+            "startMs": 1778,
+            "endMs": 2973
+          }
+        ],
+        "textSha256": "182db06564a5ce2832866815e44b8afc40963b757cb9864d4b8c983b9c494df2"
+      },
+      {
+        "id": "action-potential",
+        "startMs": 3673,
+        "endMs": 12183,
+        "sentences": [
+          {
+            "text": "Each heart cell fires with a wave of electrical charge, called the action potential, and then needs time to recover before it can fire again.",
+            "startMs": 3673,
+            "endMs": 12183
+          }
+        ],
+        "textSha256": "b60842ed7b435037f5d8c7b3d281d3860012666126caffe7debde22736f807e1"
+      },
+      {
+        "id": "potassium-block",
+        "startMs": 12883,
+        "endMs": 20655,
+        "sentences": [
+          {
+            "text": "Amiodarone mainly blocks potassium channels.",
+            "startMs": 12883,
+            "endMs": 15878
+          },
+          {
+            "text": "Recovery is slower, so each cell stays refractory for longer.",
+            "startMs": 16128,
+            "endMs": 20655
+          }
+        ],
+        "textSha256": "e3d97c783f27331b784ba77b6febd7b7fd0a2ee0161197fa819c8fac1622c094"
+      },
+      {
+        "id": "other-channels",
+        "startMs": 21355,
+        "endMs": 25882,
+        "sentences": [
+          {
+            "text": "It also blocks sodium and calcium channels, and beta receptors.",
+            "startMs": 21355,
+            "endMs": 25882
+          }
+        ],
+        "textSha256": "00108dd0f662c91bd5ffe6ffa72b816dbff2933db30903e1157c608eb01e002c"
+      },
+      {
+        "id": "vf",
+        "startMs": 26582,
+        "endMs": 37257,
+        "sentences": [
+          {
+            "text": "A longer refractory period makes it harder for chaotic circuits, like ventricular fibrillation, to keep going.",
+            "startMs": 26582,
+            "endMs": 33884
+          },
+          {
+            "text": "So the next shock is more likely to succeed.",
+            "startMs": 34134,
+            "endMs": 37257
+          }
+        ],
+        "textSha256": "7be6e9c2e00bff240ae3add0d57c11fc4284141869328cdb5dc463f1b8fd3db8"
+      }
+    ]
+  }
+}

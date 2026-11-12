@@ -1,0 +1,162 @@
+{
+  "explainers": [
+    {
+      "id": "cardiac-arrest-als",
+      "kind": "protocol",
+      "protocolId": "cardiac-arrest",
+      "drugIds": [],
+      "titleHe": "סרטון הסבר: דום לב במבוגר (ALS)",
+      "titleEn": "Adult cardiac arrest — the ALS approach",
+      "verificationStatus": "unverified",
+      "unverifiedReason": "Narration summarises the cardiac-arrest protocol (ERC 2025 Executive Summary, cited per scene). Awaiting clinician review.",
+      "scenes": [
+        {
+          "id": "title",
+          "visual": "title",
+          "narration": "Adult cardiac arrest. The advanced life support approach, in under two minutes.",
+          "citations": []
+        },
+        {
+          "id": "start-cpr",
+          "visual": "cpr",
+          "narration": "If the patient is unresponsive and not breathing normally, start chest compressions at once. Thirty compressions to two breaths, five to six centimetres deep, one hundred to one hundred and twenty per minute. Attach the defibrillator and call the resuscitation team.",
+          "citations": [
+            { "sourceId": "erc-2025-exec", "locator": "Fig. 11 Adult ALS algorithm, p. 17" },
+            { "sourceId": "erc-2025-exec", "locator": "Adult BLS, p. 13" }
+          ]
+        },
+        {
+          "id": "rhythm-check",
+          "visual": "rhythm-check",
+          "narration": "Pause compressions for less than five seconds to assess the rhythm. Is it shockable?",
+          "citations": [{ "sourceId": "erc-2025-exec", "locator": "Defibrillation strategy, p. 16; Fig. 11, p. 17" }]
+        },
+        {
+          "id": "shockable",
+          "visual": "shock",
+          "narration": "Ventricular fibrillation or pulseless V T: give one shock, then resume compressions immediately, for two minutes.",
+          "citations": [{ "sourceId": "erc-2025-exec", "locator": "Energy levels and number of shocks, p. 18" }]
+        },
+        {
+          "id": "shockable-drugs",
+          "visual": "drug-timeline",
+          "narration": "After the third shock, give adrenaline one milligram and amiodarone three hundred milligrams. Repeat adrenaline every three to five minutes. After the fifth shock, give amiodarone one hundred and fifty milligrams.",
+          "citations": [
+            { "sourceId": "erc-2025-exec", "locator": "Vasopressor drugs; Antiarrhythmic drugs, p. 19" }
+          ]
+        },
+        {
+          "id": "non-shockable",
+          "visual": "non-shockable",
+          "narration": "For P E A or asystole, give adrenaline one milligram as soon as possible. Continue C P R, and reassess the rhythm every two minutes.",
+          "citations": [{ "sourceId": "erc-2025-exec", "locator": "Vasopressor drugs, p. 19" }]
+        },
+        {
+          "id": "reversible-causes",
+          "visual": "hs-ts",
+          "narration": "Throughout the arrest, look for reversible causes: the four H's and four T's. Hypoxia, hypovolaemia, potassium and metabolic disorders, and temperature. Thrombosis, tamponade, toxins, and tension pneumothorax.",
+          "citations": [{ "sourceId": "erc-2025-exec", "locator": "Fig. 11 (reversible causes), p. 17" }]
+        },
+        {
+          "id": "rosc",
+          "visual": "rosc",
+          "narration": "If circulation returns, move straight to post resuscitation care. Titrate oxygen to a saturation of ninety four to ninety eight percent, record a twelve lead E C G, and avoid low blood pressure.",
+          "citations": [
+            { "sourceId": "erc-2025-exec", "locator": "Fig. 11 'Immediately after ROSC', p. 17" },
+            { "sourceId": "erc-2025-exec", "locator": "Control of oxygenation, p. 33; Haemodynamic management, p. 34" }
+          ]
+        },
+        {
+          "id": "outro",
+          "visual": "outro",
+          "narration": "This summary follows the E R C twenty twenty five guidelines. Always follow the physician's orders and your local protocol.",
+          "citations": [{ "sourceId": "erc-2025-exec", "locator": "Adult ALS, pp. 15–22" }]
+        }
+      ]
+    },
+    {
+      "id": "mechanism-adrenaline",
+      "kind": "drug",
+      "protocolId": "cardiac-arrest",
+      "drugIds": ["adrenaline", "adrenaline-increment"],
+      "titleHe": "מנגנון פעולה: אדרנלין",
+      "titleEn": "How adrenaline works in cardiac arrest",
+      "verificationStatus": "unverified",
+      "unverifiedReason": "General educational pharmacology. Not taken from the guideline sources in this app; awaiting clinician review.",
+      "scenes": [
+        {
+          "id": "title",
+          "visual": "title",
+          "narration": "Adrenaline in cardiac arrest. How does it work?",
+          "citations": []
+        },
+        {
+          "id": "alpha",
+          "visual": "alpha-vasoconstriction",
+          "narration": "Adrenaline stimulates alpha one receptors on the smooth muscle of blood vessels. The vessels constrict.",
+          "citations": []
+        },
+        {
+          "id": "perfusion",
+          "visual": "coronary-perfusion",
+          "narration": "Constriction raises the pressure in the aorta between compressions, which pushes more blood into the coronary and brain arteries.",
+          "citations": []
+        },
+        {
+          "id": "restart",
+          "visual": "heart-restart",
+          "narration": "Better blood flow to the heart muscle increases the chance that a normal rhythm returns.",
+          "citations": []
+        },
+        {
+          "id": "beta",
+          "visual": "beta-effects",
+          "narration": "Its beta effects make the heart beat faster and harder. That helps after a pulse returns, but it also increases the heart's oxygen demand.",
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "mechanism-amiodarone",
+      "kind": "drug",
+      "protocolId": "cardiac-arrest",
+      "drugIds": ["amiodarone-first", "amiodarone-second"],
+      "titleHe": "מנגנון פעולה: אמיודרון",
+      "titleEn": "How amiodarone works",
+      "verificationStatus": "unverified",
+      "unverifiedReason": "General educational pharmacology. Not taken from the guideline sources in this app; awaiting clinician review.",
+      "scenes": [
+        {
+          "id": "title",
+          "visual": "title",
+          "narration": "Amiodarone. How does it work?",
+          "citations": []
+        },
+        {
+          "id": "action-potential",
+          "visual": "action-potential",
+          "narration": "Each heart cell fires with a wave of electrical charge, called the action potential, and then needs time to recover before it can fire again.",
+          "citations": []
+        },
+        {
+          "id": "potassium-block",
+          "visual": "potassium-block",
+          "narration": "Amiodarone mainly blocks potassium channels. Recovery is slower, so each cell stays refractory for longer.",
+          "citations": []
+        },
+        {
+          "id": "other-channels",
+          "visual": "other-channels",
+          "narration": "It also blocks sodium and calcium channels, and beta receptors.",
+          "citations": []
+        },
+        {
+          "id": "vf",
+          "visual": "reentry",
+          "narration": "A longer refractory period makes it harder for chaotic circuits, like ventricular fibrillation, to keep going. So the next shock is more likely to succeed.",
+          "citations": []
+        }
+      ]
+    }
+  ]
+}
