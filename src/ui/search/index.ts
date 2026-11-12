@@ -1,5 +1,5 @@
 import Fuse from "fuse.js";
-import { CATEGORIES } from "../../content/categories";
+import { VISIBLE_CATEGORIES } from "../../content/categories";
 import { PROTOCOLS } from "../../content/protocols";
 import { PROTOCOL_STUBS } from "../../content/registry";
 import { normalizeHebrew } from "./normalize";
@@ -18,7 +18,7 @@ interface Entry extends SearchHit {
 }
 
 const entries: Entry[] = [
-  ...CATEGORIES.map((c) => ({
+  ...VISIBLE_CATEGORIES.map((c) => ({
     kind: "category" as const,
     id: c.id,
     titleHe: c.titleHe,

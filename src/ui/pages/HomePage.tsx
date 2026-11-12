@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { CATEGORIES } from "../../content/categories";
+import { VISIBLE_CATEGORIES } from "../../content/categories";
 import { he } from "../i18n/he";
 
 export function HomePage() {
@@ -41,7 +41,7 @@ export function HomePage() {
         </Link>
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {CATEGORIES.map((c) => (
+        {VISIBLE_CATEGORIES.map((c) => (
           <Link
             key={c.id}
             to={`/c/${c.id}`}

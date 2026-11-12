@@ -1,5 +1,5 @@
 /**
- * Hyperkalaemia and hypokalaemia (adult). Source: ERC Guidelines 2025 Executive Summary
+ * Hyperkalaemia (adult). Hypokalaemic cardiac arrest is covered in the cardiac-arrest protocol. Source: ERC Guidelines 2025 Executive Summary
  * (Resuscitation 2025;215:110770), "Hyper/hypokalaemia and other electrolyte disorders",
  * PDF p. 22 (read in reading order and checked against the page image).
  *
@@ -15,39 +15,30 @@ const ERC = "erc-2025-exec";
 const AHA9 = "aha-2025-als";
 const PART10 =
   "Transcribed from ERC 2025 Executive Summary, p. 22 (full text). AHA 2025 Part 9 defers hyperkalaemia to Part 10 (special circumstances), not yet provided — AHA comparison pending. Awaiting clinician review.";
-const NO_LOCAL =
-  "The Executive Summary gives no infusion rate / dose for this situation; local protocol required.";
 
 const erc = (locator: string, quote?: string) =>
   quote === undefined ? { sourceId: ERC, locator } : { sourceId: ERC, locator, quote };
 
 const HYPERK = "Hyper/hypokalaemia and other electrolyte disorders — Hyperkalaemia, PDF p. 22";
-const HYPOK = "Hyper/hypokalaemia and other electrolyte disorders — Hypokalaemia, PDF p. 22";
 
-export const potassiumDisorders: ProtocolInput = {
-  id: "potassium-disorders",
-  titleHe: "היפרקלמיה והיפוקלמיה",
-  titleEn: "Hyperkalaemia and hypokalaemia",
+export const hyperkalaemia: ProtocolInput = {
+  id: "hyperkalaemia",
+  titleHe: "היפרקלמיה",
+  titleEn: "Hyperkalaemia",
   category: "electrolytes",
   synonyms: [
     "היפרקלמיה",
-    "היפוקלמיה",
     "אשלגן גבוה",
     "אשלגן נמוך",
     "אשלגן",
     "hyperkalaemia",
     "hyperkalemia",
-    "hypokalaemia",
-    "hypokalemia",
     "potassium",
     "K+",
     "אלקטרוליטים",
   ],
   recognition: {
-    findings: [
-      "אשלגן בדם גבוה או נמוך, עם או בלי שינויים באק״ג",
-      "היפוקלמיה: הטיפול נקבע לפי חומרה, תסמינים ושינויים באק״ג",
-    ],
+    findings: ["אשלגן בדם גבוה או נמוך, עם או בלי שינויים באק״ג"],
     criteria: [
       "המקור מבחין בין היפרקלמיה בינונית לחמורה, אך אינו מגדיר ערכי סף (Executive Summary) — לפי נוהל מקומי",
       "היפרקלמיה חמורה עם שינויים באק״ג — מצדיקה מתן סידן גלוקונאט",
@@ -56,17 +47,15 @@ export const potassiumDisorders: ProtocolInput = {
   immediateActions: [
     {
       id: "hyperk-arrest-check",
-      action:
-        "דום לב על רקע היפרקלמיה או היפוקלמיה — עבור מיד לפרוטוקול דום לב (ALS) והוסף את הטיפול הייעודי.",
+      action: "דום לב על רקע היפרקלמיה — עבור מיד לפרוטוקול דום לב (ALS) והוסף את הטיפול הייעודי.",
       rationale:
         "בדום לב ההחייאה מתנהלת לפי אלגוריתם ALS הרגיל, ותיקון האשלגן הוא טיפול בסיבה הפיכה במקביל.",
       decisionPoints: [
         {
-          condition: "דום לב היפרקלמי או היפוקלמי",
+          condition: "דום לב היפרקלמי",
           target: { kind: "protocol", id: "cardiac-arrest" },
         },
         { condition: "היפרקלמיה בדום לב", target: { kind: "step", id: "hyperk-arrest" } },
-        { condition: "היפוקלמיה בדום לב", target: { kind: "step", id: "hypok-arrest" } },
       ],
       citations: [
         erc(
@@ -162,45 +151,6 @@ export const potassiumDisorders: ProtocolInput = {
           quote:
             "Guidance for the treatment of cardiac arrest due to hyperkalemia, including the use of calcium and sodium bicarbonate for this indication, is presented in Electrolyte Abnormalities within Part 10.",
         },
-      ],
-      verificationStatus: "unverified",
-      unverifiedReason: PART10,
-    },
-    {
-      id: "hypok-treat",
-      action:
-        "היפוקלמיה: הטיפול נקבע לפי חומרת ההיפוקלמיה, התסמינים ושינויים באק״ג. כשמתאים — השלם אשלגן ותקן במקביל חסר מגנזיום. מינון וקצב מתן מחוץ לדום לב — לפי נוהל מקומי.",
-      rationale:
-        "היפוקלמיה מגבירה את הנטייה להפרעות קצב. חסר מגנזיום מקשה על תיקון האשלגן ולכן מתקנים את שניהם יחד.",
-      decisionPoints: [
-        { condition: "דום לב היפוקלמי", target: { kind: "step", id: "hypok-arrest" } },
-      ],
-      citations: [
-        erc(
-          HYPOK,
-          "Treatment is guided by the severity of hypokalaemia and presence of symptoms and/or ECG abnormalities. Where appropriate replace potassium and correct magnesium deficit concurrently.",
-        ),
-      ],
-      verificationStatus: "unverified",
-      unverifiedReason: `${PART10} ${NO_LOCAL}`,
-    },
-    {
-      id: "hypok-arrest",
-      action:
-        "דום לב היפוקלמי: 20 mmol potassium chloride IV במשך 2–3 דקות, ואחריו 10 mmol במשך 2 דקות (התרופות מפורטות בפרוטוקול דום לב). לאחר מכן עקוב אחר רמת האשלגן והתאם את קצב העירוי.",
-      rationale:
-        "היפוקלמיה חמורה גורמת לאי-יציבות חשמלית; בדום לב התיקון מהיר בהרבה מהמקובל מחוץ להחייאה. מתן מהיר כזה מיועד לדום לב בלבד.",
-      decisionPoints: [
-        { condition: "דום לב — ניהול ALS", target: { kind: "protocol", id: "cardiac-arrest" } },
-      ],
-      reassessmentTargets: [
-        { param: "אשלגן בדם", target: "מעקב והתאמת קצב העירוי (יעד אינו מצוין במקור)" },
-      ],
-      citations: [
-        erc(
-          HYPOK,
-          "Give IV 20 mmol potassium chloride over 2–3 min, followed by 10 mmol over 2 min in hypokalaemia cardiac arrest then monitor K+ level and adjust infusion rate accordingly.",
-        ),
       ],
       verificationStatus: "unverified",
       unverifiedReason: PART10,
@@ -303,8 +253,6 @@ export const potassiumDisorders: ProtocolInput = {
     "סידן אינו מוריד אשלגן — יש להמשיך בהכנסת אשלגן לתאים ובפינויו",
     "סלבוטמול הוא תוספת לאינסולין-גלוקוז, לא תחליף",
     "סידן וביקרבונט יוצרים משקע — קווים נפרדים או שטיפה ביניהם",
-    "מתן KCl מהיר (20 mmol ב-2–3 דקות) מיועד לדום לב היפוקלמי בלבד",
-    "בהיפוקלמיה — לתקן גם חסר מגנזיום",
   ],
   contraindications: [],
   sources: [ERC, AHA9],

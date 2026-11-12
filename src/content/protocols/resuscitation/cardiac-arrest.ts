@@ -309,7 +309,7 @@ const base: ProtocolInput = {
       decisionPoints: [
         {
           condition: "היפרקלמיה ללא דום לב / אחרי ROSC",
-          target: { kind: "protocol", id: "potassium-disorders" },
+          target: { kind: "protocol", id: "hyperkalaemia" },
         },
       ],
       rationale:

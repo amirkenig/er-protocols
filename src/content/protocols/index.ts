@@ -1,4 +1,8 @@
 /**
+ * Protocols shown in the app, validated at module load. Hidden (kept, not registered):
+ * anaphylaxis, high-risk-pe, last-toxicity, accidental-hypothermia, hyperthermia —
+ * add the import and the RAW entry back to show one again.
+ *
  * All protocols, validated at module load. Add each new protocol file here.
  * A schema error throws at startup and fails the content test suite.
  */
@@ -7,13 +11,8 @@ import { cardiacArrest } from "./resuscitation/cardiac-arrest";
 import { bradycardia } from "./resuscitation/bradycardia";
 import { tachycardia } from "./resuscitation/tachycardia";
 import { postRoscCare } from "./resuscitation/post-rosc-care";
-import { potassiumDisorders } from "./electrolytes/potassium-disorders";
-import { anaphylaxis } from "./shock/anaphylaxis";
-import { highRiskPe } from "./shock/high-risk-pe";
+import { hyperkalaemia } from "./electrolytes/hyperkalaemia";
 import { traumaticArrest } from "./shock/traumatic-arrest";
-import { lastToxicity } from "./toxicology/last-toxicity";
-import { accidentalHypothermia } from "./environmental/accidental-hypothermia";
-import { hyperthermia } from "./environmental/hyperthermia";
 import { sepsis } from "./sepsis/sepsis";
 
 const RAW: readonly ProtocolInput[] = [
@@ -21,13 +20,8 @@ const RAW: readonly ProtocolInput[] = [
   bradycardia,
   tachycardia,
   postRoscCare,
-  potassiumDisorders,
-  anaphylaxis,
-  highRiskPe,
+  hyperkalaemia,
   traumaticArrest,
-  lastToxicity,
-  accidentalHypothermia,
-  hyperthermia,
   sepsis,
 ];
 

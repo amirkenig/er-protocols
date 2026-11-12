@@ -12,7 +12,10 @@ test("RTL Hebrew document and disclaimer gate", async ({ page }) => {
   const cont = page.getByRole("button", { name: "המשך" });
   await expect(cont).toBeDisabled();
   await acknowledge(page);
-  await expect(page.getByText("שוק", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("החייאה", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("נתיב אוויר", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("היפרקלמיה", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("הרעלות", { exact: true })).toHaveCount(0);
   // Acknowledgement persists across reload (setting only; no patient data).
   await page.reload();
   await expect(page.getByRole("button", { name: "המשך" })).toHaveCount(0);

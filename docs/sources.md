@@ -1,6 +1,6 @@
 # Sources
 
-Generated 2026-11-10. readLevel: fullText = relevant section read in primary text; abstract = primary abstract only; identifiedOnly = edition identified, text not yet read.
+Generated 2026-11-12. readLevel: fullText = relevant section read in primary text; abstract = primary abstract only; identifiedOnly = edition identified, text not yet read.
 
 | Id | Title | Body / journal | Year | Read level | URL | Accessed |
 |---|---|---|---|---|---|---|

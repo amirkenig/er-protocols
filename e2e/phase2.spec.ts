@@ -8,7 +8,7 @@ async function acknowledge(page: Page): Promise<void> {
 test("home → category → protocol in two taps shows the steps", async ({ page }) => {
   await page.goto("./");
   await acknowledge(page);
-  await page.getByRole("link", { name: /החייאה ונתיב אוויר/ }).click();
+  await page.getByRole("link", { name: /^החייאה/ }).click();
   await page.getByRole("link", { name: /דום לב במבוגר \(ALS\)/ }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("דום לב במבוגר (ALS)");
   await expect(page.getByRole("heading", { name: "שלבים" })).toBeVisible();
@@ -38,13 +38,11 @@ test("no page scrolls horizontally at phone width", async ({ page }) => {
     "#/p/tachycardia",
     "#/p/post-rosc-care",
     "#/p/sepsis",
-    "#/p/potassium-disorders",
-    "#/p/anaphylaxis",
-    "#/p/high-risk-pe",
+    "#/p/hyperkalaemia",
+    "#/c/airway",
+    "#/c/ahf",
+    "#/c/electrolytes",
     "#/p/traumatic-arrest",
-    "#/p/last-toxicity",
-    "#/p/accidental-hypothermia",
-    "#/p/hyperthermia",
     "#/code",
     "#/calc",
     "#/calc/dose",

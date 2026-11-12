@@ -23,7 +23,7 @@ export const traumaticArrest: ProtocolInput = {
   id: "traumatic-arrest",
   titleHe: "דום לב טראומטי ומצבים טרום-דום בטראומה",
   titleEn: "Traumatic cardiac arrest",
-  category: "shock",
+  category: "resuscitation",
   synonyms: [
     "דום לב טראומטי",
     "טראומה",

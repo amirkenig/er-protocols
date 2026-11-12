@@ -1,11 +1,11 @@
 import { Link, useParams } from "react-router";
-import { CATEGORIES } from "../../content/categories";
+import { VISIBLE_CATEGORIES } from "../../content/categories";
 import { PROTOCOL_STUBS } from "../../content/registry";
 import { he } from "../i18n/he";
 
 export function CategoryPage() {
   const { categoryId } = useParams();
-  const category = CATEGORIES.find((c) => c.id === categoryId);
+  const category = VISIBLE_CATEGORIES.find((c) => c.id === categoryId);
   if (!category) return <p className="text-lg">{he.category.notFound}</p>;
   const protocols = PROTOCOL_STUBS.filter((p) => p.categoryId === category.id);
   return (
