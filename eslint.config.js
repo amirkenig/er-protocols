@@ -39,6 +39,19 @@ export default tseslint.config(
     },
   },
   {
+    // Explainer animations may use arithmetic, but still follow the colour and direction rules.
+    files: ["src/explainers/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        { selector: `Literal[value=/${DIR_RE}/]`, message: DIR_MSG },
+        { selector: `TemplateElement[value.raw=/${DIR_RE}/]`, message: DIR_MSG },
+        { selector: `Literal[value=/${COLOR_RE}/]`, message: COLOR_MSG },
+        { selector: `TemplateElement[value.raw=/${COLOR_RE}/]`, message: COLOR_MSG },
+      ],
+    },
+  },
+  {
     // Engine purity: no UI, content, state or React imports (keeps dose math testable and isolated).
     files: ["src/engine/**/*.ts"],
     rules: {

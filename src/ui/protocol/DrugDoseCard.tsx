@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { explainerForDrug } from "../../content/explainers";
 import { rangeEndSpecs, toBolusSpec } from "../../content/adapters";
 import type { DrugEntry } from "../../content/schema";
 import { computeBolus, type BolusSpec, type Concentration } from "../../engine/dose";
@@ -143,7 +144,7 @@ function DoseCalc({ drug, spec, concentration, concLabel, heading, keyPart }: Ca
   );
 }
 
-export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
+export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId: string }) {
   const defaultIdx = drug.concentrations.findIndex((c) => c.isDefault);
   const [sel, setSel] = useState<string>(defaultIdx >= 0 ? String(defaultIdx) : "");
   const [customAmount, setCustomAmount] = useState("");
@@ -172,6 +173,7 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
   const ends = rangeEndSpecs(drug);
   const showCalc = hasConc || spec?.dose.kind === "perKg";
   const repeat = drug.repeatInterval;
+  const explainer = explainerForDrug(protocolId, drug.id);
 
   return (
     <li
@@ -191,6 +193,14 @@ export function DrugDoseCard({ drug }: { drug: DrugEntry }) {
           </bdi>
           {drug.hebrewName !== undefined && <span> — {drug.hebrewName}</span>}
         </h3>
+        {explainer !== undefined && (
+          <Link
+            to={`/x/${explainer.id}`}
+            className="mt-1 inline-flex min-h-12 items-center rounded-lg border-2 border-primary px-4 font-bold text-primary hover:bg-surface-2"
+          >
+            {he.explainer.openDrug}
+          </Link>
+        )}
         <div className="mt-1 flex flex-wrap gap-2">
           {drug.routes.map((r) => (
             <span key={r} className="rounded-md border border-line-strong px-2 text-sm font-bold">

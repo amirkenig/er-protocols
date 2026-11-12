@@ -35,6 +35,25 @@ describe("ProtocolPage", () => {
     expect(screen.getByRole("link", { name: "פתח טיימר החייאה" })).toHaveAttribute("href", "/code");
   });
 
+  it("links to the explainer video and the drug mechanism explainer", () => {
+    setup("cardiac-arrest");
+    expect(screen.getByRole("link", { name: "▶ סרטון הסבר" })).toHaveAttribute(
+      "href",
+      "/x/cardiac-arrest-als",
+    );
+    expect(within(card("adrenaline")).getByRole("link", { name: "▶ מנגנון פעולה" })).toHaveAttribute(
+      "href",
+      "/x/mechanism-adrenaline",
+    );
+    expect(within(card("amiodarone-first")).getByRole("link", { name: "▶ מנגנון פעולה" })).toBeInTheDocument();
+  });
+
+  it("shows no explainer links on protocols without one", () => {
+    setup("sepsis");
+    expect(screen.queryByRole("link", { name: "▶ סרטון הסבר" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "▶ מנגנון פעולה" })).toBeNull();
+  });
+
   it("shows step with rationale label and source locator", () => {
     setup("cardiac-arrest");
     const step = document.getElementById("step-after-third-shock");

@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { Link, useLocation, useParams } from "react-router";
+import { explainerForProtocol } from "../../content/explainers";
 import { PROTOCOLS } from "../../content/protocols";
 import { getSource } from "../../content/sources";
 import type { Protocol, Source } from "../../content/schema";
@@ -69,7 +70,7 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
         <Section title={he.protocol.drugs}>
           <ul className="space-y-3">
             {protocol.drugs.map((d) => (
-              <DrugDoseCard key={d.id} drug={d} />
+              <DrugDoseCard key={d.id} drug={d} protocolId={protocol.id} />
             ))}
           </ul>
         </Section>
@@ -162,6 +163,7 @@ export function ProtocolPage() {
 
   const local = protocol.localOverride;
   const tools = PROTOCOL_TOOLS[protocol.id] ?? [];
+  const explainer = explainerForProtocol(protocol.id);
   const body = <ProtocolBody protocol={protocol} />;
   return (
     <article className="space-y-5">
@@ -191,6 +193,14 @@ export function ProtocolPage() {
             {t.label}
           </Link>
         ))}
+        {explainer !== undefined && (
+          <Link
+            to={`/x/${explainer.id}`}
+            className="flex min-h-12 items-center justify-center rounded-lg border-2 border-primary px-4 text-lg font-bold text-primary hover:bg-surface-2"
+          >
+            {he.explainer.openProtocol}
+          </Link>
+        )}
       </header>
       {protocol.verificationStatus !== "verified" && (
         <div className="space-y-1 rounded-xl border-2 border-caution bg-caution-bg p-3">

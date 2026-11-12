@@ -15,7 +15,7 @@ export default defineConfig({
       registerType: "prompt",
       injectRegister: false,
       workbox: {
-        globPatterns: ["**/*.{js,css,html,woff2,svg,png,webmanifest}"],
+        globPatterns: ["**/*.{js,css,html,woff2,svg,png,webmanifest,m4a}"],
         navigateFallback: "index.html",
       },
       manifest: {

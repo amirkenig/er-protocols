@@ -3,6 +3,7 @@ import { CodeTimerProvider } from "../../state/CodeTimer";
 import { PatientSessionProvider } from "../../state/PatientSession";
 import { AboutPage } from "../pages/AboutPage";
 import { CategoryPage } from "../pages/CategoryPage";
+import { ExplainerPage } from "../pages/ExplainerPage";
 import { HomePage } from "../pages/HomePage";
 import { CalcListPage } from "../pages/CalcListPage";
 import { DoseCalcPage } from "../pages/DoseCalcPage";
@@ -30,6 +31,7 @@ export function App() {
                 <Route index element={<HomePage />} />
                 <Route path="c/:categoryId" element={<CategoryPage />} />
                 <Route path="p/:protocolId" element={<ProtocolPage />} />
+                <Route path="x/:explainerId" element={<ExplainerPage />} />
                 <Route path="search" element={<SearchPage />} />
                 <Route path="calc" element={<CalcListPage />} />
                 <Route path="calc/dose" element={<DoseCalcPage />} />
