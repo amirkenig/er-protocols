@@ -39,7 +39,7 @@ export function Stage({ explainer, ms }: { explainer: Explainer; ms: number }) {
       width="100%"
       role="img"
       aria-label={explainer.titleEn}
-      className="block h-auto w-full rounded-2xl border-2 border-line"
+      className="block h-auto w-full rounded-2xl border-2 border-line max-sm:-mx-4 max-sm:w-[calc(100%+2rem)] max-sm:max-w-none max-sm:rounded-none max-sm:border-x-0"
       style={{ background: "var(--surface)", direction: "ltr" }}
     >
       {Scene === undefined ? (

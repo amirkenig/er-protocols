@@ -37,7 +37,7 @@ export function CoronaryPerfusionScene({ t, duration, reducedMotion }: SceneProp
         <Vessel pts={[[260, 150], [260, 820]]} width={110} />
         <Vessel pts={BRAIN.slice(1)} width={56} />
         <Vessel pts={CORONARY.slice(1)} width={56} />
-        <Txt x={345} y={470} size={38} anchor="start" fill={COL.muted}>
+        <Txt x={345} y={470} size={54} anchor="start" fill={COL.muted}>
           Aorta
         </Txt>
       </Appear>
@@ -49,13 +49,13 @@ export function CoronaryPerfusionScene({ t, duration, reducedMotion }: SceneProp
           <path d="M-70 10 q-30 -70 30 -80 q30 -50 70 -10 q60 -10 50 60 q20 60 -40 70 q-30 40 -70 10 q-50 0 -40 -50 Z" fill={COL.surface2} stroke={COL.primary} strokeWidth={6} strokeLinejoin="round" />
           <path d="M0 -60 V50" stroke={COL.primary} strokeWidth={5} opacity={0.5} />
         </g>
-        <Txt x={1230} y={190} size={42} anchor="start">
+        <Txt x={1230} y={190} size={64} anchor="start">
           Brain
         </Txt>
         <g transform="translate(1100 760) scale(0.7)">
           <path d={HEART} fill={COL.dangerBg} stroke={COL.danger} strokeWidth={8} strokeLinejoin="round" />
         </g>
-        <Txt x={1230} y={760} size={42} anchor="start">
+        <Txt x={1230} y={760} size={64} anchor="start">
           Coronary
         </Txt>
       </Appear>
@@ -73,8 +73,11 @@ export function CoronaryPerfusionScene({ t, duration, reducedMotion }: SceneProp
           <path d="M-10 0 L0 -160 L10 0 Z" fill={COL.fg} />
         </g>
         <circle cx={GX} cy={GY} r={22} fill={COL.fg} />
-        <Txt x={GX} y={GY + 110} size={42} fill={COL.primary}>
-          Aortic diastolic pressure ↑
+        <Txt x={GX} y={GY + 90} size={64} fill={COL.primary}>
+          Aortic diastolic
+        </Txt>
+        <Txt x={GX} y={GY + 165} size={64} fill={COL.primary}>
+          pressure ↑
         </Txt>
       </Appear>
     </g>

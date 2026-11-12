@@ -41,7 +41,7 @@ export function OtherChannelsScene({ t, duration }: SceneProps) {
                   <path d={`M${num(c.x - 80)} ${num(MY - 250)} L${num(c.x)} ${num(MY - 140)} L${num(c.x + 80)} ${num(MY - 250)}`} fill="none" stroke={COL.accent} strokeWidth={30} strokeLinecap="round" strokeLinejoin="round" />
                 </>
               )}
-              <Txt x={c.x} y={c.kind === "channel" ? MY - 160 : MY - 320} size={52} fill={c.kind === "channel" ? COL.primary : COL.accent}>
+              <Txt x={c.x} y={c.kind === "channel" ? MY - 160 : MY - 320} size={64} fill={c.kind === "channel" ? COL.primary : COL.accent}>
                 {c.label}
               </Txt>
             </Appear>

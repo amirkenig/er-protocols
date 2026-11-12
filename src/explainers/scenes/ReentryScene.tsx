@@ -61,24 +61,30 @@ export function ReentryScene({ t, duration, reducedMotion }: SceneProps) {
           );
         })}
       <Appear p={ease(t, d * 0.04, 500)}>
-        <Txt x={1160} y={170} size={54} fill={COL.danger}>
+        <Txt x={1160} y={130} size={64} fill={COL.danger}>
           Re-entry / VF
         </Txt>
       </Appear>
       <Appear p={ease(t, d * 0.45, 500)}>
-        <Txt x={1160} y={300} size={44} fill={COL.accent}>
-          Longer refractory period
+        <Txt x={1180} y={235} size={64} fill={COL.accent}>
+          Longer refractory
+        </Txt>
+        <Txt x={1180} y={310} size={64} fill={COL.accent}>
+          period
         </Txt>
       </Appear>
-      <Bolt x={1010} y={500} s={1.1} opacity={shock} />
+      <Bolt x={1010} y={560} s={1.1} opacity={shock} />
       {progress(t, d * 0.7, 500) > 0 && (
-        <path d="M1090 500 H1180 M1155 470 L1185 500 L1155 530" fill="none" stroke={COL.lineStrong} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M1090 560 H1180 M1155 530 L1185 560 L1155 590" fill="none" stroke={COL.lineStrong} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" />
       )}
       <Appear p={org}>
-        <Txt x={1320} y={440} size={46} fill={COL.primary}>
-          Organised rhythm
+        <Txt x={1360} y={490} size={64} fill={COL.primary}>
+          Organised
         </Txt>
-        <path d={tracePath(1200, 320, 560, 60, (u) => ecgY(u * 2))} fill="none" stroke={COL.primary} strokeWidth={8} strokeLinejoin="round" />
+        <Txt x={1360} y={565} size={64} fill={COL.primary}>
+          rhythm
+        </Txt>
+        <path d={tracePath(1200, 320, 730, 70, (u) => ecgY(u * 2))} fill="none" stroke={COL.primary} strokeWidth={8} strokeLinejoin="round" />
       </Appear>
     </g>
   );

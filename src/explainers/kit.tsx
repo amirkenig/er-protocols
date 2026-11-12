@@ -118,7 +118,7 @@ export function Appear({
 export function Txt({
   x,
   y,
-  size = 44,
+  size = 64,
   fill = COL.fg,
   anchor = "middle",
   weight = 700,
@@ -159,7 +159,7 @@ export function Chip({
   label,
   p,
   color = COL.primary,
-  size = 44,
+  size = 64,
   tone = "normal",
 }: {
   x: number;

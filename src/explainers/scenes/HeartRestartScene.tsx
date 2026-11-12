@@ -36,14 +36,17 @@ export function HeartRestartScene({ t, duration, reducedMotion }: SceneProps) {
             {...drawProps(draw)}
           />
         </Monitor>
-        <Txt x={870} y={250} size={38} anchor="start" fill={COL.muted}>
+        <Txt x={820} y={140} size={54} anchor="start" fill={COL.muted}>
           VF → organised
         </Txt>
       </Appear>
       <Appear p={ease(t, d * 0.62, 600)}>
-        <rect x={150} y={760} width={1300} height={100} rx={50} fill={COL.surface2} stroke={COL.primary} strokeWidth={5} />
-        <Txt x={800} y={810} size={40}>
-          More myocardial blood flow → better chance of ROSC
+        <rect x={100} y={650} width={1400} height={220} rx={60} fill={COL.surface2} stroke={COL.primary} strokeWidth={5} />
+        <Txt x={800} y={725} size={64}>
+          More myocardial blood flow
+        </Txt>
+        <Txt x={800} y={800} size={64}>
+          → better chance of ROSC
         </Txt>
       </Appear>
     </g>

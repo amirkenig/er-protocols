@@ -26,7 +26,7 @@ export function ShockScene({ t, duration, reducedMotion }: SceneProps) {
             {...drawProps(draw)}
           />
         </Monitor>
-        <Txt x={390} y={190} size={52} fill={COL.danger}>
+        <Txt x={390} y={180} size={64} fill={COL.danger}>
           VF
         </Txt>
       </Appear>
@@ -37,9 +37,9 @@ export function ShockScene({ t, duration, reducedMotion }: SceneProps) {
       {/* CPR resumes for 2 minutes */}
       <Appear p={ease(t, d * 0.5, 600)}>
         <circle cx={cx} cy={cy} r={170} fill={COL.surface2} stroke={COL.line} strokeWidth={22} />
-        <rect x={cx - 24} y={cy - 70} width={48} height={90} rx={24} fill={COL.primary} />
-        <rect x={cx - 78} y={cy + 10} width={156} height={56} rx={28} fill={COL.primary} stroke={COL.surface2} strokeWidth={5} />
-        <Txt x={cx} y={cy - 108} size={44} fill={COL.fg}>
+        <rect x={cx - 24} y={cy - 52} width={48} height={80} rx={24} fill={COL.primary} />
+        <rect x={cx - 78} y={cy + 14} width={156} height={56} rx={28} fill={COL.primary} stroke={COL.surface2} strokeWidth={5} />
+        <Txt x={cx} y={cy - 112} size={64} fill={COL.fg}>
           CPR
         </Txt>
         <Txt x={cx} y={cy + 245} size={64} fill={COL.accent}>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
-import { explainerCitations, getExplainer, type Explainer } from "../../content/explainers";
+import { displayText, explainerCitations, getExplainer, type Explainer } from "../../content/explainers";
 import { PROTOCOLS } from "../../content/protocols";
 import { msToClock } from "../../explainers/anim";
 import {
@@ -165,7 +165,7 @@ function Player({ explainer }: { explainer: Explainer }) {
         aria-label={he.explainer.captionArea}
         data-testid="caption"
       >
-        {captions ? (sentence?.text ?? "") : ""}
+        {captions ? displayText(sentence?.text ?? "") : ""}
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
@@ -234,7 +234,7 @@ function Player({ explainer }: { explainer: Explainer }) {
         <ol className="space-y-2">
           {explainer.scenes.map((scene, i) => {
             const st = timing.scenes[i];
-            const label = st?.sentences[0]?.text ?? scene.narration;
+            const label = displayText(st?.sentences[0]?.text ?? scene.narration);
             const current = i === sceneIdx;
             return (
               <li key={scene.id}>

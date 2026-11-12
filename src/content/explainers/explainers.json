@@ -1,4 +1,26 @@
 {
+  "captionReplacements": [
+    ["pulseless V T", "pulseless VT"],
+    ["P E A", "PEA"],
+    ["C P R", "CPR"],
+    ["twelve lead E C G", "12-lead ECG"],
+    ["E R C twenty twenty five", "ERC 2025"],
+    ["alpha one", "alpha-1"],
+    ["one hundred and fifty milligrams", "150 mg"],
+    ["three hundred milligrams", "300 mg"],
+    ["one milligram", "1 mg"],
+    ["five to six centimetres", "5–6 cm"],
+    ["one hundred to one hundred and twenty per minute", "100–120 per minute"],
+    ["Thirty compressions to two breaths", "30 compressions to 2 breaths"],
+    ["ninety four to ninety eight percent", "94–98%"],
+    ["every three to five minutes", "every 3–5 minutes"],
+    ["less than five seconds", "less than 5 seconds"],
+    ["for two minutes", "for 2 minutes"],
+    ["every two minutes", "every 2 minutes"],
+    ["four H's and four T's", "4 H's and 4 T's"],
+    ["post resuscitation", "post-resuscitation"],
+    ["under two minutes", "under 2 minutes"]
+  ],
   "explainers": [
     {
       "id": "cardiac-arrest-als",

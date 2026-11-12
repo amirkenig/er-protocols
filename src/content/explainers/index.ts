@@ -29,7 +29,11 @@ const ExplainerDefSchema = z.object({
   scenes: z.array(ExplainerSceneSchema).min(1),
 });
 
-export const ExplainersFileSchema = z.object({ explainers: z.array(ExplainerDefSchema) });
+export const ExplainersFileSchema = z.object({
+  /** [spoken, display] pairs applied in order (case-sensitive) to captions and chapter text. */
+  captionReplacements: z.array(z.tuple([z.string().min(1), z.string()])),
+  explainers: z.array(ExplainerDefSchema),
+});
 
 const SentenceTimingSchema = z.object({
   text: z.string().min(1),
@@ -61,7 +65,14 @@ export type SceneTiming = z.infer<typeof SceneTimingSchema>;
 export type ExplainerTimings = z.infer<typeof ExplainerTimingsSchema>;
 export type Explainer = ExplainerDef & { timing: ExplainerTimings };
 
-export const EXPLAINER_DEFS: readonly ExplainerDef[] = ExplainersFileSchema.parse(explainersJson).explainers;
+const EXPLAINERS_FILE = ExplainersFileSchema.parse(explainersJson);
+export const EXPLAINER_DEFS: readonly ExplainerDef[] = EXPLAINERS_FILE.explainers;
+const CAPTION_REPLACEMENTS = EXPLAINERS_FILE.captionReplacements;
+
+/** Narration is written for speech; this turns a spoken sentence into its on-screen form. */
+export function displayText(text: string): string {
+  return CAPTION_REPLACEMENTS.reduce((acc, [spoken, display]) => acc.replaceAll(spoken, display), text);
+}
 export const TIMINGS: Readonly<Record<string, ExplainerTimings>> = TimingsFileSchema.parse(timingsJson);
 
 /** Explainers that have timings. A def without timings is reported by the content test. */

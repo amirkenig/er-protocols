@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { TIMINGS, getExplainer } from "../../content/explainers";
+import { TIMINGS, displayText, getExplainer } from "../../content/explainers";
 import { msToSeconds } from "../../explainers/clock";
 import { ExplainerPage } from "./ExplainerPage";
 
@@ -55,7 +55,7 @@ describe("ExplainerPage", () => {
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(e.titleHe);
     const chapters = screen.getAllByRole("listitem");
     expect(chapters).toHaveLength(e.scenes.length);
-    expect(chapters[0]).toHaveTextContent(firstSentence(e.id, 0).text);
+    expect(chapters[0]).toHaveTextContent(displayText(firstSentence(e.id, 0).text));
     expect(screen.getByText("למה לא מאומת?")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /דום לב במבוגר/ })).toHaveAttribute("href", "/p/cardiac-arrest");
     expect(screen.queryByText(/תוכן לימודי כללי — אינו לקוח/)).toBeNull();
@@ -69,7 +69,7 @@ describe("ExplainerPage", () => {
     act(() => {
       vi.advanceTimersByTime(50);
     });
-    expect(caption()).toHaveTextContent(firstSentence("cardiac-arrest-als", 0).text);
+    expect(caption()).toHaveTextContent(displayText(firstSentence("cardiac-arrest-als", 0).text));
     mediaTime = 3;
     act(() => {
       vi.advanceTimersByTime(50);
@@ -84,7 +84,7 @@ describe("ExplainerPage", () => {
     setup("cardiac-arrest-als");
     const third = within(screen.getAllByRole("listitem")[2]!).getByRole("button");
     fireEvent.click(third);
-    expect(caption()).toHaveTextContent(firstSentence("cardiac-arrest-als", 2).text);
+    expect(caption()).toHaveTextContent(displayText(firstSentence("cardiac-arrest-als", 2).text));
     expect(mediaTime).toBeCloseTo(msToSeconds(firstSentence("cardiac-arrest-als", 2).startMs));
   });
 
@@ -134,7 +134,7 @@ describe("ExplainerPage", () => {
     act(() => {
       vi.advanceTimersByTime(1000);
     });
-    expect(caption()).toHaveTextContent(firstSentence("cardiac-arrest-als", 0).text);
+    expect(caption()).toHaveTextContent(displayText(firstSentence("cardiac-arrest-als", 0).text));
   });
 
   it("shows the educational-content banner for drug explainers", () => {

@@ -67,14 +67,14 @@ export function CprScene({ t, duration, reducedMotion }: SceneProps) {
       <Chip x={1130} y={370} label="5–6 cm" p={ease(t, d * 0.3, 500)} />
       <Chip x={1130} y={510} label="100–120 / min" p={ease(t, d * 0.45, 500)} color={COL.accent} />
       <Appear p={ease(t, d * 0.68, 600)}>
-        <Defibrillator x={960} y={730} />
-        <Txt x={960} y={835} size={38} fill={COL.muted}>
+        <Defibrillator x={900} y={690} />
+        <Txt x={900} y={835} size={54} fill={COL.muted}>
           Defibrillator
         </Txt>
       </Appear>
       <Appear p={ease(t, d * 0.82, 600)}>
-        <Phone x={1290} y={730} />
-        <Txt x={1290} y={835} size={38} fill={COL.muted}>
+        <Phone x={1300} y={690} />
+        <Txt x={1300} y={835} size={54} fill={COL.muted}>
           Call team
         </Txt>
       </Appear>

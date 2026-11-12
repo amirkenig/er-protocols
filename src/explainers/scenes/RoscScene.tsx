@@ -28,7 +28,7 @@ export function RoscScene({ t, duration, reducedMotion }: SceneProps) {
         <g transform={`translate(330 640) scale(${num(s)})`}>
           <path d={HEART} fill={COL.danger} stroke={COL.fg} strokeWidth={5} strokeLinejoin="round" />
         </g>
-        <Txt x={330} y={830} size={42} fill={COL.muted}>
+        <Txt x={330} y={830} size={54} fill={COL.muted}>
           Pulse
         </Txt>
       </Appear>

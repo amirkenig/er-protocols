@@ -12,7 +12,7 @@ export function TitleScene({ t, duration, title = "" }: SceneProps) {
           transform="translate(0 -10)"
           fill={COL.primary}
         />
-        <Txt x={230} y={92} size={40} anchor="start" fill={COL.muted}>
+        <Txt x={230} y={92} size={54} anchor="start" fill={COL.muted}>
           ER Protocols
         </Txt>
       </Appear>

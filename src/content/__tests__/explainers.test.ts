@@ -6,6 +6,7 @@ import {
   EXPLAINER_DEFS,
   EXPLAINERS,
   TIMINGS,
+  displayText,
   explainerCitations,
   explainerForDrug,
   explainerForProtocol,
@@ -110,5 +111,26 @@ describe("explainers content", () => {
     const keys = out.map((c) => `${c.sourceId}|${c.locator}`);
     expect(new Set(keys).size).toBe(keys.length);
     expect(explainerCitations(getExplainer("mechanism-adrenaline")!)).toEqual([]);
+  });
+
+  it("displayText applies replacements in order, case-sensitively", () => {
+    expect(displayText("Treat pulseless V T and P E A with C P R.")).toBe("Treat pulseless VT and PEA with CPR.");
+    expect(displayText("Give one milligram every three to five minutes.")).toBe("Give 1 mg every 3–5 minutes.");
+    expect(displayText("Give ONE MILLIGRAM")).toBe("Give ONE MILLIGRAM");
+    expect(displayText("Thirty compressions to two breaths")).toBe("30 compressions to 2 breaths");
+    expect(displayText("plain text")).toBe("plain text");
+  });
+
+  it("no displayed caption keeps a spaced spelling", () => {
+    for (const timing of Object.values(TIMINGS)) {
+      for (const scene of timing.scenes) {
+        for (const s of scene.sentences) {
+          const shown = displayText(s.text);
+          for (const bad of ["V T", "P E A", "C P R", "E C G", "E R C"]) {
+            expect(shown, `${scene.id}: ${shown}`).not.toContain(bad);
+          }
+        }
+      }
+    }
   });
 });

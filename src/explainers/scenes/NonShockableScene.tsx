@@ -6,7 +6,7 @@ export function NonShockableScene({ t, duration, reducedMotion }: SceneProps) {
   const flat = ease(t, d * 0.2, d * 0.2);
   const spin = reducedMotion ? 0 : (t * 0.09) % 360;
   const lx = 960;
-  const ly = 650;
+  const ly = 710;
   return (
     <g>
       <Appear p={ease(t, 0, 500)}>
@@ -21,16 +21,16 @@ export function NonShockableScene({ t, duration, reducedMotion }: SceneProps) {
           />
           <path d="M120 540 H720" fill="none" stroke={COL.danger} strokeWidth={7} strokeLinecap="round" {...drawProps(flat)} />
         </Monitor>
-        <Txt x={140} y={235} size={40} anchor="start" fill={COL.primary}>
+        <Txt x={140} y={235} size={64} anchor="start" fill={COL.primary}>
           PEA
         </Txt>
-        <Txt x={140} y={480} size={40} anchor="start" fill={COL.danger}>
+        <Txt x={140} y={480} size={64} anchor="start" fill={COL.danger}>
           Asystole
         </Txt>
       </Appear>
       <Appear p={ease(t, d * 0.35, 600)}>
         {/* syringe */}
-        <g transform="translate(1180 210)">
+        <g transform="translate(1180 190)">
           <rect x={-120} y={-30} width={200} height={60} rx={12} fill={COL.surface2} stroke={COL.primary} strokeWidth={6} />
           <rect x={-120} y={-30} width={110} height={60} rx={12} fill={COL.primary} opacity={0.25} />
           <rect x={-160} y={-8} width={44} height={16} rx={8} fill={COL.primary} />
@@ -38,14 +38,18 @@ export function NonShockableScene({ t, duration, reducedMotion }: SceneProps) {
           <path d="M80 0 H150" stroke={COL.primary} strokeWidth={8} strokeLinecap="round" />
         </g>
       </Appear>
-      <Chip x={1180} y={350} label="Adrenaline 1 mg — ASAP" p={ease(t, d * 0.42, 500)} color={COL.primary} size={40} />
+      <Chip x={1180} y={330} label="Adrenaline 1 mg" p={ease(t, d * 0.42, 500)} color={COL.primary} />
+      <Chip x={1180} y={470} label="ASAP" p={ease(t, d * 0.5, 500)} color={COL.caution} tone="caution" />
       <Appear p={ease(t, d * 0.66, 600)}>
         <g transform={`translate(${num(lx)} ${num(ly)}) rotate(${num(spin)})`}>
           <path d="M0 -95 A95 95 0 1 1 -95 0" fill="none" stroke={COL.accent} strokeWidth={16} strokeLinecap="round" />
           <path d="M-135 -25 L-95 25 L-55 -25 Z" fill={COL.accent} />
         </g>
-        <Txt x={lx + 140} y={ly} size={42} anchor="start">
-          CPR 2 min → reassess
+        <Txt x={lx + 140} y={ly - 40} size={64} anchor="start">
+          CPR 2 min
+        </Txt>
+        <Txt x={lx + 140} y={ly + 40} size={64} anchor="start">
+          → reassess
         </Txt>
       </Appear>
     </g>

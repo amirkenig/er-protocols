@@ -1,9 +1,9 @@
 import { lerp } from "../anim";
 import { AP_START, Appear, COL, Txt, apEnd, apPath, drawProps, ease, num, pop, rampIntegral, type SceneProps } from "../kit";
 
-const MX = 420; // channel centre
-const MY = 440; // membrane centre line
-const AX = 850;
+const MX = 520; // channel centre
+const MY = 470; // membrane centre line
+const AX = 880;
 const AW = 640;
 const REST = 760;
 const PEAK = 480;
@@ -23,37 +23,34 @@ export function PotassiumBlockScene({ t, duration, reducedMotion }: SceneProps) 
     <g>
       <Appear p={ease(t, 0, 500)}>
         {/* membrane with a channel gap */}
-        <rect x={90} y={MY - 36} width={MX - 90 - 52} height={72} rx={36} fill={COL.surface2} stroke={COL.lineStrong} strokeWidth={5} />
-        <rect x={MX + 52} y={MY - 36} width={700 - MX - 52} height={72} rx={36} fill={COL.surface2} stroke={COL.lineStrong} strokeWidth={5} />
+        <rect x={50} y={MY - 36} width={MX - 50 - 52} height={72} rx={36} fill={COL.surface2} stroke={COL.lineStrong} strokeWidth={5} />
+        <rect x={MX + 52} y={MY - 36} width={760 - MX - 52} height={72} rx={36} fill={COL.surface2} stroke={COL.lineStrong} strokeWidth={5} />
         <rect x={MX - 90} y={MY - 62} width={64} height={124} rx={24} fill={COL.primary} />
         <rect x={MX + 26} y={MY - 62} width={64} height={124} rx={24} fill={COL.primary} />
-        <Txt x={110} y={MY + 130} size={36} anchor="start" fill={COL.muted}>
-          Inside the cell
-        </Txt>
       </Appear>
       <Appear p={ease(t, d * 0.08, 500)}>
-        <Txt x={90} y={300} size={46} anchor="start" fill={COL.primary}>
+        <Txt x={50} y={MY + 200} size={64} anchor="start" fill={COL.primary}>
           K⁺ channel
         </Txt>
-        <path d={`M260 320 L${num(MX - 70)} ${num(MY - 60)}`} stroke={COL.lineStrong} strokeWidth={5} fill="none" />
+        <path d={`M300 ${num(MY + 160)} L${num(MX - 80)} ${num(MY + 62)}`} stroke={COL.lineStrong} strokeWidth={5} fill="none" />
       </Appear>
       {Array.from({ length: 5 }, (_, i) => {
         const u = (i / 5 + flow) % 1;
-        const y = lerp(MY + 230, MY - 270, u);
+        const y = lerp(MY + 230, MY - 200, u);
         const x = MX + ((i % 3) - 1) * 12;
         const fade = Math.min(u, 1 - u) / 0.12;
         return (
           <g key={i} opacity={Math.min(1, fade) * ease(t, d * 0.05, 400) * lerp(1, 0.25, landed)}>
-            <circle cx={x} cy={y} r={30} fill={COL.accent} />
-            <Txt x={x} y={y + 1} size={36} fill={COL.surface}>
+            <circle cx={x} cy={y} r={40} fill={COL.accent} />
+            <Txt x={x} y={y + 1} size={54} fill={COL.surface}>
               K⁺
             </Txt>
           </g>
         );
       })}
       <g transform={`translate(0 ${num(lerp(-260, 0, land))})`} opacity={landed}>
-        <rect x={MX - 140} y={MY - 135} width={280} height={72} rx={22} fill={COL.dangerBg} stroke={COL.danger} strokeWidth={6} />
-        <Txt x={MX} y={MY - 99} size={38} fill={COL.dangerFg}>
+        <rect x={MX - 215} y={MY - 200} width={430} height={100} rx={30} fill={COL.dangerBg} stroke={COL.danger} strokeWidth={6} />
+        <Txt x={MX} y={MY - 150} size={64} fill={COL.dangerFg}>
           Amiodarone
         </Txt>
       </g>
@@ -61,7 +58,7 @@ export function PotassiumBlockScene({ t, duration, reducedMotion }: SceneProps) 
       <Appear p={ease(t, d * 0.12, 500)}>
         <path d={`M${num(AX - 20)} 360 V800 H${num(AX + AW + 20)}`} fill="none" stroke={COL.lineStrong} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />
         <rect x={sx} y={360} width={ex - sx} height={440} fill={COL.cautionBg} opacity={0.75} />
-        <Txt x={sx} y={325} size={38} anchor="start" fill={COL.caution}>
+        <Txt x={sx} y={322} size={64} anchor="start" fill={COL.caution}>
           Refractory period
         </Txt>
       </Appear>
@@ -75,7 +72,7 @@ export function PotassiumBlockScene({ t, duration, reducedMotion }: SceneProps) 
         {...drawProps(ease(t, d * 0.14, d * 0.2))}
       />
       <Appear p={ease(t, d * 0.78, 500)}>
-        <Txt x={AX + AW * 0.62} y={850} size={38} fill={COL.primary}>
+        <Txt x={AX + AW * 0.62} y={845} size={64} fill={COL.primary}>
           Phase 3
         </Txt>
       </Appear>

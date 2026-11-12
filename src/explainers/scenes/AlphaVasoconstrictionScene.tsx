@@ -46,18 +46,18 @@ export function AlphaVasoconstrictionScene({ t, duration }: SceneProps) {
       })}
       <Appear p={ease(t, d * 0.1, 500)}>
         <path d={`M${num(CX + (outer + 40) * Math.cos(rad(-35)))} ${num(CY + (outer + 40) * Math.sin(rad(-35)))} L1010 250`} stroke={COL.lineStrong} strokeWidth={5} fill="none" />
-        <Txt x={1020} y={235} size={50} anchor="start" fill={COL.primary}>
+        <Txt x={1020} y={235} size={64} anchor="start" fill={COL.primary}>
           α1 receptors
         </Txt>
         <circle cx={1020} cy={330} r={20} fill={COL.accent} />
-        <Txt x={1060} y={330} size={38} anchor="start" fill={COL.muted}>
+        <Txt x={1060} y={330} size={54} anchor="start" fill={COL.muted}>
           Adrenaline
         </Txt>
       </Appear>
       <Appear p={labelP}>
         <path d="M1090 560 H1250 M1150 520 L1090 560 L1150 600" fill="none" stroke={COL.danger} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" />
       </Appear>
-      <Chip x={1180} y={700} label="Vasoconstriction" p={labelP} color={COL.danger} tone="danger" size={46} />
+      <Chip x={1180} y={700} label="Vasoconstriction" p={labelP} color={COL.danger} tone="danger" size={64} />
     </g>
   );
 }
