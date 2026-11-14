@@ -9,12 +9,12 @@ export function HomePage() {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3">
-        <Link to="/code" className={`${btnOutlineDanger} whitespace-nowrap px-4`}>
-          <Timer size={24} aria-hidden="true" />
+        <Link to="/code" className={`${btnOutlineDanger.replace("px-6", "px-3")} whitespace-nowrap`}>
+          <Timer size={22} className="shrink-0" aria-hidden="true" />
           {he.home.code}
         </Link>
-        <Link to="/calc" className={`${btnOutline} whitespace-nowrap px-4`}>
-          <Calculator size={24} aria-hidden="true" />
+        <Link to="/calc" className={`${btnOutline.replace("px-6", "px-3")} whitespace-nowrap`}>
+          <Calculator size={22} className="shrink-0" aria-hidden="true" />
           {he.home.calc}
         </Link>
       </div>
