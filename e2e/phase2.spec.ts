@@ -15,6 +15,18 @@ test("home → category → protocol in two taps shows the steps", async ({ page
   await expect(page.locator("#step-shock")).toBeVisible();
 });
 
+test("protocols tab reaches cardiac arrest in two more taps", async ({ page }) => {
+  await page.goto("./");
+  await acknowledge(page);
+  await page
+    .getByRole("navigation", { name: "ניווט ראשי" })
+    .getByRole("link", { name: "פרוטוקולים" })
+    .click();
+  await expect(page.getByRole("heading", { level: 1, name: "פרוטוקולים" })).toBeVisible();
+  await page.getByRole("link", { name: /דום לב במבוגר \(ALS\)/ }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("דום לב במבוגר (ALS)");
+});
+
 test("code timer: start, shock and adrenaline appear in the log", async ({ page }) => {
   await page.goto("./#/code");
   await acknowledge(page);
@@ -32,6 +44,8 @@ test("no page scrolls horizontally at phone width", async ({ page }) => {
   await page.getByRole("button", { name: "המשך" }).click();
   for (const route of [
     "#/",
+    "#/protocols",
+    "#/search",
     "#/c/resuscitation",
     "#/p/cardiac-arrest",
     "#/p/bradycardia",

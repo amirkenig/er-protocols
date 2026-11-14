@@ -14,9 +14,11 @@ import { Stage } from "../../explainers/Stage";
 import { SourceSheet } from "../components/SourceSheet";
 import { StatusBadge } from "../components/StatusBadge";
 import { he } from "../i18n/he";
+import { ChevronRight } from "../icons";
+import { backLink } from "../styles";
 
 const btn =
-  "flex min-h-12 items-center justify-center rounded-lg border-2 border-line-strong px-4 text-lg font-bold";
+  "flex min-h-12 items-center justify-center rounded-full border-2 border-line-strong px-4 text-lg font-bold";
 
 function Player({ explainer }: { explainer: Explainer }) {
   const { timing } = explainer;
@@ -127,8 +129,9 @@ function Player({ explainer }: { explainer: Explainer }) {
       <header className="space-y-2">
         <Link
           to={`/p/${explainer.protocolId}`}
-          className="flex min-h-12 items-center text-accent underline"
+          className={backLink}
         >
+          <ChevronRight size={20} aria-hidden="true" />
           {he.back}
         </Link>
         <h1 className="text-2xl font-bold">{explainer.titleHe}</h1>
@@ -273,7 +276,8 @@ export function ExplainerPage() {
     return (
       <div className="space-y-3">
         <h1 className="text-2xl font-bold">{he.explainer.notFound}</h1>
-        <Link to="/" className="flex min-h-12 items-center text-accent underline">
+        <Link to="/" className={backLink}>
+          <ChevronRight size={20} aria-hidden="true" />
           {he.notFound.back}
         </Link>
       </div>

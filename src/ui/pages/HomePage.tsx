@@ -1,54 +1,36 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { VISIBLE_CATEGORIES } from "../../content/categories";
+import { CategoryIcon } from "../categoryIcons";
 import { he } from "../i18n/he";
+import { Calculator, ChevronLeft, Timer } from "../icons";
+import { btnOutline, card } from "../styles";
 
 export function HomePage() {
-  const navigate = useNavigate();
-  const [q, setQ] = useState("");
   return (
     <div className="space-y-4">
-      <form
-        role="search"
-        onSubmit={(e) => {
-          e.preventDefault();
-          void navigate(`/search?q=${encodeURIComponent(q)}`);
-        }}
-      >
-        <input
-          type="search"
-          aria-label={he.home.searchLabel}
-          placeholder={he.home.searchPlaceholder}
-          value={q}
-          onChange={(e) => {
-            setQ(e.target.value);
-          }}
-          className="min-h-16 w-full rounded-xl border-2 border-line-strong bg-surface px-4 text-xl"
-        />
-      </form>
       <div className="grid grid-cols-2 gap-3">
-        <Link
-          to="/calc"
-          className="flex min-h-14 items-center justify-center rounded-xl border-2 border-primary text-lg font-bold text-primary"
-        >
-          {he.home.calc}
-        </Link>
-        <Link
-          to="/code"
-          className="flex min-h-14 items-center justify-center rounded-xl border-2 border-danger text-lg font-bold text-danger"
-        >
+        <Link to="/code" className={`${btnOutline} border-danger text-danger`}>
+          <Timer size={24} aria-hidden="true" />
           {he.home.code}
         </Link>
+        <Link to="/calc" className={btnOutline}>
+          <Calculator size={24} aria-hidden="true" />
+          {he.home.calc}
+        </Link>
       </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3">
         {VISIBLE_CATEGORIES.map((c) => (
           <Link
             key={c.id}
             to={`/c/${c.id}`}
-            className="flex min-h-24 flex-col justify-center rounded-xl border-2 border-line bg-surface p-4 hover:border-primary"
+            className={`${card} flex min-h-20 items-center gap-4 p-3`}
           >
-            <span className="text-xl font-bold">{c.titleHe}</span>
-            <span className="text-sm text-muted">{c.titleEn}</span>
+            <CategoryIcon id={c.id} />
+            <span className="flex flex-1 flex-col">
+              <span className="text-xl font-bold">{c.titleHe}</span>
+              <span className="text-sm text-muted">{c.titleEn}</span>
+            </span>
+            <ChevronLeft size={24} className="text-muted" aria-hidden="true" />
           </Link>
         ))}
       </div>

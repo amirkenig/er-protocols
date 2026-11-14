@@ -23,14 +23,14 @@ export function SourceSheet({ citations }: { citations: readonly Citation[] }) {
     <>
       <button
         type="button"
-        className="min-h-12 rounded-lg border-2 border-line-strong px-4 text-lg font-bold"
+        className="min-h-12 rounded-full border-2 border-line-strong px-4 text-lg font-bold"
         onClick={open}
       >
         {he.calc.source}
       </button>
       <dialog
         ref={ref}
-        className="m-auto max-h-[90vh] w-[min(40rem,95vw)] overflow-y-auto rounded-xl border-2 border-line-strong bg-surface p-4 text-fg"
+        className="m-auto max-h-[90vh] w-[min(40rem,95vw)] overflow-y-auto rounded-2xl border-2 border-line-strong bg-surface p-4 shadow-card text-fg"
       >
         <div className="space-y-4">
           {citations.length === 0 ? (
@@ -73,7 +73,7 @@ export function SourceSheet({ citations }: { citations: readonly Citation[] }) {
           )}
           <button
             type="button"
-            className="min-h-12 rounded-lg border-2 border-line-strong px-4 text-lg font-bold"
+            className="min-h-12 rounded-full border-2 border-line-strong px-4 text-lg font-bold"
             onClick={close}
           >
             {he.calc.sourceClose}

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
+import { input } from "../styles";
 
-export const selectCls =
-  "min-h-12 w-full rounded-lg border-2 border-line-strong bg-surface px-2 text-lg";
+export const selectCls = input;
 
 export function SelectField({
   label,
@@ -51,7 +51,7 @@ export function Segmented<T extends string>({
     <div
       role="group"
       aria-label={label}
-      className="flex overflow-hidden rounded-lg border-2 border-line-strong"
+      className="flex overflow-hidden rounded-xl border-2 border-line"
     >
       {options.map((o) => (
         <button
@@ -59,9 +59,7 @@ export function Segmented<T extends string>({
           type="button"
           aria-pressed={value === o.value}
           className={`min-h-12 flex-1 px-3 text-lg font-bold ${
-            value === o.value
-              ? "bg-primary text-on-primary hover:bg-primary-hover"
-              : "bg-surface hover:bg-surface-2"
+            value === o.value ? "bg-soft text-on-soft" : "bg-surface hover:bg-surface-2"
           }`}
           onClick={() => {
             onChange(o.value);

@@ -105,7 +105,7 @@ export function Metronome() {
   return (
     <section
       aria-label={he.metronome.title}
-      className="space-y-3 rounded-xl border-2 border-line bg-surface p-4"
+      className="space-y-3 rounded-2xl border border-line bg-surface p-4 shadow-card"
     >
       <h2 className="text-xl font-bold">{he.metronome.title}</h2>
       {!supported ? (
@@ -115,7 +115,7 @@ export function Metronome() {
           <button
             type="button"
             aria-pressed={on}
-            className={`min-h-12 flex-1 rounded-lg border-2 px-4 text-lg font-bold ${
+            className={`min-h-12 flex-1 rounded-full border-2 px-4 text-lg font-bold ${
               on ? "border-primary bg-primary text-on-primary" : "border-line-strong bg-surface"
             }`}
             onClick={toggle}

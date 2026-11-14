@@ -15,7 +15,7 @@ export function UpdateBanner() {
       <span className="font-bold">{he.update.available}</span>
       <button
         type="button"
-        className="min-h-12 rounded-lg bg-on-primary px-4 font-bold text-primary"
+        className="min-h-12 rounded-full bg-on-primary px-4 font-bold text-primary"
         onClick={() => {
           void updateServiceWorker(true);
         }}

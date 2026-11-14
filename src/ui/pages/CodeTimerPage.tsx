@@ -37,9 +37,9 @@ const RHYTHMS: readonly { value: Rhythm; label: string }[] = [
 ];
 
 const gridBtn =
-  "min-h-16 rounded-xl border-2 border-line-strong bg-surface px-3 text-xl font-bold hover:bg-surface-2";
+  "min-h-16 rounded-2xl border-2 border-line-strong bg-surface px-3 text-xl font-bold hover:bg-surface-2";
 const smallBtn =
-  "min-h-12 rounded-lg border-2 border-line-strong bg-surface px-4 text-lg font-bold hover:bg-surface-2";
+  "min-h-12 rounded-full border-2 border-line-strong bg-surface px-4 text-lg font-bold hover:bg-surface-2";
 
 function adrenalineClass(a: AdrenalineStatus): string {
   switch (a) {
@@ -226,7 +226,7 @@ export function CodeTimerPage() {
 
       {started && (
         <section className="space-y-3" aria-label={he.code.title}>
-          <div className="space-y-2 rounded-xl border-2 border-line bg-surface p-4">
+          <div className="space-y-2 rounded-2xl border border-line bg-surface p-4 shadow-card">
             <p className="text-sm">{he.code.elapsed}</p>
             <p className="text-5xl font-bold tabular-nums">
               <bdi dir="ltr">{fmtDuration(status.elapsedMs)}</bdi>
@@ -422,7 +422,7 @@ export function CodeTimerPage() {
                     <span className="block text-sm">{he.code.noteLabel}</span>
                     <input
                       type="text"
-                      className="min-h-12 w-full rounded-lg border-2 border-line-strong bg-surface px-2 text-lg"
+                      className="min-h-12 w-full rounded-xl border-2 border-line-strong bg-surface px-2 text-lg"
                       value={noteText}
                       onChange={(e) => {
                         setNoteText(e.target.value);
@@ -517,7 +517,7 @@ export function CodeTimerPage() {
                   readOnly
                   value={fallbackText}
                   rows={6}
-                  className="w-full rounded-lg border-2 border-line-strong bg-surface p-2"
+                  className="w-full rounded-xl border-2 border-line-strong bg-surface p-2"
                 />
               </div>
             )}

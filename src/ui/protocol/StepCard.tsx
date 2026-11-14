@@ -5,8 +5,9 @@ import { StatusBadge } from "../components/StatusBadge";
 import { GuidelineComparison } from "./GuidelineComparison";
 import { he } from "../i18n/he";
 import { scrollToId } from "./scroll";
+import { card, pill } from "../styles";
 
-const chipCls = "min-h-12 rounded-full border-2 border-primary px-4 text-lg font-bold text-primary";
+const chipCls = `${pill} min-h-12 border border-accent/40 bg-surface-2 px-4 text-base text-accent`;
 
 interface Props {
   step: Step;
@@ -19,15 +20,12 @@ interface Props {
 export function StepCard({ step, number, drugNames }: Props) {
   const navigate = useNavigate();
   return (
-    <li
-      id={`step-${step.id}`}
-      className="scroll-mt-28 space-y-3 rounded-xl border-2 border-line bg-surface p-4"
-    >
+    <li id={`step-${step.id}`} className={`${card} scroll-mt-28 space-y-3 p-4`}>
       <div className="flex gap-3">
         {number !== undefined && (
           <span
             aria-hidden="true"
-            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-on-primary"
+            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-soft font-bold text-on-soft"
           >
             {number}
           </span>
@@ -59,7 +57,7 @@ export function StepCard({ step, number, drugNames }: Props) {
             <button
               key={i}
               type="button"
-              className="min-h-12 w-full rounded-lg border-2 border-primary px-4 text-start text-lg font-bold text-primary"
+              className="min-h-12 w-full rounded-xl border-2 border-primary px-4 text-start font-bold text-primary"
               onClick={() => {
                 if (dp.target.kind === "step") scrollToId(`step-${dp.target.id}`);
                 else void navigate(`/p/${dp.target.id}`);
@@ -71,32 +69,34 @@ export function StepCard({ step, number, drugNames }: Props) {
         </div>
       )}
       {step.reassessmentTargets.length > 0 && (
-        <table className="w-full text-sm">
-          <caption className="sr-only">{he.protocol.reassessment}</caption>
-          <thead>
-            <tr>
-              <th scope="col" className="text-start">
-                {he.protocol.param}
-              </th>
-              <th scope="col" className="text-start">
-                {he.protocol.target}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {step.reassessmentTargets.map((t, i) => (
-              <tr key={i} className="border-t border-line">
-                <td className="py-1">{t.param}</td>
-                <td className="py-1">
-                  <bdi dir="ltr">
-                    {t.target}
-                    {t.unit !== undefined ? ` ${t.unit}` : ""}
-                  </bdi>
-                </td>
+        <div className="rounded-xl bg-surface-2 p-2">
+          <table className="w-full text-sm">
+            <caption className="sr-only">{he.protocol.reassessment}</caption>
+            <thead>
+              <tr>
+                <th scope="col" className="text-start">
+                  {he.protocol.param}
+                </th>
+                <th scope="col" className="text-start">
+                  {he.protocol.target}
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {step.reassessmentTargets.map((t, i) => (
+                <tr key={i} className="border-t border-line">
+                  <td className="py-1">{t.param}</td>
+                  <td className="py-1">
+                    <bdi dir="ltr">
+                      {t.target}
+                      {t.unit !== undefined ? ` ${t.unit}` : ""}
+                    </bdi>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
       <GuidelineComparison items={step.guidelineDifferences} />
       <div className="flex flex-wrap items-center gap-3">

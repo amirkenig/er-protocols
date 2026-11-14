@@ -11,6 +11,7 @@ import { InfusionCalcPage } from "../pages/InfusionCalcPage";
 import { CodeTimerPage } from "../pages/CodeTimerPage";
 import { CalcPage, NotFoundPage } from "../pages/PlaceholderPages";
 import { ProtocolPage } from "../pages/ProtocolPage";
+import { ProtocolsPage } from "../pages/ProtocolsPage";
 import { SearchPage } from "../pages/SearchPage";
 import { SettingsPage } from "../pages/SettingsPage";
 import { AppShell } from "./AppShell";
@@ -29,6 +30,7 @@ export function App() {
             <Routes>
               <Route element={<AppShell />}>
                 <Route index element={<HomePage />} />
+                <Route path="protocols" element={<ProtocolsPage />} />
                 <Route path="c/:categoryId" element={<CategoryPage />} />
                 <Route path="p/:protocolId" element={<ProtocolPage />} />
                 <Route path="x/:explainerId" element={<ExplainerPage />} />

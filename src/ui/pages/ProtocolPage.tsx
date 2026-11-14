@@ -6,16 +6,21 @@ import { getSource } from "../../content/sources";
 import type { Protocol, Source } from "../../content/schema";
 import { StatusBadge } from "../components/StatusBadge";
 import { he } from "../i18n/he";
+import { ChevronRight, Play } from "../icons";
 import { DrugDoseCard } from "../protocol/DrugDoseCard";
 import { scrollToId } from "../protocol/scroll";
 import { GuidelineComparison } from "../protocol/GuidelineComparison";
 import { StepCard } from "../protocol/StepCard";
 import { PROTOCOL_TOOLS } from "../protocol/tools";
+import { backLink, btnOutline, btnPrimary, pill } from "../styles";
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="space-y-3">
-      <h2 className="text-xl font-bold">{title}</h2>
+      <h2 className="flex items-center gap-2 text-xl font-bold">
+        <span aria-hidden="true" className="h-6 w-1.5 rounded-full bg-accent" />
+        {title}
+      </h2>
       {children}
     </section>
   );
@@ -98,10 +103,7 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
           <GuidelineComparison items={protocol.guidelineDifferences} />
           <ul className="space-y-2">
             {pending.map((s) => (
-              <li
-                key={s.id}
-                className="rounded-lg border-2 border-caution bg-caution-bg p-2 font-bold"
-              >
+              <li key={s.id} className="rounded-xl bg-caution-bg p-3 font-bold text-fg">
                 {he.protocol.pending(s.title)}
               </li>
             ))}
@@ -154,7 +156,8 @@ export function ProtocolPage() {
     return (
       <div className="space-y-3">
         <h1 className="text-2xl font-bold">{he.protocol.notFound}</h1>
-        <Link to="/" className="flex min-h-12 items-center text-accent underline">
+        <Link to="/" className={backLink}>
+          <ChevronRight size={20} aria-hidden="true" />
           {he.notFound.back}
         </Link>
       </div>
@@ -168,10 +171,8 @@ export function ProtocolPage() {
   return (
     <article className="space-y-5">
       <header className="space-y-2">
-        <Link
-          to={`/c/${protocol.category}`}
-          className="flex min-h-12 items-center text-accent underline"
-        >
+        <Link to={`/c/${protocol.category}`} className={backLink}>
+          <ChevronRight size={20} aria-hidden="true" />
           {he.back}
         </Link>
         <h1 className="text-2xl font-bold">{protocol.titleHe}</h1>
@@ -180,30 +181,22 @@ export function ProtocolPage() {
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge status={local ? "localOverride" : protocol.verificationStatus} />
-          <span className="rounded-md border-2 border-line-strong px-2 py-0.5 text-sm font-bold">
-            {he.protocol.adultsOnly}
-          </span>
+          <span className={`${pill} bg-surface-2 text-fg`}>{he.protocol.adultsOnly}</span>
         </div>
         {tools.map((t) => (
-          <Link
-            key={t.to}
-            to={t.to}
-            className="flex min-h-12 items-center justify-center rounded-lg bg-primary px-4 text-lg font-bold text-on-primary hover:bg-primary-hover"
-          >
+          <Link key={t.to} to={t.to} className={`${btnPrimary} w-full`}>
             {t.label}
           </Link>
         ))}
         {explainer !== undefined && (
-          <Link
-            to={`/x/${explainer.id}`}
-            className="flex min-h-12 items-center justify-center rounded-lg border-2 border-primary px-4 text-lg font-bold text-primary hover:bg-surface-2"
-          >
+          <Link to={`/x/${explainer.id}`} className={`${btnOutline} w-full`}>
+            <Play size={20} aria-hidden="true" />
             {he.explainer.openProtocol}
           </Link>
         )}
       </header>
       {protocol.verificationStatus !== "verified" && (
-        <div className="space-y-1 rounded-xl border-2 border-caution bg-caution-bg p-3">
+        <div className="space-y-1 rounded-2xl border border-caution/30 bg-caution-bg p-4">
           <p className="font-bold">{he.protocol.unverifiedBanner}</p>
           {protocol.unverifiedReason !== undefined && (
             <details>
@@ -217,7 +210,7 @@ export function ProtocolPage() {
       )}
       {local ? (
         <>
-          <section className="space-y-2 rounded-xl border-2 border-local p-4">
+          <section className="space-y-2 rounded-2xl border-2 border-local bg-local-bg p-4">
             <h2 className="text-xl font-bold text-local">{he.protocol.localTitle}</h2>
             <p>{local.text}</p>
             {local.steps !== undefined && (

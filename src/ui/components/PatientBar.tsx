@@ -11,7 +11,7 @@ export function PatientBar() {
   const [heightText, setHeightText] = useState("");
   const segCls = (active: boolean) =>
     `min-h-12 flex-1 px-3 text-lg font-bold ${
-      active ? "bg-primary text-on-primary hover:bg-primary-hover" : "bg-surface hover:bg-surface-2"
+      active ? "bg-soft text-on-soft" : "bg-surface hover:bg-surface-2"
     }`;
   return (
     <section aria-label={he.patient.label} className="border-b border-line bg-surface px-4 py-2">
@@ -46,7 +46,7 @@ export function PatientBar() {
         <div
           role="group"
           aria-label={he.patient.sex}
-          className="mt-5 flex overflow-hidden rounded-lg border-2 border-line-strong"
+          className="mt-5 flex overflow-hidden rounded-xl border-2 border-line"
         >
           <button
             type="button"
@@ -71,7 +71,7 @@ export function PatientBar() {
         </div>
         <button
           type="button"
-          className="mt-5 min-h-12 rounded-lg border-2 border-danger px-4 text-lg font-bold text-danger"
+          className="mt-5 min-h-12 rounded-xl bg-soft px-4 font-bold text-on-soft"
           onClick={() => {
             reset();
             setWeightText("");

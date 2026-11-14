@@ -35,7 +35,7 @@ export function ResultView<T>({ result, children, gateSteps = false }: Props<T>)
           {result.code === "WEIGHT_NEEDS_CONFIRMATION" && (
             <button
               type="button"
-              className="min-h-12 rounded-lg border-2 border-danger px-4 text-lg font-bold"
+              className="min-h-12 rounded-full border-2 border-danger px-4 text-lg font-bold"
               onClick={() => {
                 setPatient({ weightConfirmed: true });
               }}

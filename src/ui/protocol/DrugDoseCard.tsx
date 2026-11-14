@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { explainerForDrug } from "../../content/explainers";
 import { rangeEndSpecs, toBolusSpec } from "../../content/adapters";
@@ -18,11 +18,13 @@ import { SourceSheet } from "../components/SourceSheet";
 import { StatusBadge } from "../components/StatusBadge";
 import { parsePositiveNumber } from "../forms/parse";
 import { he } from "../i18n/he";
+import { Gauge, Play, Repeat, Syringe, TriangleAlert } from "../icons";
+import { btnOutline, card } from "../styles";
 
 const CUSTOM = "custom";
 const unitOptions = DOSE_UNITS.map((u) => ({ value: u, label: u }));
 
-function DoseLine({ drug }: { drug: DrugEntry }) {
+function DoseValue({ drug }: { drug: DrugEntry }) {
   const d = drug.dose;
   const big = "text-2xl font-bold";
   switch (d.kind) {
@@ -86,6 +88,27 @@ function DoseLine({ drug }: { drug: DrugEntry }) {
   }
 }
 
+function DoseLine({ drug }: { drug: DrugEntry }) {
+  return (
+    <div className="rounded-xl border-2 border-accent bg-surface-2 p-3 text-center">
+      <p className="text-sm font-bold text-accent">{he.protocol.doseBox}</p>
+      <DoseValue drug={drug} />
+    </div>
+  );
+}
+
+function Fact({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {
+  return (
+    <div className="flex items-start gap-2 rounded-xl bg-surface-2 p-2">
+      {icon}
+      <div>
+        <dt className="text-sm text-muted">{label}</dt>
+        <dd className="font-bold">{children}</dd>
+      </div>
+    </div>
+  );
+}
+
 interface CalcProps {
   drug: DrugEntry;
   spec: BolusSpec;
@@ -102,45 +125,47 @@ function DoseCalc({ drug, spec, concentration, concLabel, heading, keyPart }: Ca
   // High-alert volume (and the formula steps that contain it) stay behind the double-check.
   const gate = drug.highAlert && concentration !== undefined;
   return (
-    <ResultView result={result} gateSteps={gate}>
-      {(v) => (
-        <div className="space-y-2">
-          {heading !== undefined && <p className="font-bold">{heading}</p>}
-          <p className="text-lg">
-            {he.calc.dose.resultDose}:{" "}
-            <bdi dir="ltr" className="text-2xl font-bold">
-              {fmtQ(v.dose.value, v.dose.unit)}
-            </bdi>
-          </p>
-          {v.capped && (
-            <p className="inline-block rounded-md border-2 border-danger px-2 py-1 font-bold text-danger">
-              <span aria-hidden="true">⚠ </span>
-              {he.calc.cappedBadge}
+    <div className="rounded-xl border border-line bg-surface p-3">
+      <ResultView result={result} gateSteps={gate}>
+        {(v) => (
+          <div className="space-y-2">
+            {heading !== undefined && <p className="font-bold">{heading}</p>}
+            <p className="text-lg">
+              {he.calc.dose.resultDose}:{" "}
+              <bdi dir="ltr" className="text-2xl font-bold">
+                {fmtQ(v.dose.value, v.dose.unit)}
+              </bdi>
             </p>
-          )}
-          {v.volumeMl !== undefined && (
-            <HighAlertConfirm
-              key={key}
-              active={drug.highAlert}
-              drugLabel={drug.genericName}
-              concentrationLabel={concLabel}
-              {...(spec.dose.kind === "perKg" && v.dosingWeightKg !== undefined
-                ? { weightLabel: fmtQ(v.dosingWeightKg, "kg") }
-                : {})}
-              unitLabel={v.dose.unit}
-            >
-              <p className="text-lg">
-                {he.calc.dose.resultVolume}:{" "}
-                <bdi dir="ltr" className="text-3xl font-bold">
-                  {fmtQ(v.volumeMl, "mL")}
-                </bdi>
+            {v.capped && (
+              <p className="inline-block rounded-md border-2 border-danger px-2 py-1 font-bold text-danger">
+                <span aria-hidden="true">⚠ </span>
+                {he.calc.cappedBadge}
               </p>
-              {gate && <FormulaSteps steps={result.steps} />}
-            </HighAlertConfirm>
-          )}
-        </div>
-      )}
-    </ResultView>
+            )}
+            {v.volumeMl !== undefined && (
+              <HighAlertConfirm
+                key={key}
+                active={drug.highAlert}
+                drugLabel={drug.genericName}
+                concentrationLabel={concLabel}
+                {...(spec.dose.kind === "perKg" && v.dosingWeightKg !== undefined
+                  ? { weightLabel: fmtQ(v.dosingWeightKg, "kg") }
+                  : {})}
+                unitLabel={v.dose.unit}
+              >
+                <p className="text-lg">
+                  {he.calc.dose.resultVolume}:{" "}
+                  <bdi dir="ltr" className="text-3xl font-bold">
+                    {fmtQ(v.volumeMl, "mL")}
+                  </bdi>
+                </p>
+                {gate && <FormulaSteps steps={result.steps} />}
+              </HighAlertConfirm>
+            )}
+          </div>
+        )}
+      </ResultView>
+    </div>
   );
 }
 
@@ -178,12 +203,17 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
   return (
     <li
       id={`drug-${drug.id}`}
-      className={`scroll-mt-28 space-y-3 rounded-xl bg-surface p-4 ${drug.highAlert ? "border-2 border-danger" : "border-2 border-line"}`}
+      className={`${card} scroll-mt-28 space-y-3 p-4 ${drug.highAlert ? "border-2 border-danger" : ""}`}
     >
       {drug.highAlert && (
-        <div className="space-y-1 border-b border-danger pb-2">
-          <p className="font-bold text-danger">{he.protocol.highAlertHeader}</p>
-          {drug.highAlertReason !== undefined && <p>{drug.highAlertReason}</p>}
+        <div className="space-y-1 rounded-xl border-2 border-danger bg-danger-bg p-3">
+          <p className="flex items-center gap-2 font-bold text-danger">
+            <TriangleAlert size={20} aria-hidden="true" />
+            {he.protocol.highAlertHeader}
+          </p>
+          {drug.highAlertReason !== undefined && (
+            <p className="text-danger-fg">{drug.highAlertReason}</p>
+          )}
         </div>
       )}
       <div>
@@ -194,42 +224,43 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
           {drug.hebrewName !== undefined && <span> — {drug.hebrewName}</span>}
         </h3>
         {explainer !== undefined && (
-          <Link
-            to={`/x/${explainer.id}`}
-            className="mt-1 inline-flex min-h-12 items-center rounded-lg border-2 border-primary px-4 font-bold text-primary hover:bg-surface-2"
-          >
+          <Link to={`/x/${explainer.id}`} className={`${btnOutline} mt-1`}>
+            <Play size={20} aria-hidden="true" />
             {he.explainer.openDrug}
           </Link>
         )}
-        <div className="mt-1 flex flex-wrap gap-2">
-          {drug.routes.map((r) => (
-            <span key={r} className="rounded-md border border-line-strong px-2 text-sm font-bold">
-              {r}
-            </span>
-          ))}
-        </div>
         <p className="mt-1">{drug.indication}</p>
       </div>
       <DoseLine drug={drug} />
-      {repeat !== undefined && (
-        <p>
-          {he.protocol.repeatEvery(
-            fmt(repeat.minMinutes),
-            repeat.maxMinutes === undefined ? undefined : fmt(repeat.maxMinutes),
+      {(drug.routes.length > 0 ||
+        repeat !== undefined ||
+        drug.maxSingleDose !== undefined ||
+        drug.maxCumulativeDose !== undefined) && (
+        <dl className="grid grid-cols-2 gap-2">
+          {drug.routes.length > 0 && (
+            <Fact icon={<Syringe size={20} aria-hidden="true" />} label={he.protocol.routes}>
+              <bdi dir="ltr">{drug.routes.join(" / ")}</bdi>
+            </Fact>
           )}
-        </p>
-      )}
-      {drug.maxSingleDose !== undefined && (
-        <p>
-          {he.protocol.maxSingle}:{" "}
-          <bdi dir="ltr">{fmtQ(drug.maxSingleDose.value, drug.maxSingleDose.unit)}</bdi>
-        </p>
-      )}
-      {drug.maxCumulativeDose !== undefined && (
-        <p>
-          {he.protocol.maxCumulative}:{" "}
-          <bdi dir="ltr">{fmtQ(drug.maxCumulativeDose.value, drug.maxCumulativeDose.unit)}</bdi>
-        </p>
+          {repeat !== undefined && (
+            <Fact icon={<Repeat size={20} aria-hidden="true" />} label={he.protocol.repeat}>
+              {he.protocol.repeatEvery(
+                fmt(repeat.minMinutes),
+                repeat.maxMinutes === undefined ? undefined : fmt(repeat.maxMinutes),
+              )}
+            </Fact>
+          )}
+          {drug.maxSingleDose !== undefined && (
+            <Fact icon={<Gauge size={20} aria-hidden="true" />} label={he.protocol.maxSingle}>
+              <bdi dir="ltr">{fmtQ(drug.maxSingleDose.value, drug.maxSingleDose.unit)}</bdi>
+            </Fact>
+          )}
+          {drug.maxCumulativeDose !== undefined && (
+            <Fact icon={<Gauge size={20} aria-hidden="true" />} label={he.protocol.maxCumulative}>
+              <bdi dir="ltr">{fmtQ(drug.maxCumulativeDose.value, drug.maxCumulativeDose.unit)}</bdi>
+            </Fact>
+          )}
+        </dl>
       )}
       {hasConc ? (
         <div className="space-y-2">
@@ -245,7 +276,7 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
               { value: CUSTOM, label: he.protocol.otherConcentration },
             ]}
           />
-          <p className="text-sm text-caution">{he.protocol.localConcNote}</p>
+          <p className="rounded-xl bg-caution-bg p-3 text-fg">{he.protocol.localConcNote}</p>
           {sel === CUSTOM && (
             <div className="grid grid-cols-3 gap-3">
               <NumberField
@@ -270,7 +301,7 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
           )}
         </div>
       ) : (
-        <p className="rounded-lg border-2 border-caution bg-caution-bg p-2 font-bold">
+        <p className="rounded-xl bg-caution-bg p-3 font-bold text-fg">
           {he.protocol.noDefaultConcentration}
         </p>
       )}

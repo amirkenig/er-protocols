@@ -2,6 +2,7 @@ import type { z } from "zod";
 import type { GuidelineDifferenceSchema } from "../../content/schema";
 import { SourceSheet } from "../components/SourceSheet";
 import { he } from "../i18n/he";
+import { pill } from "../styles";
 
 type GuidelineDifference = z.infer<typeof GuidelineDifferenceSchema>;
 
@@ -9,23 +10,20 @@ type GuidelineDifference = z.infer<typeof GuidelineDifferenceSchema>;
 export function GuidelineComparison({ items }: { items: readonly GuidelineDifference[] }) {
   if (items.length === 0) return null;
   return (
-    <div className="space-y-2 rounded-lg border border-line bg-surface-2 p-3">
+    <div className="space-y-2 rounded-2xl border border-line bg-surface p-3">
       <p className="font-bold">{he.protocol.guidelineDiffs}</p>
       <ul className="space-y-3">
         {items.map((g, i) => (
           <li key={i} className="space-y-1">
             <div className="flex flex-wrap items-center gap-2">
-              <bdi
-                dir="ltr"
-                className="rounded-md border border-line-strong px-2 py-0.5 text-sm font-bold"
-              >
+              <bdi dir="ltr" className={`${pill} bg-primary text-on-primary`}>
                 {g.body}
               </bdi>
               <span
-                className={`rounded-md border-2 px-2 py-0.5 text-sm font-bold ${
+                className={`${pill} ${
                   g.relation === "agrees"
-                    ? "border-verified text-verified"
-                    : "border-caution text-caution"
+                    ? "bg-verified-bg text-verified"
+                    : "bg-warn-fill text-on-warn"
                 }`}
               >
                 {g.relation === "agrees"

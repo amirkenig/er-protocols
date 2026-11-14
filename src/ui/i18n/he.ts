@@ -1,6 +1,13 @@
 export const he = {
   appTitle: "פרוטוקולים לרפואה דחופה",
-  nav: { search: "חיפוש", settings: "הגדרות" },
+  nav: {
+    search: "חיפוש",
+    settings: "הגדרות",
+    home: "בית",
+    protocols: "פרוטוקולים",
+    tools: "כלים",
+    main: "ניווט ראשי",
+  },
   footer: "כלי עזר בלבד — אינו מחליף שיקול דעת קליני, הוראות רופא או נהלי המוסד. מבוגרים בלבד.",
   update: { available: "גרסה חדשה זמינה", refresh: "רענן" },
   home: {
@@ -11,7 +18,6 @@ export const he = {
   },
   category: { empty: "טרם נוספו פרוטוקולים לקטגוריה זו", notFound: "הקטגוריה לא נמצאה" },
   protocol: {
-    placeholder: "הפרוטוקול ייבנה בשלב הבא",
     notFound: "הפרוטוקול לא נמצא",
     adultsOnly: "מבוגרים בלבד",
     openCodeTimer: "פתח טיימר החייאה",
@@ -36,7 +42,10 @@ export const he = {
     reassessment: "יעדי הערכה מחדש",
     param: "פרמטר",
     target: "יעד",
-    highAlertHeader: "⚠ תרופה בסיכון גבוה",
+    highAlertHeader: "תרופה בסיכון גבוה",
+    doseBox: "מינון בפרוטוקול",
+    routes: "מתן",
+    repeat: "חזרה",
     perKgBasis: "בסיס משקל",
     whyUnverified: "למה לא מאומת?",
     infusionStart: "התחלה",
@@ -77,9 +86,11 @@ export const he = {
     prompt: "הקלד מילת חיפוש",
     category: "קטגוריה",
     protocol: "פרוטוקול",
+    clear: "נקה חיפוש",
   },
+  tools: { codeSummary: "שעון מחזורים, תזכורות אדרנלין, יומן ומטרונום" },
   calc: {
-    placeholder: "המחשבונים ייבנו בהמשך שלב 1",
+    placeholder: "מחשבון זה יתווסף בגרסה עתידית",
     title: "מחשבונים",
     soon: "בקרוב",
     hintFill: "יש להזין את כל השדות הנדרשים כדי לקבל תוצאה",
@@ -100,7 +111,6 @@ export const he = {
     checkConcentration: "ריכוז",
     checkWeight: "משקל",
     checkUnit: "יחידות",
-    warnings: "אזהרות",
     cappedBadge: "מוגבל למינון המרבי",
     dose: {
       mode: "סוג מינון",
@@ -214,8 +224,8 @@ export const he = {
     chapters: "פרקים",
     sources: "מקורות",
     noDrugSource: "אין מקור בהנחיות — תוכן לימודי כללי",
-    openProtocol: "▶ סרטון הסבר",
-    openDrug: "▶ מנגנון פעולה",
+    openProtocol: "סרטון הסבר",
+    openDrug: "מנגנון פעולה",
   },
   invalidNumber: "ערך לא תקין — יש להזין מספר חיובי עם נקודה עשרונית",
   disclaimer: {
@@ -231,7 +241,7 @@ export const he = {
     continue: "המשך",
   },
   patient: {
-    label: "נתוני מטופל (בזיכרון בלבד, נמחק באיפוס)",
+    label: "נתוני מטופל (בזיכרון בלבד, נמחקים באיפוס)",
     weight: "משקל (ק״ג)",
     height: "גובה (ס״מ)",
     sex: "מין",
