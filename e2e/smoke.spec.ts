@@ -43,10 +43,12 @@ test("works offline after first load", async ({ page, context }) => {
 test("patient data is not persisted across reload", async ({ page }) => {
   await page.goto("./");
   await acknowledge(page);
-  const weight = page.getByLabel(/משקל/).first();
+  await expect(page.getByLabel("משקל (ק״ג)")).toHaveCount(0);
+  await page.goto("./#/calc/dose");
+  const weight = page.getByLabel("משקל (ק״ג)");
   await weight.fill("72");
   await page.reload();
-  await expect(page.getByLabel(/משקל/).first()).toHaveValue("");
+  await expect(page.getByLabel("משקל (ק״ג)")).toHaveValue("");
   const stored = await page.evaluate(() => JSON.stringify(Object.entries(localStorage)));
   expect(stored).not.toContain("72");
 });

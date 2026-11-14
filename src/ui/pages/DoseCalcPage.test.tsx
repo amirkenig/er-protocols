@@ -4,7 +4,6 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it } from "vitest";
 import { PatientSessionProvider } from "../../state/PatientSession";
-import { PatientBar } from "../components/PatientBar";
 import { DoseCalcPage } from "./DoseCalcPage";
 
 afterEach(cleanup);
@@ -13,7 +12,6 @@ function setup(weight: string) {
   render(
     <MemoryRouter>
       <PatientSessionProvider>
-        <PatientBar />
         <DoseCalcPage />
       </PatientSessionProvider>
     </MemoryRouter>,

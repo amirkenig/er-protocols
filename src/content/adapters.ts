@@ -54,3 +54,9 @@ export function defaultConcentration(drug: DrugEntry): Concentration | undefined
     ? undefined
     : { amount: c.amount, unit: c.unit, perVolumeMl: c.perVolumeMl };
 }
+
+/** True when the drug's dose depends on patient data (per-kg dosing). */
+export function drugNeedsPatient(drug: DrugEntry): boolean {
+  const d = drug.dose;
+  return d.kind === "perKg" || (d.kind === "range" && d.perKg);
+}

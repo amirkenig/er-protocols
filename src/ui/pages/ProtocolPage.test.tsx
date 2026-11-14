@@ -28,6 +28,14 @@ const card = (id: string) => {
 };
 
 describe("ProtocolPage", () => {
+  it("shows patient fields only when the protocol has per-kg drugs", () => {
+    setup("tachycardia");
+    expect(screen.getByLabelText("משקל (ק״ג)")).toBeInTheDocument();
+    cleanup();
+    setup("cardiac-arrest");
+    expect(screen.queryByLabelText("משקל (ק״ג)")).toBeNull();
+  });
+
   it("renders header and unverified banner", () => {
     setup("cardiac-arrest");
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("דום לב במבוגר (ALS)");

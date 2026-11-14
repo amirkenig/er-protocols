@@ -4,17 +4,21 @@ import { parsePositiveNumber } from "../forms/parse";
 import { he } from "../i18n/he";
 import { NumberField } from "./NumberField";
 
-export function PatientBar() {
+export function PatientFields() {
   const { patient, setPatient, reset } = usePatient();
   // Raw text kept locally so partial input like "7." is not clobbered.
-  const [weightText, setWeightText] = useState("");
-  const [heightText, setHeightText] = useState("");
+  const [weightText, setWeightText] = useState(() =>
+    patient.weightKg === undefined ? "" : String(patient.weightKg),
+  );
+  const [heightText, setHeightText] = useState(() =>
+    patient.heightCm === undefined ? "" : String(patient.heightCm),
+  );
   const segCls = (active: boolean) =>
     `min-h-12 flex-1 px-3 text-lg font-bold ${
       active ? "bg-soft text-on-soft" : "bg-surface hover:bg-surface-2"
     }`;
   return (
-    <section aria-label={he.patient.label} className="border-b border-line bg-surface px-4 py-2">
+    <section aria-label={he.patient.label} className="rounded-2xl border border-line bg-surface p-3 shadow-card">
       <p className="mb-1 text-sm">{he.patient.label}</p>
       <div className="mx-auto flex max-w-3xl flex-wrap items-start gap-2">
         <NumberField

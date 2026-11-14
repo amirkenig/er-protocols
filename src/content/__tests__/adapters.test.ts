@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { computeBolus } from "../../engine/dose";
-import { defaultConcentration, rangeEndSpecs, toBolusSpec } from "../adapters";
+import { defaultConcentration, drugNeedsPatient, rangeEndSpecs, toBolusSpec } from "../adapters";
 import { PROTOCOLS } from "../protocols";
 import type { DrugEntry } from "../schema";
 
@@ -49,5 +49,33 @@ describe("adapters", () => {
   });
   it("no default concentration → undefined", () => {
     expect(defaultConcentration(drug("potassium-chloride-first"))).toBeUndefined();
+  });
+  it("drugNeedsPatient: only per-kg doses", () => {
+    const base = drug("adrenaline");
+    const withDose = (dose: unknown): DrugEntry => ({ ...base, dose }) as DrugEntry;
+    expect(drugNeedsPatient(withDose({ kind: "fixed", amount: 1, unit: "mg" }))).toBe(false);
+    expect(
+      drugNeedsPatient(
+        withDose({ kind: "perKg", amountPerKg: 1, unit: "mg", weightBasis: "actual" }),
+      ),
+    ).toBe(true);
+    expect(
+      drugNeedsPatient(
+        withDose({
+          kind: "range",
+          min: 1,
+          max: 2,
+          unit: "mg",
+          perKg: true,
+          weightBasis: "actual",
+          weightBasisRationale: "x",
+        }),
+      ),
+    ).toBe(true);
+    expect(
+      drugNeedsPatient(withDose({ kind: "range", min: 1, max: 2, unit: "mg", perKg: false })),
+    ).toBe(false);
+    expect(drugNeedsPatient(withDose({ kind: "text", text: "x" }))).toBe(false);
+    expect(drugNeedsPatient(withDose({ kind: "infusion", rateUnit: "mg/min" }))).toBe(false);
   });
 });

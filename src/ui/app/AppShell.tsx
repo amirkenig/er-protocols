@@ -1,7 +1,6 @@
 import { Link, Outlet } from "react-router";
 import { he } from "../i18n/he";
 import { Search, Settings } from "../icons";
-import { PatientBar } from "../components/PatientBar";
 import { TabBar } from "./TabBar";
 
 const iconBtn =
@@ -25,7 +24,6 @@ export function AppShell() {
           </nav>
         </div>
       </header>
-      <PatientBar />
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-4">
         <Outlet />
       </main>

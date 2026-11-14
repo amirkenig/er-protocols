@@ -16,6 +16,7 @@ import { weightBasisLabel, type WeightBasis } from "../../engine/weight";
 import { usePatient } from "../../state/PatientSession";
 import { CalcHeader } from "../components/CalcHeader";
 import { Segmented, SelectField } from "../components/fields";
+import { PatientFields } from "../components/PatientFields";
 import { NumberField } from "../components/NumberField";
 import { ResultView } from "../components/ResultView";
 import { parsePositiveNumber } from "../forms/parse";
@@ -95,6 +96,7 @@ export function InfusionCalcPage() {
   return (
     <div className="space-y-4">
       <CalcHeader id="infusion" />
+      <PatientFields />
       <Segmented
         label={he.calc.infusion.direction}
         value={direction}

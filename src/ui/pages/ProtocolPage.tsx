@@ -4,6 +4,8 @@ import { explainerForProtocol } from "../../content/explainers";
 import { PROTOCOLS } from "../../content/protocols";
 import { getSource } from "../../content/sources";
 import type { Protocol, Source } from "../../content/schema";
+import { drugNeedsPatient } from "../../content/adapters";
+import { PatientFields } from "../components/PatientFields";
 import { StatusBadge } from "../components/StatusBadge";
 import { he } from "../i18n/he";
 import { ChevronRight, Play } from "../icons";
@@ -73,6 +75,7 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
       </Section>
       {protocol.drugs.length > 0 && (
         <Section title={he.protocol.drugs}>
+          {protocol.drugs.some(drugNeedsPatient) && <PatientFields />}
           <ul className="space-y-3">
             {protocol.drugs.map((d) => (
               <DrugDoseCard key={d.id} drug={d} protocolId={protocol.id} />

@@ -8,6 +8,7 @@ import { CalcHeader } from "../components/CalcHeader";
 import { Segmented, SelectField } from "../components/fields";
 import { FormulaSteps } from "../components/FormulaSteps";
 import { HighAlertConfirm } from "../components/HighAlertConfirm";
+import { PatientFields } from "../components/PatientFields";
 import { NumberField } from "../components/NumberField";
 import { ResultView } from "../components/ResultView";
 import { parsePositiveNumber } from "../forms/parse";
@@ -74,6 +75,7 @@ export function DoseCalcPage() {
   return (
     <div className="space-y-4">
       <CalcHeader id="dose" />
+      <PatientFields />
       <Segmented
         label={he.calc.dose.mode}
         value={mode}
