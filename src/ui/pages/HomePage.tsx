@@ -3,17 +3,17 @@ import { VISIBLE_CATEGORIES } from "../../content/categories";
 import { CategoryIcon } from "../categoryIcons";
 import { he } from "../i18n/he";
 import { Calculator, ChevronLeft, Timer } from "../icons";
-import { btnOutline, card } from "../styles";
+import { btnOutline, btnOutlineDanger, card } from "../styles";
 
 export function HomePage() {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3">
-        <Link to="/code" className={`${btnOutline} border-danger text-danger`}>
+        <Link to="/code" className={`${btnOutlineDanger} whitespace-nowrap px-4`}>
           <Timer size={24} aria-hidden="true" />
           {he.home.code}
         </Link>
-        <Link to="/calc" className={btnOutline}>
+        <Link to="/calc" className={`${btnOutline} whitespace-nowrap px-4`}>
           <Calculator size={24} aria-hidden="true" />
           {he.home.calc}
         </Link>

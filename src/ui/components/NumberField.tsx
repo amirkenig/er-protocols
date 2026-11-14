@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { parsePositiveNumber } from "../forms/parse";
 import { he } from "../i18n/he";
-import { input } from "../styles";
+import { inputBase } from "../styles";
 
 interface Props {
   label: string;
@@ -24,7 +24,7 @@ export function NumberField({ label, value, onChange, unit, className }: Props) 
         <input
           type="text"
           inputMode="decimal"
-          className={`${input} ${invalid ? "border-danger" : ""}`}
+          className={`${inputBase} ${invalid ? "border-danger" : "border-line"}`}
           value={value}
           aria-invalid={invalid ? "true" : undefined}
           aria-describedby={invalid ? errId : undefined}

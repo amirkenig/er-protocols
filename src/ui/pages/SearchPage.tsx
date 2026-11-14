@@ -1,14 +1,16 @@
+import { useRef } from "react";
 import { Link, useSearchParams } from "react-router";
 import { CategoryIcon } from "../categoryIcons";
 import { search } from "../search";
 import { he } from "../i18n/he";
 import { ClipboardList, Search, Syringe, X } from "../icons";
-import { card, input } from "../styles";
+import { card } from "../styles";
 
 const squareCls = "flex size-11 shrink-0 items-center justify-center rounded-xl";
 
 export function SearchPage() {
   const [params, setParams] = useSearchParams();
+  const inputRef = useRef<HTMLInputElement>(null);
   const q = params.get("q") ?? "";
   const hits = search(q);
   return (
@@ -21,6 +23,7 @@ export function SearchPage() {
           aria-hidden="true"
         />
         <input
+          ref={inputRef}
           type="search"
           aria-label={he.home.searchLabel}
           placeholder={he.home.searchPlaceholder}
@@ -29,7 +32,7 @@ export function SearchPage() {
           onChange={(e) => {
             setParams({ q: e.target.value }, { replace: true });
           }}
-          className={`${input} min-h-14 rounded-2xl ps-11 pe-12 text-xl`}
+          className={"min-h-14 w-full rounded-2xl border-2 border-line bg-surface ps-11 pe-12 text-xl focus:border-accent [&::-webkit-search-cancel-button]:appearance-none"}
         />
         {q !== "" && (
           <button
@@ -38,6 +41,7 @@ export function SearchPage() {
             className="absolute end-1 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-full text-muted hover:bg-surface-2"
             onClick={() => {
               setParams({ q: "" }, { replace: true });
+              inputRef.current?.focus();
             }}
           >
             <X size={24} aria-hidden="true" />

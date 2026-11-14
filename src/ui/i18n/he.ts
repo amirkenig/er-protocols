@@ -52,7 +52,7 @@ export const he = {
     infusionRange: "טווח",
     openInfusionCalc: "פתח מחשבון עירוי",
     repeatEvery: (min: string, max: string | undefined) =>
-      max === undefined ? `חוזר כל ${min} דק׳` : `חוזר כל ${min}–${max} דק׳`,
+      max === undefined ? `כל ⁦${min}⁩ דק׳` : `כל ⁦${min}–${max}⁩ דק׳`,
     maxSingle: "מקסימום למנה",
     maxCumulative: "מקסימום מצטבר",
     concentration: "ריכוז",

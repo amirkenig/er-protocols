@@ -19,7 +19,7 @@ import { StatusBadge } from "../components/StatusBadge";
 import { parsePositiveNumber } from "../forms/parse";
 import { he } from "../i18n/he";
 import { Gauge, Play, Repeat, Syringe, TriangleAlert } from "../icons";
-import { btnOutline, card } from "../styles";
+import { btnOutline } from "../styles";
 
 const CUSTOM = "custom";
 const unitOptions = DOSE_UNITS.map((u) => ({ value: u, label: u }));
@@ -99,12 +99,12 @@ function DoseLine({ drug }: { drug: DrugEntry }) {
 
 function Fact({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {
   return (
-    <div className="flex items-start gap-2 rounded-xl bg-surface-2 p-2">
-      {icon}
-      <div>
-        <dt className="text-sm text-muted">{label}</dt>
-        <dd className="font-bold">{children}</dd>
-      </div>
+    <div className="rounded-xl bg-surface-2 p-2">
+      <dt className="flex items-center gap-2 text-sm text-muted">
+        {icon}
+        {label}
+      </dt>
+      <dd className="font-bold">{children}</dd>
     </div>
   );
 }
@@ -203,7 +203,7 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
   return (
     <li
       id={`drug-${drug.id}`}
-      className={`${card} scroll-mt-28 space-y-3 p-4 ${drug.highAlert ? "border-2 border-danger" : ""}`}
+      className={`rounded-2xl bg-surface shadow-card scroll-mt-28 space-y-3 p-4 ${drug.highAlert ? "border-2 border-danger" : "border border-line"}`}
     >
       {drug.highAlert && (
         <div className="space-y-1 rounded-xl border-2 border-danger bg-danger-bg p-3">

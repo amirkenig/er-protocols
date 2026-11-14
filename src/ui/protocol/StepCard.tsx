@@ -5,9 +5,10 @@ import { StatusBadge } from "../components/StatusBadge";
 import { GuidelineComparison } from "./GuidelineComparison";
 import { he } from "../i18n/he";
 import { scrollToId } from "./scroll";
-import { card, pill } from "../styles";
+import { card } from "../styles";
 
-const chipCls = `${pill} min-h-12 border border-accent/40 bg-surface-2 px-4 text-base text-accent`;
+const chipCls = 
+  "inline-flex min-h-12 items-center gap-1 rounded-full border border-accent/40 bg-surface-2 px-4 text-base font-bold text-accent";
 
 interface Props {
   step: Step;

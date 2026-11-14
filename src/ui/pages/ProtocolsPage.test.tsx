@@ -25,10 +25,9 @@ describe("ProtocolsPage", () => {
       "/p/cardiac-arrest",
     );
     const airway = VISIBLE_CATEGORIES.find((c) => c.id === "airway");
-    if (airway) {
-      const section = screen.getByRole("heading", { name: airway.titleHe }).closest("section");
-      expect(section).not.toBeNull();
-      expect(within(section as HTMLElement).getByText(he.category.empty)).toBeInTheDocument();
-    }
+    expect(airway).toBeDefined();
+    const section = screen.getByRole("heading", { name: airway?.titleHe ?? "" }).closest("section");
+    expect(section).not.toBeNull();
+    expect(within(section as HTMLElement).getByText(he.category.empty)).toBeInTheDocument();
   });
 });
