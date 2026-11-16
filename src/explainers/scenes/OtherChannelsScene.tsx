@@ -22,16 +22,7 @@ export function OtherChannelsScene({ t, duration }: SceneProps) {
   return (
     <g>
       <Appear p={ease(t, 0, 500)}>
-        <rect
-          x={60}
-          y={MY - 36}
-          width={1480}
-          height={72}
-          rx={36}
-          fill={COL.surface2}
-          stroke={COL.lineStrong}
-          strokeWidth={5}
-        />
+        <rect x={60} y={MY - 36} width={1480} height={72} rx={36} fill={COL.surface2} stroke={COL.lineStrong} strokeWidth={5} />
       </Appear>
       {CHANNELS.map((c, i) => {
         const appear = ease(t, d * (0.06 + i * 0.1), 500);
@@ -41,49 +32,16 @@ export function OtherChannelsScene({ t, duration }: SceneProps) {
             <Appear p={appear}>
               {c.kind === "channel" ? (
                 <>
-                  <rect
-                    x={c.x - 78}
-                    y={MY - 70}
-                    width={60}
-                    height={140}
-                    rx={24}
-                    fill={COL.primary}
-                  />
-                  <rect
-                    x={c.x + 18}
-                    y={MY - 70}
-                    width={60}
-                    height={140}
-                    rx={24}
-                    fill={COL.primary}
-                  />
+                  <rect x={c.x - 78} y={MY - 70} width={60} height={140} rx={24} fill={COL.primary} />
+                  <rect x={c.x + 18} y={MY - 70} width={60} height={140} rx={24} fill={COL.primary} />
                 </>
               ) : (
                 <>
-                  <rect
-                    x={c.x - 22}
-                    y={MY - 150}
-                    width={44}
-                    height={150}
-                    rx={22}
-                    fill={COL.accent}
-                  />
-                  <path
-                    d={`M${num(c.x - 80)} ${num(MY - 250)} L${num(c.x)} ${num(MY - 140)} L${num(c.x + 80)} ${num(MY - 250)}`}
-                    fill="none"
-                    stroke={COL.accent}
-                    strokeWidth={30}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <rect x={c.x - 22} y={MY - 150} width={44} height={150} rx={22} fill={COL.accent} />
+                  <path d={`M${num(c.x - 80)} ${num(MY - 250)} L${num(c.x)} ${num(MY - 140)} L${num(c.x + 80)} ${num(MY - 250)}`} fill="none" stroke={COL.accent} strokeWidth={30} strokeLinecap="round" strokeLinejoin="round" />
                 </>
               )}
-              <Txt
-                x={c.x}
-                y={c.kind === "channel" ? MY - 160 : MY - 320}
-                size={64}
-                fill={c.kind === "channel" ? COL.primary : COL.accent}
-              >
+              <Txt x={c.x} y={c.kind === "channel" ? MY - 160 : MY - 320} size={64} fill={c.kind === "channel" ? COL.primary : COL.accent}>
                 {c.label}
               </Txt>
             </Appear>

@@ -1,15 +1,4 @@
-import {
-  Appear,
-  Bolt,
-  COL,
-  Chip,
-  Txt,
-  chipWidth,
-  drawProps,
-  ease,
-  num,
-  type SceneProps,
-} from "../kit";
+import { Appear, Bolt, COL, Chip, Txt, chipWidth, drawProps, ease, num, type SceneProps } from "../kit";
 
 const LINE_Y = 270;
 const SHOCK_X = [120, 270, 420, 900, 1380] as const;
@@ -43,14 +32,7 @@ export function DrugTimelineScene({ t, duration }: SceneProps) {
       />
       {SHOCK_X.map((x, i) => (
         <Appear key={x} p={shockAt[i] ?? 0}>
-          <line
-            x1={x}
-            y1={LINE_Y - 100}
-            x2={x}
-            y2={LINE_Y}
-            stroke={COL.lineStrong}
-            strokeWidth={6}
-          />
+          <line x1={x} y1={LINE_Y - 100} x2={x} y2={LINE_Y} stroke={COL.lineStrong} strokeWidth={6} />
           <Bolt x={x} y={LINE_Y - 160} s={0.7} />
           <circle cx={x} cy={LINE_Y} r={40} fill={COL.surface} stroke={COL.fg} strokeWidth={5} />
           <Txt x={x} y={LINE_Y + 2} size={54}>
@@ -60,39 +42,13 @@ export function DrugTimelineScene({ t, duration }: SceneProps) {
       ))}
       {/* connector from marker 3 to the first-dose chips */}
       <Appear p={adr}>
-        <path
-          d={`M${num(SHOCK_X[2])} ${String(LINE_Y + 40)} Q${String(BRACKET_X)} ${String(LINE_Y + 80)} ${String(BRACKET_X)} 540 H${String(LEFT)}`}
-          fill="none"
-          stroke={COL.primary}
-          strokeWidth={5}
-          strokeLinecap="round"
-        />
+        <path d={`M${num(SHOCK_X[2])} ${String(LINE_Y + 40)} Q${String(BRACKET_X)} ${String(LINE_Y + 80)} ${String(BRACKET_X)} 540 H${String(LEFT)}`} fill="none" stroke={COL.primary} strokeWidth={5} strokeLinecap="round" />
       </Appear>
       <Appear p={amio}>
-        <path
-          d={`M${String(BRACKET_X)} 540 V670 H${String(LEFT)}`}
-          fill="none"
-          stroke={COL.accent}
-          strokeWidth={5}
-          strokeLinecap="round"
-        />
+        <path d={`M${String(BRACKET_X)} 540 V670 H${String(LEFT)}`} fill="none" stroke={COL.accent} strokeWidth={5} strokeLinecap="round" />
       </Appear>
-      <Chip
-        x={LEFT + adrW / 2}
-        y={540}
-        label="Adrenaline 1 mg"
-        p={adr}
-        color={COL.primary}
-        size={CHIP_SIZE}
-      />
-      <Chip
-        x={LEFT + amioW / 2}
-        y={670}
-        label="Amiodarone 300 mg"
-        p={amio}
-        color={COL.accent}
-        size={CHIP_SIZE}
-      />
+      <Chip x={LEFT + adrW / 2} y={540} label="Adrenaline 1 mg" p={adr} color={COL.primary} size={CHIP_SIZE} />
+      <Chip x={LEFT + amioW / 2} y={670} label="Amiodarone 300 mg" p={amio} color={COL.accent} size={CHIP_SIZE} />
       {TICK_X.map((x, i) => {
         const p = ease(t, d * (0.42 + i * 0.045), 450);
         return (
@@ -102,34 +58,15 @@ export function DrugTimelineScene({ t, duration }: SceneProps) {
         );
       })}
       <Appear p={ease(t, d * 0.45, 600)}>
-        <path
-          d={`M${num(TICK_X[0])} ${String(TICK_Y)} H${num(TICK_X[4])}`}
-          stroke={COL.primary}
-          strokeWidth={5}
-          strokeLinecap="round"
-          opacity={0.5}
-        />
+        <path d={`M${num(TICK_X[0])} ${String(TICK_Y)} H${num(TICK_X[4])}`} stroke={COL.primary} strokeWidth={5} strokeLinecap="round" opacity={0.5} />
         <Txt x={920} y={TICK_Y + 80} size={64} fill={COL.primary}>
           every 3–5 min
         </Txt>
       </Appear>
       <Appear p={amio150}>
-        <path
-          d={`M${num(SHOCK_X[4])} ${String(LINE_Y + 40)} V744`}
-          fill="none"
-          stroke={COL.accent}
-          strokeWidth={5}
-          strokeLinecap="round"
-        />
+        <path d={`M${num(SHOCK_X[4])} ${String(LINE_Y + 40)} V744`} fill="none" stroke={COL.accent} strokeWidth={5} strokeLinecap="round" />
       </Appear>
-      <Chip
-        x={AMIO150_X}
-        y={800}
-        label={AMIO150_LABEL}
-        p={amio150}
-        color={COL.accent}
-        size={CHIP_SIZE}
-      />
+      <Chip x={AMIO150_X} y={800} label={AMIO150_LABEL} p={amio150} color={COL.accent} size={CHIP_SIZE} />
     </g>
   );
 }

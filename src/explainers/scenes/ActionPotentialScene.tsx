@@ -1,15 +1,4 @@
-import {
-  AP_START,
-  Appear,
-  COL,
-  Txt,
-  apEnd,
-  apPath,
-  drawProps,
-  ease,
-  num,
-  type SceneProps,
-} from "../kit";
+import { AP_START, Appear, COL, Txt, apEnd, apPath, drawProps, ease, num, type SceneProps } from "../kit";
 
 const X0 = 200;
 const W = 1280;
@@ -31,14 +20,7 @@ export function ActionPotentialScene({ t, duration }: SceneProps) {
   return (
     <g>
       <Appear p={ease(t, 0, 500)}>
-        <path
-          d={`M${num(X0 - 30)} 150 V720 H${num(X0 + W + 30)}`}
-          fill="none"
-          stroke={COL.lineStrong}
-          strokeWidth={6}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+        <path d={`M${num(X0 - 30)} 150 V720 H${num(X0 + W + 30)}`} fill="none" stroke={COL.lineStrong} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />
         <Txt x={X0 - 30} y={100} size={54} anchor="start" fill={COL.muted}>
           Voltage
         </Txt>
@@ -52,13 +34,7 @@ export function ActionPotentialScene({ t, duration }: SceneProps) {
           Refractory period
         </Txt>
       </Appear>
-      <path
-        d={apPath(X0, W, REST, PEAK, 1)}
-        fill="none"
-        stroke={COL.line}
-        strokeWidth={6}
-        opacity={0.6}
-      />
+      <path d={apPath(X0, W, REST, PEAK, 1)} fill="none" stroke={COL.line} strokeWidth={6} opacity={0.6} />
       <path
         d={apPath(X0, W, REST, PEAK, 1)}
         fill="none"
@@ -70,14 +46,7 @@ export function ActionPotentialScene({ t, duration }: SceneProps) {
       />
       {PHASES.map((p, i) => (
         <Appear key={p.n} p={ease(t, d * (0.1 + i * 0.1), 450)}>
-          <circle
-            cx={X0 + W * p.u}
-            cy={p.y}
-            r={40}
-            fill={COL.surface}
-            stroke={COL.accent}
-            strokeWidth={5}
-          />
+          <circle cx={X0 + W * p.u} cy={p.y} r={40} fill={COL.surface} stroke={COL.accent} strokeWidth={5} />
           <Txt x={X0 + W * p.u} y={p.y + 2} size={54} fill={COL.accent}>
             {p.n}
           </Txt>

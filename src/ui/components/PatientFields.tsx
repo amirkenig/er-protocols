@@ -18,10 +18,7 @@ export function PatientFields() {
       active ? "bg-soft text-on-soft" : "bg-surface hover:bg-surface-2"
     }`;
   return (
-    <section
-      aria-label={he.patient.label}
-      className="rounded-2xl border border-line bg-surface p-3 shadow-card"
-    >
+    <section aria-label={he.patient.label} className="rounded-2xl border border-line bg-surface p-3 shadow-card">
       <p className="mb-1 text-sm">{he.patient.label}</p>
       <div className="mx-auto flex max-w-3xl flex-wrap items-start gap-2">
         <NumberField

@@ -1,17 +1,5 @@
 import { progress } from "../anim";
-import {
-  Appear,
-  Bolt,
-  COL,
-  Monitor,
-  Txt,
-  drawProps,
-  ease,
-  num,
-  tracePath,
-  vfY,
-  type SceneProps,
-} from "../kit";
+import { Appear, Bolt, COL, Monitor, Txt, drawProps, ease, num, tracePath, vfY, type SceneProps } from "../kit";
 
 export function ShockScene({ t, duration, reducedMotion }: SceneProps) {
   const d = duration;
@@ -44,29 +32,13 @@ export function ShockScene({ t, duration, reducedMotion }: SceneProps) {
       </Appear>
       <Bolt x={820} y={430} s={1.9} opacity={flash} />
       <Appear p={arrow}>
-        <path
-          d="M935 430 H995 M970 400 L1000 430 L970 460"
-          fill="none"
-          stroke={COL.lineStrong}
-          strokeWidth={9}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+        <path d="M935 430 H995 M970 400 L1000 430 L970 460" fill="none" stroke={COL.lineStrong} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" />
       </Appear>
       {/* CPR resumes for 2 minutes */}
       <Appear p={ease(t, d * 0.5, 600)}>
         <circle cx={cx} cy={cy} r={170} fill={COL.surface2} stroke={COL.line} strokeWidth={22} />
         <rect x={cx - 24} y={cy - 52} width={48} height={80} rx={24} fill={COL.primary} />
-        <rect
-          x={cx - 78}
-          y={cy + 14}
-          width={156}
-          height={56}
-          rx={28}
-          fill={COL.primary}
-          stroke={COL.surface2}
-          strokeWidth={5}
-        />
+        <rect x={cx - 78} y={cy + 14} width={156} height={56} rx={28} fill={COL.primary} stroke={COL.surface2} strokeWidth={5} />
         <Txt x={cx} y={cy - 112} size={64} fill={COL.fg}>
           CPR
         </Txt>

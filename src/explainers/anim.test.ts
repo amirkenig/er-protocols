@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { clamp, easeInOutCubic, easeOutBack, lerp, msToClock, progress, stagger } from "./anim";
+import {
+  clamp,
+  easeInOutCubic,
+  easeOutBack,
+  lerp,
+  msToClock,
+  progress,
+  stagger,
+} from "./anim";
 
 describe("anim", () => {
   it("clamp", () => {

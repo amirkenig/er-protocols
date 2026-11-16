@@ -51,30 +51,20 @@
           "id": "rhythm-check",
           "visual": "rhythm-check",
           "narration": "Pause compressions for less than five seconds to assess the rhythm. Is it shockable?",
-          "citations": [
-            {
-              "sourceId": "erc-2025-exec",
-              "locator": "Defibrillation strategy, p. 16; Fig. 11, p. 17"
-            }
-          ]
+          "citations": [{ "sourceId": "erc-2025-exec", "locator": "Defibrillation strategy, p. 16; Fig. 11, p. 17" }]
         },
         {
           "id": "shockable",
           "visual": "shock",
           "narration": "Ventricular fibrillation or pulseless V T: give one shock, then resume compressions immediately, for two minutes.",
-          "citations": [
-            { "sourceId": "erc-2025-exec", "locator": "Energy levels and number of shocks, p. 18" }
-          ]
+          "citations": [{ "sourceId": "erc-2025-exec", "locator": "Energy levels and number of shocks, p. 18" }]
         },
         {
           "id": "shockable-drugs",
           "visual": "drug-timeline",
           "narration": "After the third shock, give adrenaline one milligram and amiodarone three hundred milligrams. Repeat adrenaline every three to five minutes. After the fifth shock, give amiodarone one hundred and fifty milligrams.",
           "citations": [
-            {
-              "sourceId": "erc-2025-exec",
-              "locator": "Vasopressor drugs; Antiarrhythmic drugs, p. 19"
-            }
+            { "sourceId": "erc-2025-exec", "locator": "Vasopressor drugs; Antiarrhythmic drugs, p. 19" }
           ]
         },
         {
@@ -87,9 +77,7 @@
           "id": "reversible-causes",
           "visual": "hs-ts",
           "narration": "Throughout the arrest, look for reversible causes: the four H's and four T's. Hypoxia, hypovolaemia, potassium and metabolic disorders, and temperature. Thrombosis, tamponade, toxins, and tension pneumothorax.",
-          "citations": [
-            { "sourceId": "erc-2025-exec", "locator": "Fig. 11 (reversible causes), p. 17" }
-          ]
+          "citations": [{ "sourceId": "erc-2025-exec", "locator": "Fig. 11 (reversible causes), p. 17" }]
         },
         {
           "id": "rosc",
@@ -97,10 +85,7 @@
           "narration": "If circulation returns, move straight to post resuscitation care. Titrate oxygen to a saturation of ninety four to ninety eight percent, record a twelve lead E C G, and avoid low blood pressure.",
           "citations": [
             { "sourceId": "erc-2025-exec", "locator": "Fig. 11 'Immediately after ROSC', p. 17" },
-            {
-              "sourceId": "erc-2025-exec",
-              "locator": "Control of oxygenation, p. 33; Haemodynamic management, p. 34"
-            }
+            { "sourceId": "erc-2025-exec", "locator": "Control of oxygenation, p. 33; Haemodynamic management, p. 34" }
           ]
         },
         {

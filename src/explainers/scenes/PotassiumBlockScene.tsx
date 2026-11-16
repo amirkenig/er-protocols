@@ -1,18 +1,5 @@
 import { lerp } from "../anim";
-import {
-  AP_START,
-  Appear,
-  COL,
-  Txt,
-  apEnd,
-  apPath,
-  drawProps,
-  ease,
-  num,
-  pop,
-  rampIntegral,
-  type SceneProps,
-} from "../kit";
+import { AP_START, Appear, COL, Txt, apEnd, apPath, drawProps, ease, num, pop, rampIntegral, type SceneProps } from "../kit";
 
 const MX = 520; // channel centre
 const MY = 470; // membrane centre line
@@ -36,26 +23,8 @@ export function PotassiumBlockScene({ t, duration, reducedMotion }: SceneProps) 
     <g>
       <Appear p={ease(t, 0, 500)}>
         {/* membrane with a channel gap */}
-        <rect
-          x={50}
-          y={MY - 36}
-          width={MX - 50 - 52}
-          height={72}
-          rx={36}
-          fill={COL.surface2}
-          stroke={COL.lineStrong}
-          strokeWidth={5}
-        />
-        <rect
-          x={MX + 52}
-          y={MY - 36}
-          width={760 - MX - 52}
-          height={72}
-          rx={36}
-          fill={COL.surface2}
-          stroke={COL.lineStrong}
-          strokeWidth={5}
-        />
+        <rect x={50} y={MY - 36} width={MX - 50 - 52} height={72} rx={36} fill={COL.surface2} stroke={COL.lineStrong} strokeWidth={5} />
+        <rect x={MX + 52} y={MY - 36} width={760 - MX - 52} height={72} rx={36} fill={COL.surface2} stroke={COL.lineStrong} strokeWidth={5} />
         <rect x={MX - 90} y={MY - 62} width={64} height={124} rx={24} fill={COL.primary} />
         <rect x={MX + 26} y={MY - 62} width={64} height={124} rx={24} fill={COL.primary} />
       </Appear>
@@ -63,12 +32,7 @@ export function PotassiumBlockScene({ t, duration, reducedMotion }: SceneProps) 
         <Txt x={50} y={MY + 200} size={64} anchor="start" fill={COL.primary}>
           K⁺ channel
         </Txt>
-        <path
-          d={`M300 ${num(MY + 160)} L${num(MX - 80)} ${num(MY + 62)}`}
-          stroke={COL.lineStrong}
-          strokeWidth={5}
-          fill="none"
-        />
+        <path d={`M300 ${num(MY + 160)} L${num(MX - 80)} ${num(MY + 62)}`} stroke={COL.lineStrong} strokeWidth={5} fill="none" />
       </Appear>
       {Array.from({ length: 5 }, (_, i) => {
         const u = (i / 5 + flow) % 1;
@@ -85,43 +49,20 @@ export function PotassiumBlockScene({ t, duration, reducedMotion }: SceneProps) 
         );
       })}
       <g transform={`translate(0 ${num(lerp(-260, 0, land))})`} opacity={landed}>
-        <rect
-          x={MX - 215}
-          y={MY - 200}
-          width={430}
-          height={100}
-          rx={30}
-          fill={COL.dangerBg}
-          stroke={COL.danger}
-          strokeWidth={6}
-        />
+        <rect x={MX - 215} y={MY - 200} width={430} height={100} rx={30} fill={COL.dangerBg} stroke={COL.danger} strokeWidth={6} />
         <Txt x={MX} y={MY - 150} size={64} fill={COL.dangerFg}>
           Amiodarone
         </Txt>
       </g>
       {/* action potential: normal vs prolonged */}
       <Appear p={ease(t, d * 0.12, 500)}>
-        <path
-          d={`M${num(AX - 20)} 360 V800 H${num(AX + AW + 20)}`}
-          fill="none"
-          stroke={COL.lineStrong}
-          strokeWidth={6}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+        <path d={`M${num(AX - 20)} 360 V800 H${num(AX + AW + 20)}`} fill="none" stroke={COL.lineStrong} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />
         <rect x={sx} y={360} width={ex - sx} height={440} fill={COL.cautionBg} opacity={0.75} />
         <Txt x={sx} y={322} size={64} anchor="start" fill={COL.caution}>
           Refractory period
         </Txt>
       </Appear>
-      <path
-        d={apPath(AX, AW, REST, PEAK, 1)}
-        fill="none"
-        stroke={COL.lineStrong}
-        strokeWidth={6}
-        strokeDasharray="14 12"
-        opacity={0.8}
-      />
+      <path d={apPath(AX, AW, REST, PEAK, 1)} fill="none" stroke={COL.lineStrong} strokeWidth={6} strokeDasharray="14 12" opacity={0.8} />
       <path
         d={apPath(AX, AW, REST, PEAK, s)}
         fill="none"

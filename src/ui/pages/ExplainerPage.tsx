@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
-import {
-  displayText,
-  explainerCitations,
-  getExplainer,
-  type Explainer,
-} from "../../content/explainers";
+import { displayText, explainerCitations, getExplainer, type Explainer } from "../../content/explainers";
 import { PROTOCOLS } from "../../content/protocols";
 import { msToClock } from "../../explainers/anim";
 import {
@@ -132,7 +127,10 @@ function Player({ explainer }: { explainer: Explainer }) {
   return (
     <article className="space-y-4">
       <header className="space-y-2">
-        <Link to={`/p/${explainer.protocolId}`} className={backLink}>
+        <Link
+          to={`/p/${explainer.protocolId}`}
+          className={backLink}
+        >
           <ChevronRight size={20} aria-hidden="true" />
           {he.back}
         </Link>

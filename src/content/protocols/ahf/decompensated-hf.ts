@@ -477,10 +477,10 @@ export const decompensatedHf: ProtocolInput = {
       genericName: "acetazolamide",
       hebrewName: "אצטזולאמיד",
       synonyms: ["Diamox"],
-      indication: "תוספת למשתן לולאה בתגובה לא מספקת, בחולה שטופל בעבר במשתן לולאה",
+      indication:
+        "תוספת למשתן לולאה בתגובה לא מספקת, בחולה שטופל בעבר במשתן לולאה. ניתן IV פעם ביום.",
       routes: ["IV"],
       dose: { kind: "fixed", amount: 500, unit: "mg" },
-      repeatInterval: { minMinutes: 1440 },
       highAlert: false,
       citations: [
         esc(
@@ -493,7 +493,8 @@ export const decompensatedHf: ProtocolInput = {
         ),
       ],
       verificationStatus: "unverified",
-      unverifiedReason: "Once daily encoded as repeatInterval 24 h. Awaiting clinician review.",
+      unverifiedReason:
+        "Once daily (Fig. 15 footnote c) stated in the indication text. Awaiting clinician review.",
     },
     {
       id: "hydrochlorothiazide",

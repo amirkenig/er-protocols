@@ -32,9 +32,7 @@ export function SearchPage() {
           onChange={(e) => {
             setParams({ q: e.target.value }, { replace: true });
           }}
-          className={
-            "min-h-14 w-full rounded-2xl border-2 border-line bg-surface ps-11 pe-12 text-xl focus:border-accent [&::-webkit-search-cancel-button]:appearance-none"
-          }
+          className={"min-h-14 w-full rounded-2xl border-2 border-line bg-surface ps-11 pe-12 text-xl focus:border-accent [&::-webkit-search-cancel-button]:appearance-none"}
         />
         {q !== "" && (
           <button

@@ -71,13 +71,9 @@ const CAPTION_REPLACEMENTS = EXPLAINERS_FILE.captionReplacements;
 
 /** Narration is written for speech; this turns a spoken sentence into its on-screen form. */
 export function displayText(text: string): string {
-  return CAPTION_REPLACEMENTS.reduce(
-    (acc, [spoken, display]) => acc.replaceAll(spoken, display),
-    text,
-  );
+  return CAPTION_REPLACEMENTS.reduce((acc, [spoken, display]) => acc.replaceAll(spoken, display), text);
 }
-export const TIMINGS: Readonly<Record<string, ExplainerTimings>> =
-  TimingsFileSchema.parse(timingsJson);
+export const TIMINGS: Readonly<Record<string, ExplainerTimings>> = TimingsFileSchema.parse(timingsJson);
 
 /** Explainers that have timings. A def without timings is reported by the content test. */
 export const EXPLAINERS: readonly Explainer[] = EXPLAINER_DEFS.flatMap((def) => {

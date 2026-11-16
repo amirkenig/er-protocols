@@ -53,9 +53,7 @@ describe("ProtocolPage", () => {
       "href",
       "/x/mechanism-adrenaline",
     );
-    expect(
-      within(card("amiodarone-first")).getByRole("link", { name: "מנגנון פעולה" }),
-    ).toBeInTheDocument();
+    expect(within(card("amiodarone-first")).getByRole("link", { name: "מנגנון פעולה" })).toBeInTheDocument();
   });
 
   it("shows no explainer links on protocols without one", () => {

@@ -1,19 +1,4 @@
-import {
-  Appear,
-  COL,
-  Chip,
-  HEART,
-  Monitor,
-  Txt,
-  drawProps,
-  ease,
-  ecgY,
-  num,
-  smoothstep,
-  tracePath,
-  vfY,
-  type SceneProps,
-} from "../kit";
+import { Appear, COL, Chip, HEART, Monitor, Txt, drawProps, ease, ecgY, num, smoothstep, tracePath, vfY, type SceneProps } from "../kit";
 
 export function RoscScene({ t, duration, reducedMotion }: SceneProps) {
   const d = duration;
@@ -41,13 +26,7 @@ export function RoscScene({ t, duration, reducedMotion }: SceneProps) {
       </Appear>
       <Appear p={pulse}>
         <g transform={`translate(330 640) scale(${num(s)})`}>
-          <path
-            d={HEART}
-            fill={COL.danger}
-            stroke={COL.fg}
-            strokeWidth={5}
-            strokeLinejoin="round"
-          />
+          <path d={HEART} fill={COL.danger} stroke={COL.fg} strokeWidth={5} strokeLinejoin="round" />
         </g>
         <Txt x={330} y={830} size={54} fill={COL.muted}>
           Pulse
@@ -55,13 +34,7 @@ export function RoscScene({ t, duration, reducedMotion }: SceneProps) {
       </Appear>
       <Chip x={1010} y={500} label="SpO₂ 94–98%" p={ease(t, d * 0.45, 500)} color={COL.primary} />
       <Chip x={1010} y={640} label="12-lead ECG" p={ease(t, d * 0.62, 500)} color={COL.accent} />
-      <Chip
-        x={1010}
-        y={780}
-        label="Avoid hypotension"
-        p={ease(t, d * 0.8, 500)}
-        color={COL.primary}
-      />
+      <Chip x={1010} y={780} label="Avoid hypotension" p={ease(t, d * 0.8, 500)} color={COL.primary} />
     </g>
   );
 }
