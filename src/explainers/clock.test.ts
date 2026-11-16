@@ -24,7 +24,13 @@ const timings: ExplainerTimings = {
         { text: "Two.", startMs: 1200, endMs: 3000 },
       ],
     },
-    { id: "b", startMs: 3500, endMs: 6000, textSha256: sha, sentences: [{ text: "Three.", startMs: 3500, endMs: 6000 }] },
+    {
+      id: "b",
+      startMs: 3500,
+      endMs: 6000,
+      textSha256: sha,
+      sentences: [{ text: "Three.", startMs: 3500, endMs: 6000 }],
+    },
   ],
 };
 

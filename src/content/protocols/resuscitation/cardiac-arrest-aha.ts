@@ -177,7 +177,7 @@ export const AHA_STEP_COMPARISONS: Readonly<Record<string, Comparison[]>> = {
       body: AHA,
       relation: "differs",
       recommendation:
-        "ה-AHA אינו קובע מינון סידן או ביקרבונט לדום היפרקלמי, ומדרג את שניהם כ״יעילות לא מבוססת היטב״ (2b) — חלש מהניסוח הישיר של ה-ERC. בנוסף ה-AHA מציין אינסולין עם גלוקוז בדום (גם הוא 2b): בטבלה 3 — 10 יחידות regular insulin בעירוי IV במשך 15–30 דקות עם glucose 50% בבולוס 50 גרם (ה-ERC אינו כולל אינסולין בדום). אגוניסטים β2 בשאיפה בדום — לא מומלצים (3: ללא תועלת). ה-AHA שותק לגבי ECPR בהיפרקלמיה.",
+        "ה-AHA אינו קובע מינון סידן או ביקרבונט לדום היפרקלמי, ומדרג את שניהם כ״יעילות לא מבוססת היטב״ (2b) — חלש מהניסוח הישיר של ה-ERC. בנוסף ה-AHA מציין אינסולין עם גלוקוז בדום (גם הוא 2b): בטבלה 3 — 10 יחידות regular insulin בעירוי IV במשך 15–30 דקות עם glucose 50% בבולוס 50 גרם (ה-ERC אינו מזכיר אינסולין במפורש בהקשר הדום). אגוניסטים β2 בשאיפה בדום — לא מומלצים (3: ללא תועלת). ה-AHA שותק לגבי ECPR בהיפרקלמיה.",
       citations: [
         c(
           P10,
@@ -265,14 +265,24 @@ export const AHA_STEP_COMPARISONS: Readonly<Record<string, Comparison[]>> = {
   "pregnancy-arrest": [
     {
       body: AHA,
-      relation: "agrees",
+      relation: "differs",
       recommendation:
-        "עיקרי הצעד זהים: הזזה ידנית של הרחם שמאלה יחד עם העיסויים (1, C-LD), גישה ורידית/IO בגפיים העליונות (2a, C-EO), הסרת מוניטורים עובריים (3: ללא תועלת), ניתוח קיסרי החייאתי (״resuscitative delivery״) במקום הדום (1, C-LD). הבדלים: ה-AHA מגדיר את הסף כגובה קרקעית הרחם ברמת הטבור ומעלה (1, B-NR) ולא ״מעל 20 שבועות״; מציין התחלת הכנה כבר בזיהוי הדום ויעד לסיים לידה עד 5 דקות (1, B-NR). ה-AHA מוסיף: סידן בדום בזמן עירוי מגנזיום סולפט (2a, C-EO), ECPR סביר (2a, B-NR), ודגש על ניהול נתיב אוויר (1, C-LD) — אינם בצעד. ה-AHA מציג מנמונית ייעודית לגורמי דום בהריון (איור 5); ״4P״ של ה-ERC אינו מופיע בטקסט שנקרא.",
+        "עיקרי הצעד זהים: הזזה ידנית של הרחם שמאלה יחד עם העיסויים (1, C-LD), גישה ורידית/IO בגפיים העליונות (2a, C-EO), הסרת מוניטורים עובריים (3: ללא תועלת), ניתוח קיסרי החייאתי (״resuscitative delivery״) במקום הדום (1, C-LD). הבדלים: הטריגר של ה-AHA ללידה החייאתית הוא גובה קרקעית הרחם ברמת הטבור ומעלה ללא ROSC (המלצה 1, COR 1, B-NR, עמ׳ 46), ואילו ה-ERC קובע ״מעל 20 שבועות או קרקעית מעל הטבור״. ה-AHA מציין התחלת הכנה כבר בזיהוי הדום ויעד להשלים לידה תוך 5 דקות (המלצה 2, COR 1, B-NR). ה-AHA מתנה הזזה ידנית של הרחם שמאלה בגובה קרקעית ברמת הטבור ומעלה (המלצה 4, עמ׳ 46). ה-AHA מוסיף: סידן בדום בזמן עירוי מגנזיום סולפט (2a, C-EO), ECPR סביר (2a, B-NR), ודגש על ניהול נתיב אוויר (1, C-LD) — אינם בצעד. ה-AHA מציג מנמונית ייעודית לגורמי דום בהריון (איור 5); ״4P״ של ה-ERC אינו מופיע בטקסט שנקרא.",
       citations: [
         c(
           P10,
           "Pregnancy, Recommendations for Pregnant Patients in Cardiac Arrest, rec 1 (COR 1, LOE B-NR), PDF p. 46",
           "Resuscitative delivery is indicated for a pregnant patient in cardiac arrest when fundal height is at or above the umbilicus and ROSC is not achieved with standard resuscitation.",
+        ),
+        c(
+          P10,
+          "Pregnancy, Recommendations for Pregnant Patients in Cardiac Arrest, rec 2 (COR 1, LOE B-NR), PDF p. 46",
+          "Preparation for resuscitative delivery for a pregnant patient in cardiac arrest should begin at the recognition of cardiac arrest, with the goal to complete delivery by 5 minutes.",
+        ),
+        c(
+          P10,
+          "Pregnancy, Recommendations for Pregnant Patients in Cardiac Arrest, rec 4 (COR 1, LOE C-LD), PDF p. 46",
+          "Manual left lateral uterine displacement should be provided in conjunction with chest compressions for a pregnant patient in cardiac arrest when the fundal height is at or above the umbilicus.",
         ),
         c(
           P10,

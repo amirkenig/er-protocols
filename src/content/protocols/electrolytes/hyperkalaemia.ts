@@ -4,9 +4,10 @@
  * PDF p. 22 (read in reading order and checked against the page image).
  *
  * AHA 2025 Part 10 (Special Circumstances, Hyperkalemia, PDF pp. 30–32) was read and is
- * recorded as guidelineDifferences. Its recommendations apply only to cardiac arrest from
- * suspected hyperkalaemia and explicitly exclude other therapies such as loop diuretics
- * and potassium binders, so non-arrest steps (calcium gluconate, binders) carry no AHA entry.
+ * recorded as guidelineDifferences on hyperk-shift, hyperk-arrest, insulin, glucose and
+ * salbutamol. Its recommendations refer to cardiac arrest from suspected hyperkalaemia only
+ * and explicitly exclude other therapies such as loop diuretics and potassium binders, so
+ * non-arrest steps (calcium gluconate, binders) carry no AHA entry.
  *
  * The cardiac-arrest regimens (calcium chloride + bicarbonate; rapid KCl) are owned by
  * the "cardiac-arrest" protocol, which carries the drug entries; this protocol links to it.
@@ -17,7 +18,7 @@ const ERC = "erc-2025-exec";
 const AHA9 = "aha-2025-als";
 const AHA10 = "aha-2025-special";
 const PART10 =
-  "Transcribed from ERC 2025 Executive Summary, p. 22 (full text). AHA 2025 Part 9 defers hyperkalaemia to Part 10 (special circumstances), not yet provided — AHA comparison pending. Awaiting clinician review.";
+  "Transcribed from ERC 2025 Executive Summary, p. 22 (full text). AHA 2025 Part 10 (Hyperkalemia, PDF pp. 30–32) compared in guidelineDifferences; AHA hyperkalaemia recommendations cover cardiac arrest only. Awaiting clinician review.";
 
 const erc = (locator: string, quote?: string) =>
   quote === undefined ? { sourceId: ERC, locator } : { sourceId: ERC, locator, quote };
@@ -68,28 +69,6 @@ export const hyperkalaemia: ProtocolInput = {
           "Adult special circumstances — General recommendation, PDF p. 22",
           "Initiate resuscitation following the standard ALS algorithm in cardiac arrest. Always address … electrolyte disorders",
         ),
-      ],
-      guidelineDifferences: [
-        {
-          body: "AHA 2025",
-          relation: "differs",
-          recommendation:
-            "ה-AHA מדרג סידן IV וביקרבונט IV בדום מהיפרקלמיה חשודה כ״יעילות לא מבוססת היטב״ (2b) — חלש מהניסוח הישיר של ה-ERC, וללא מינון בסעיף זה. עוד ב-AHA: אינסולין עם גלוקוז בדום (2b, C-EO) ואי-המלצה על אגוניסטים β2 בשאיפה (3: ללא תועלת). ה-AHA שותק לגבי הפרדת קווים/שטיפה בין סידן לביקרבונט ולגבי ECPR בהיפרקלמיה.",
-          citations: [
-            aha(
-              "Hyperkalemia, Recommendations for Adults and Children in Cardiac Arrest From Suspected Hyperkalemia, rec 1 (COR 2b, LOE C-LD), PDF p. 30",
-              "The effectiveness of IV calcium administration for adults and children in cardiac arrest from suspected hyperkalemia is not well established.",
-            ),
-            aha(
-              "Hyperkalemia, same table, rec 2 (COR 2b, LOE C-EO), PDF p. 30",
-              "The effectiveness of IV sodium bicarbonate administration for adults and children in cardiac arrest from suspected hyperkalemia is not well established.",
-            ),
-            aha(
-              "Hyperkalemia, same table, rec 3 (COR 2b, LOE C-EO), PDF p. 30",
-              "The effectiveness of IV insulin and glucose for adults and children in cardiac arrest from suspected hyperkalemia is not well established.",
-            ),
-          ],
-        },
       ],
       verificationStatus: "unverified",
       unverifiedReason: PART10,
@@ -196,6 +175,28 @@ export const hyperkalaemia: ProtocolInput = {
           locator: "Adult Cardiac Arrest Algorithm, text after Fig. 2, PDF p. 27",
           quote:
             "Guidance for the treatment of cardiac arrest due to hyperkalemia, including the use of calcium and sodium bicarbonate for this indication, is presented in Electrolyte Abnormalities within Part 10.",
+        },
+      ],
+      guidelineDifferences: [
+        {
+          body: "AHA 2025",
+          relation: "differs",
+          recommendation:
+            "ה-AHA מדרג סידן IV וביקרבונט IV בדום מהיפרקלמיה חשודה כ״יעילות לא מבוססת היטב״ (2b) — חלש מהניסוח הישיר של ה-ERC, וללא מינון בסעיף זה. עוד ב-AHA: אינסולין עם גלוקוז בדום (2b, C-EO) ואי-המלצה על אגוניסטים β2 בשאיפה (3: ללא תועלת). ה-AHA שותק לגבי הפרדת קווים/שטיפה בין סידן לביקרבונט ולגבי ECPR בהיפרקלמיה.",
+          citations: [
+            aha(
+              "Hyperkalemia, Recommendations for Adults and Children in Cardiac Arrest From Suspected Hyperkalemia, rec 1 (COR 2b, LOE C-LD), PDF p. 30",
+              "The effectiveness of IV calcium administration for adults and children in cardiac arrest from suspected hyperkalemia is not well established.",
+            ),
+            aha(
+              "Hyperkalemia, same table, rec 2 (COR 2b, LOE C-EO), PDF p. 30",
+              "The effectiveness of IV sodium bicarbonate administration for adults and children in cardiac arrest from suspected hyperkalemia is not well established.",
+            ),
+            aha(
+              "Hyperkalemia, same table, rec 3 (COR 2b, LOE C-EO), PDF p. 30",
+              "The effectiveness of IV insulin and glucose for adults and children in cardiac arrest from suspected hyperkalemia is not well established.",
+            ),
+          ],
         },
       ],
       verificationStatus: "unverified",

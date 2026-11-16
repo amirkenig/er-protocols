@@ -98,15 +98,7 @@ export function drawProps(p: number): {
   return { pathLength: 1, strokeDasharray: 1, strokeDashoffset: 1 - p, opacity: p > 0 ? 1 : 0 };
 }
 
-export function Appear({
-  p,
-  dy = 24,
-  children,
-}: {
-  p: number;
-  dy?: number;
-  children: ReactNode;
-}) {
+export function Appear({ p, dy = 24, children }: { p: number; dy?: number; children: ReactNode }) {
   if (p <= 0) return null;
   return (
     <g opacity={p} transform={`translate(0 ${num((1 - p) * dy)})`}>
@@ -176,7 +168,16 @@ export function Chip({
   const text = tone === "caution" ? COL.caution : tone === "danger" ? COL.dangerFg : COL.fg;
   return (
     <Appear p={p}>
-      <rect x={x - w / 2} y={y - h / 2} width={w} height={h} rx={h / 2} fill={fill} stroke={color} strokeWidth={5} />
+      <rect
+        x={x - w / 2}
+        y={y - h / 2}
+        width={w}
+        height={h}
+        rx={h / 2}
+        fill={fill}
+        stroke={color}
+        strokeWidth={5}
+      />
       <Txt x={x} y={y} size={size} fill={text}>
         {label}
       </Txt>
@@ -218,8 +219,19 @@ export const HEART =
   "M0 70 C-100 -5 -112 -90 -52 -90 C-26 -90 -6 -74 0 -52 C6 -74 26 -90 52 -90 C112 -90 100 -5 0 70 Z";
 
 const BEAT: readonly Pt[] = [
-  [0, 0], [0.12, 0], [0.18, 0.12], [0.24, 0], [0.36, 0], [0.4, -0.12], [0.45, 1],
-  [0.5, -0.3], [0.55, 0], [0.7, 0], [0.78, 0.22], [0.86, 0], [1, 0],
+  [0, 0],
+  [0.12, 0],
+  [0.18, 0.12],
+  [0.24, 0],
+  [0.36, 0],
+  [0.4, -0.12],
+  [0.45, 1],
+  [0.5, -0.3],
+  [0.55, 0],
+  [0.7, 0],
+  [0.78, 0.22],
+  [0.86, 0],
+  [1, 0],
 ];
 
 /** Normal sinus beat shape (R peak = 1) at position u measured in beats. */
@@ -280,13 +292,49 @@ export function Monitor({
   const rows = Array.from({ length: Math.floor(h / 90) - 1 }, (_, i) => y + (i + 1) * 90);
   return (
     <g>
-      <rect x={x} y={y} width={w} height={h} rx={32} fill={COL.surface2} stroke={COL.lineStrong} strokeWidth={8} />
-      <rect x={x + 24} y={y + 24} width={w - 48} height={h - 48} rx={16} fill={COL.surface} stroke={COL.line} strokeWidth={3} />
+      <rect
+        x={x}
+        y={y}
+        width={w}
+        height={h}
+        rx={32}
+        fill={COL.surface2}
+        stroke={COL.lineStrong}
+        strokeWidth={8}
+      />
+      <rect
+        x={x + 24}
+        y={y + 24}
+        width={w - 48}
+        height={h - 48}
+        rx={16}
+        fill={COL.surface}
+        stroke={COL.line}
+        strokeWidth={3}
+      />
       {cols.map((cx) => (
-        <line key={`c${num(cx)}`} x1={cx} y1={y + 24} x2={cx} y2={y + h - 24} stroke={COL.line} strokeWidth={1.5} opacity={0.6} />
+        <line
+          key={`c${num(cx)}`}
+          x1={cx}
+          y1={y + 24}
+          x2={cx}
+          y2={y + h - 24}
+          stroke={COL.line}
+          strokeWidth={1.5}
+          opacity={0.6}
+        />
       ))}
       {rows.map((ry) => (
-        <line key={`r${num(ry)}`} x1={x + 24} y1={ry} x2={x + w - 24} y2={ry} stroke={COL.line} strokeWidth={1.5} opacity={0.6} />
+        <line
+          key={`r${num(ry)}`}
+          x1={x + 24}
+          y1={ry}
+          x2={x + w - 24}
+          y2={ry}
+          stroke={COL.line}
+          strokeWidth={1.5}
+          opacity={0.6}
+        />
       ))}
       {children}
     </g>

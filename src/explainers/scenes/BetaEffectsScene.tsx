@@ -14,7 +14,13 @@ export function BetaEffectsScene({ t, duration, reducedMotion }: SceneProps) {
       <Appear p={ease(t, 0, 600)}>
         <circle cx={430} cy={430} r={260} fill={COL.surface2} />
         <g transform={`translate(430 440) scale(${num(s)})`}>
-          <path d={HEART} fill={COL.danger} stroke={COL.fg} strokeWidth={4} strokeLinejoin="round" />
+          <path
+            d={HEART}
+            fill={COL.danger}
+            stroke={COL.fg}
+            strokeWidth={4}
+            strokeLinejoin="round"
+          />
         </g>
       </Appear>
       <Appear p={ease(t, d * 0.1, 500)}>
@@ -23,8 +29,21 @@ export function BetaEffectsScene({ t, duration, reducedMotion }: SceneProps) {
         </Txt>
       </Appear>
       <Chip x={1120} y={250} label="↑ Heart rate" p={ease(t, d * 0.22, 500)} color={COL.primary} />
-      <Chip x={1120} y={420} label="↑ Contractility" p={ease(t, d * 0.4, 500)} color={COL.primary} />
-      <Chip x={1120} y={590} label="↑ O₂ demand" p={ease(t, d * 0.65, 500)} color={COL.caution} tone="caution" />
+      <Chip
+        x={1120}
+        y={420}
+        label="↑ Contractility"
+        p={ease(t, d * 0.4, 500)}
+        color={COL.primary}
+      />
+      <Chip
+        x={1120}
+        y={590}
+        label="↑ O₂ demand"
+        p={ease(t, d * 0.65, 500)}
+        color={COL.caution}
+        tone="caution"
+      />
     </g>
   );
 }

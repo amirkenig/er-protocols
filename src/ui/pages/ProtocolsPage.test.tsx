@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import "@testing-library/jest-dom/vitest";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it } from "vitest";
 import { VISIBLE_CATEGORIES } from "../../content/categories";
@@ -24,10 +24,13 @@ describe("ProtocolsPage", () => {
       "href",
       "/p/cardiac-arrest",
     );
-    const airway = VISIBLE_CATEGORIES.find((c) => c.id === "airway");
-    expect(airway).toBeDefined();
-    const section = screen.getByRole("heading", { name: airway?.titleHe ?? "" }).closest("section");
-    expect(section).not.toBeNull();
-    expect(within(section as HTMLElement).getByText(he.category.empty)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /אינטובציה קשה/ })).toHaveAttribute(
+      "href",
+      "/p/difficult-intubation",
+    );
+    expect(screen.getByRole("link", { name: /בצקת ריאות חריפה/ })).toHaveAttribute(
+      "href",
+      "/p/decompensated-hf",
+    );
   });
 });

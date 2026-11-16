@@ -57,7 +57,10 @@ describe("ExplainerPage", () => {
     expect(chapters).toHaveLength(e.scenes.length);
     expect(chapters[0]).toHaveTextContent(displayText(firstSentence(e.id, 0).text));
     expect(screen.getByText("למה לא מאומת?")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /דום לב במבוגר/ })).toHaveAttribute("href", "/p/cardiac-arrest");
+    expect(screen.getByRole("link", { name: /דום לב במבוגר/ })).toHaveAttribute(
+      "href",
+      "/p/cardiac-arrest",
+    );
     expect(screen.queryByText(/תוכן לימודי כללי — אינו לקוח/)).toBeNull();
   });
 
@@ -139,7 +142,9 @@ describe("ExplainerPage", () => {
 
   it("shows the educational-content banner for drug explainers", () => {
     setup("mechanism-adrenaline");
-    expect(screen.getByText(/תוכן לימודי כללי — אינו לקוח מההנחיות שבאפליקציה/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/תוכן לימודי כללי — אינו לקוח מההנחיות שבאפליקציה/),
+    ).toBeInTheDocument();
     expect(screen.getByText("אין מקור בהנחיות — תוכן לימודי כללי")).toBeInTheDocument();
   });
 

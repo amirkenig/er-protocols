@@ -1,5 +1,17 @@
 import { progress } from "../anim";
-import { Appear, Bolt, COL, Txt, drawProps, ease, ecgY, num, pop, tracePath, type SceneProps } from "../kit";
+import {
+  Appear,
+  Bolt,
+  COL,
+  Txt,
+  drawProps,
+  ease,
+  ecgY,
+  num,
+  pop,
+  tracePath,
+  type SceneProps,
+} from "../kit";
 
 const CX = 480;
 const CY = 450;
@@ -75,7 +87,14 @@ export function ReentryScene({ t, duration, reducedMotion }: SceneProps) {
       </Appear>
       <Bolt x={1010} y={560} s={1.1} opacity={shock} />
       {progress(t, d * 0.7, 500) > 0 && (
-        <path d="M1090 560 H1180 M1155 530 L1185 560 L1155 590" fill="none" stroke={COL.lineStrong} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M1090 560 H1180 M1155 530 L1185 560 L1155 590"
+          fill="none"
+          stroke={COL.lineStrong}
+          strokeWidth={8}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       )}
       <Appear p={org}>
         <Txt x={1360} y={490} size={64} fill={COL.primary}>
@@ -84,7 +103,13 @@ export function ReentryScene({ t, duration, reducedMotion }: SceneProps) {
         <Txt x={1360} y={565} size={64} fill={COL.primary}>
           rhythm
         </Txt>
-        <path d={tracePath(1200, 320, 730, 70, (u) => ecgY(u * 2))} fill="none" stroke={COL.primary} strokeWidth={8} strokeLinejoin="round" />
+        <path
+          d={tracePath(1200, 320, 730, 70, (u) => ecgY(u * 2))}
+          fill="none"
+          stroke={COL.primary}
+          strokeWidth={8}
+          strokeLinejoin="round"
+        />
       </Appear>
     </g>
   );

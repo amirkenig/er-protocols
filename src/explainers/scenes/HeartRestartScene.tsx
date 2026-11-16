@@ -1,5 +1,17 @@
 import { lerp } from "../anim";
-import { Appear, COL, HEART, Monitor, Txt, drawProps, ease, ecgY, tracePath, vfY, type SceneProps } from "../kit";
+import {
+  Appear,
+  COL,
+  HEART,
+  Monitor,
+  Txt,
+  drawProps,
+  ease,
+  ecgY,
+  tracePath,
+  vfY,
+  type SceneProps,
+} from "../kit";
 
 export function HeartRestartScene({ t, duration, reducedMotion }: SceneProps) {
   const d = duration;
@@ -17,7 +29,13 @@ export function HeartRestartScene({ t, duration, reducedMotion }: SceneProps) {
       </defs>
       <Appear p={ease(t, 0, 600)}>
         <g transform="translate(430 400) scale(2.3)">
-          <path d={HEART} fill={COL.surface2} stroke={COL.fg} strokeWidth={4} strokeLinejoin="round" />
+          <path
+            d={HEART}
+            fill={COL.surface2}
+            stroke={COL.fg}
+            strokeWidth={4}
+            strokeLinejoin="round"
+          />
           <path d={HEART} fill={COL.danger} clipPath="url(#restart-heart-clip)" />
           <path d={HEART} fill="none" stroke={COL.fg} strokeWidth={4} strokeLinejoin="round" />
         </g>
@@ -41,7 +59,16 @@ export function HeartRestartScene({ t, duration, reducedMotion }: SceneProps) {
         </Txt>
       </Appear>
       <Appear p={ease(t, d * 0.62, 600)}>
-        <rect x={100} y={650} width={1400} height={220} rx={60} fill={COL.surface2} stroke={COL.primary} strokeWidth={5} />
+        <rect
+          x={100}
+          y={650}
+          width={1400}
+          height={220}
+          rx={60}
+          fill={COL.surface2}
+          stroke={COL.primary}
+          strokeWidth={5}
+        />
         <Txt x={800} y={725} size={64}>
           More myocardial blood flow
         </Txt>

@@ -23,7 +23,13 @@ export function TitleScene({ t, duration, title = "" }: SceneProps) {
           </Txt>
         </Appear>
       ))}
-      <path d={tracePath(120, 1360, 700, 130, (u) => ecgY(u * 6))} fill="none" stroke={COL.lineStrong} strokeWidth={6} opacity={0.35} />
+      <path
+        d={tracePath(120, 1360, 700, 130, (u) => ecgY(u * 6))}
+        fill="none"
+        stroke={COL.lineStrong}
+        strokeWidth={6}
+        opacity={0.35}
+      />
       <path
         d={tracePath(120, 1360, 700, 130, (u) => ecgY(u * 6))}
         fill="none"

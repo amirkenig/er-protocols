@@ -53,6 +53,8 @@ test("no page scrolls horizontally at phone width", async ({ page }) => {
     "#/p/post-rosc-care",
     "#/p/sepsis",
     "#/p/hyperkalaemia",
+    "#/p/difficult-intubation",
+    "#/p/decompensated-hf",
     "#/c/airway",
     "#/c/ahf",
     "#/c/electrolytes",

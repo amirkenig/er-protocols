@@ -86,7 +86,10 @@ describe("explainers content", () => {
         const protocol = PROTOCOLS.find((p) => p.id === def.protocolId);
         expect(protocol).toBeDefined();
         for (const drugId of def.drugIds) {
-          expect(protocol?.drugs.some((d) => d.id === drugId), drugId).toBe(true);
+          expect(
+            protocol?.drugs.some((d) => d.id === drugId),
+            drugId,
+          ).toBe(true);
         }
       });
     });
@@ -98,7 +101,9 @@ describe("explainers content", () => {
     expect(explainerForProtocol("cardiac-arrest")?.id).toBe("cardiac-arrest-als");
     expect(explainerForProtocol("sepsis")).toBeUndefined();
     expect(explainerForDrug("cardiac-arrest", "adrenaline")?.id).toBe("mechanism-adrenaline");
-    expect(explainerForDrug("cardiac-arrest", "amiodarone-second")?.id).toBe("mechanism-amiodarone");
+    expect(explainerForDrug("cardiac-arrest", "amiodarone-second")?.id).toBe(
+      "mechanism-amiodarone",
+    );
     expect(explainerForDrug("cardiac-arrest", "nope")).toBeUndefined();
     expect(explainerForDrug("sepsis", "adrenaline")).toBeUndefined();
   });
@@ -114,8 +119,12 @@ describe("explainers content", () => {
   });
 
   it("displayText applies replacements in order, case-sensitively", () => {
-    expect(displayText("Treat pulseless V T and P E A with C P R.")).toBe("Treat pulseless VT and PEA with CPR.");
-    expect(displayText("Give one milligram every three to five minutes.")).toBe("Give 1 mg every 3–5 minutes.");
+    expect(displayText("Treat pulseless V T and P E A with C P R.")).toBe(
+      "Treat pulseless VT and PEA with CPR.",
+    );
+    expect(displayText("Give one milligram every three to five minutes.")).toBe(
+      "Give 1 mg every 3–5 minutes.",
+    );
     expect(displayText("Give ONE MILLIGRAM")).toBe("Give ONE MILLIGRAM");
     expect(displayText("Thirty compressions to two breaths")).toBe("30 compressions to 2 breaths");
     expect(displayText("plain text")).toBe("plain text");

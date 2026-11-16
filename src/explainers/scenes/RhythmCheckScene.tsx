@@ -1,4 +1,16 @@
-import { Appear, COL, Chip, Monitor, Txt, drawProps, ease, tracePath, num, vfY, type SceneProps } from "../kit";
+import {
+  Appear,
+  COL,
+  Chip,
+  Monitor,
+  Txt,
+  drawProps,
+  ease,
+  tracePath,
+  num,
+  vfY,
+  type SceneProps,
+} from "../kit";
 
 export function RhythmCheckScene({ t, duration, reducedMotion }: SceneProps) {
   const d = duration;
@@ -27,7 +39,14 @@ export function RhythmCheckScene({ t, duration, reducedMotion }: SceneProps) {
           Rhythm?
         </Txt>
       </Appear>
-      <Chip x={650} y={160} label="< 5 s" p={ease(t, d * 0.2, 500)} color={COL.caution} tone="caution" />
+      <Chip
+        x={650}
+        y={160}
+        label="< 5 s"
+        p={ease(t, d * 0.2, 500)}
+        color={COL.caution}
+        tone="caution"
+      />
       <Appear p={ease(t, d * 0.2, 500)}>
         <rect x={420} y={134} width={14} height={50} rx={5} fill={COL.caution} />
         <rect x={446} y={134} width={14} height={50} rx={5} fill={COL.caution} />
@@ -45,11 +64,34 @@ export function RhythmCheckScene({ t, duration, reducedMotion }: SceneProps) {
         </Txt>
       </Appear>
       <Appear p={ease(t, d * 0.62, 500)}>
-        <path d={`M${num(dx - 125)} ${num(dy + 75)} L1050 584`} stroke={COL.danger} strokeWidth={7} strokeLinecap="round" />
-        <path d={`M${num(dx + 125)} ${num(dy + 75)} L1270 734`} stroke={COL.primary} strokeWidth={7} strokeLinecap="round" />
+        <path
+          d={`M${num(dx - 125)} ${num(dy + 75)} L1050 584`}
+          stroke={COL.danger}
+          strokeWidth={7}
+          strokeLinecap="round"
+        />
+        <path
+          d={`M${num(dx + 125)} ${num(dy + 75)} L1270 734`}
+          stroke={COL.primary}
+          strokeWidth={7}
+          strokeLinecap="round"
+        />
       </Appear>
-      <Chip x={1030} y={640} label="VF / pVT" p={ease(t, d * 0.7, 500)} color={COL.danger} tone="danger" />
-      <Chip x={1270} y={790} label="PEA / Asystole" p={ease(t, d * 0.84, 500)} color={COL.primary} />
+      <Chip
+        x={1030}
+        y={640}
+        label="VF / pVT"
+        p={ease(t, d * 0.7, 500)}
+        color={COL.danger}
+        tone="danger"
+      />
+      <Chip
+        x={1270}
+        y={790}
+        label="PEA / Asystole"
+        p={ease(t, d * 0.84, 500)}
+        color={COL.primary}
+      />
     </g>
   );
 }

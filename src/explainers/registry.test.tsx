@@ -23,7 +23,12 @@ describe("scene registry", () => {
             const html = renderToStaticMarkup(
               Scene === undefined ? null : (
                 <svg>
-                  <Scene t={duration * f} duration={duration} reducedMotion={reducedMotion} title={e.titleEn} />
+                  <Scene
+                    t={duration * f}
+                    duration={duration}
+                    reducedMotion={reducedMotion}
+                    title={e.titleEn}
+                  />
                 </svg>
               ),
             );

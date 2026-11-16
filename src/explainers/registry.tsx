@@ -44,7 +44,16 @@ export function PlaceholderScene({ narration }: { narration: string }) {
   const lines = wrap(narration, 46);
   return (
     <g>
-      <rect x={120} y={120} width={1360} height={660} rx={40} fill={COL.surface2} stroke={COL.line} strokeWidth={4} />
+      <rect
+        x={120}
+        y={120}
+        width={1360}
+        height={660}
+        rx={40}
+        fill={COL.surface2}
+        stroke={COL.line}
+        strokeWidth={4}
+      />
       {lines.map((l, i) => (
         <Txt key={l} x={800} y={450 + (i - (lines.length - 1) / 2) * 62} size={42} weight={500}>
           {l}

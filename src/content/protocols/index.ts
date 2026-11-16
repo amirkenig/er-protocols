@@ -14,6 +14,8 @@ import { postRoscCare } from "./resuscitation/post-rosc-care";
 import { hyperkalaemia } from "./electrolytes/hyperkalaemia";
 import { traumaticArrest } from "./shock/traumatic-arrest";
 import { sepsis } from "./sepsis/sepsis";
+import { difficultIntubation } from "./airway/difficult-intubation";
+import { decompensatedHf } from "./ahf/decompensated-hf";
 
 const RAW: readonly ProtocolInput[] = [
   cardiacArrest,
@@ -23,6 +25,8 @@ const RAW: readonly ProtocolInput[] = [
   hyperkalaemia,
   traumaticArrest,
   sepsis,
+  difficultIntubation,
+  decompensatedHf,
 ];
 
 export const PROTOCOLS: readonly Protocol[] = RAW.map((p) => ProtocolSchema.parse(p)).filter(

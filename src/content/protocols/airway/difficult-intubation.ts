@@ -480,7 +480,8 @@ export const difficultIntubation: ProtocolInput = {
       genericName: "rocuronium",
       hebrewName: "רוקורוניום",
       synonyms: ["Esmeron", "NMB"],
-      indication: "חסימה עצבית-שרירית לאינטובציה (RSI) ולהקלת הנשמה, SAD ו-eFONA",
+      indication:
+        'מינון לדוגמה במקור ("e.g.") ל-RSI — לוודא מינון מספק לפי נוהל מקומי. חסימה עצבית-שרירית לאינטובציה (RSI) ולהקלת הנשמה, SAD ו-eFONA',
       routes: ["IV"],
       dose: {
         kind: "perKg",
@@ -507,7 +508,8 @@ export const difficultIntubation: ProtocolInput = {
       genericName: "suxamethonium",
       hebrewName: "סוקסינילכולין (סוקסמטוניום)",
       synonyms: ["succinylcholine", "Scoline"],
-      indication: "חסימה עצבית-שרירית לאינטובציה (RSI)",
+      indication:
+        'מינון לדוגמה במקור ("e.g.") ל-RSI — לוודא מינון מספק לפי נוהל מקומי. חסימה עצבית-שרירית לאינטובציה (RSI)',
       routes: ["IV"],
       dose: {
         kind: "perKg",

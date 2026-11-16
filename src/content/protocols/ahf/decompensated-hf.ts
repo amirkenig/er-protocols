@@ -52,7 +52,7 @@ export const decompensatedHf: ProtocolInput = {
       "ארבע תבניות קליניות: אי-ספיקה שמאלית לא מאוזנת, אי-ספיקה ימנית לא מאוזנת, בצקת ריאות חריפה, הלם קרדיוגני — ייתכנו חפיפות",
       "בצקת ריאות חריפה: טכיפניאה של יותר מ-25 נשימות/דקה",
       "הלם קרדיוגני: תת-זילוח קריטי של איברי מטרה עקב ליקוי לבבי ראשוני; לקטט עורקי מעל 2 mmol/L; אין סף לחץ דם מוגדר",
-      "ערכי NP להוצאת האבחנה: NT-proBNP מתחת ל-300 pg/mL, או BNP מתחת ל-100 ng/mL, או MR-proANP מתחת ל-120 pg/mL",
+      "ערכי NP להוצאת האבחנה: NT-proBNP מתחת ל-300 pg/mL, או BNP מתחת ל-100 ng/mL (כך במקור; ככל הנראה pg/mL — לאמת), או MR-proANP מתחת ל-120 pg/mL",
     ],
   },
   immediateActions: [
@@ -451,10 +451,8 @@ export const decompensatedHf: ProtocolInput = {
       routes: ["IV"],
       dose: {
         kind: "text",
-        text: "חולה שלא קיבל משתנים: 40 מ״ג IV (או שווה-ערך). חולה על משתן לולאה פומי כרוני: מנה IV כפולה מהמינון הפומי היומי הרגיל. מינון התחלתי גבוה יותר ב-CKD (המקור אינו מפרט מספר).",
+        text: "חולה שלא קיבל משתנים: 40 מ״ג IV (או שווה-ערך). חולה על משתן לולאה פומי כרוני: מנה IV כפולה מהמינון הפומי היומי הרגיל. מינון התחלתי גבוה יותר ב-CKD (המקור אינו מפרט מספר). מינון IV יומי מרבי מקובל: 600 מ״ג; עד 1000 מ״ג בפגיעה כלייתית קשה. במגיבים: חזרה על המשטר כל 12 שעות.",
       },
-      repeatInterval: { minMinutes: 720 },
-      maxCumulativeDose: { value: 600, unit: "mg" },
       highAlert: false,
       citations: [
         esc(
@@ -465,10 +463,14 @@ export const decompensatedHf: ProtocolInput = {
           "Fig. 15 footnote d (max daily dose; repeat q12h), PDF p. 49",
           "The highest daily dose for i.v. loop diuretics is generally considered furosemide 600 mg, although up to 1000 mg may be considered in patients with severely impaired kidney function.",
         ),
+        esc(
+          "Fig. 15 Management of decongestion, PDF p. 49",
+          "Repeat the diuretic regime every 12 h until complete decongestion",
+        ),
       ],
       verificationStatus: "unverified",
       unverifiedReason:
-        "maxCumulativeDose is the 'generally considered' highest daily dose per Fig. 15 (up to 1000 mg in severe renal impairment, not encoded). repeatInterval reflects 'repeat regime every 12 h' (Fig. 15) in responders. Awaiting clinician review.",
+        "Max daily dose (600 mg; up to 1000 mg in severe renal impairment) and 'repeat regime every 12 h' in responders (Fig. 15) are given in the dose text only, not as structured fields. Awaiting clinician review.",
     },
     {
       id: "acetazolamide",
