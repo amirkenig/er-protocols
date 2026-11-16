@@ -1,4 +1,4 @@
-export const CONTENT_VERSION = "0.3.0";
+export const CONTENT_VERSION = "0.3.1";
 
 export const CLINICAL_CHANGELOG: readonly { version: string; date: string; changes: string[] }[] = [
   { version: "0.1.0", date: "2026-11-10", changes: ["מבנה ראשוני — ללא תוכן קליני"] },
@@ -19,6 +19,14 @@ export const CLINICAL_CHANGELOG: readonly { version: string; date: string; chang
       "נוספו השוואות AHA 2025 Part 10 לצעדי דום לב בנסיבות מיוחדות ולהיפרקלמיה",
       "עיצוב מחודש (teal) וניווט תחתון; שדות מטופל הועברו למחשבונים ולרשימות תרופות לפי ק״ג",
       "כל התוכן נשאר לא מאומת",
+    ],
+  },
+  {
+    version: "0.3.1",
+    date: "2026-11-16",
+    changes: [
+      "תרופות ללא מינון מדויק במקור: מוצג ״בהתאם להנחיה הרפואית״ (לפי החלטת הבעלים הקליני)",
+      "בצקת ריאות: סף BNP מוצג ב-pg/mL (במקור ng/mL — טעות דפוס)",
     ],
   },
 ];

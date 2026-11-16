@@ -20,7 +20,7 @@ const PENDING =
   "Transcribed from ERC 2025 Executive Summary (post resuscitation care, full text and Figs 20–21); compared with AHA 2025 Part 11 (full text and COR/LOE tables). Awaiting clinician review.";
 const NO_DOSE =
   "Drug is named in the source without a dose; dose, dilution and titration must come from the local protocol. Awaiting clinician review.";
-const DOSE_TEXT = "המינון אינו מפורט במקור — לפי נוהל מקומי";
+const DOSE_TEXT = "בהתאם להנחיה הרפואית";
 
 const erc = (locator: string, quote?: string): Citation =>
   quote === undefined ? { sourceId: ERC, locator } : { sourceId: ERC, locator, quote };

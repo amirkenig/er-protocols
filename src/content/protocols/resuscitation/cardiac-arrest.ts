@@ -735,7 +735,7 @@ const base: ProtocolInput = {
       routes: ["IV"],
       dose: {
         kind: "text",
-        text: "המינון אינו מפורט במסמך המקור (ERC Executive Summary) — לפי נוהל מקומי",
+        text: "בהתאם להנחיה הרפואית",
       },
       highAlert: true,
       highAlertReason: "סיכון דימום חמור",

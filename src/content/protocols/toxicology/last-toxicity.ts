@@ -195,7 +195,7 @@ export const lastToxicity: ProtocolInput = {
       routes: ["IV"],
       dose: {
         kind: "text",
-        text: "התרופה, המינון והמסלול אינם מפורטים במקור — לפי נוהל מקומי",
+        text: "בהתאם להנחיה הרפואית",
       },
       concentrations: [],
       highAlert: true,

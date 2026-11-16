@@ -13,7 +13,7 @@ import type { ProtocolInput } from "../../schema";
 const ERC = "erc-2025-exec";
 const PENDING =
   "Transcribed from ERC 2025 Executive Summary (full text + Fig. 15 image). AHA 2025 Part 10 (special circumstances) not provided, so no AHA comparison. Awaiting clinician review.";
-const NO_DOSE = "המינון אינו מפורט במקור — לפי נוהל מקומי";
+const NO_DOSE = "בהתאם להנחיה הרפואית";
 
 const erc = (locator: string, quote?: string) =>
   quote === undefined ? { sourceId: ERC, locator } : { sourceId: ERC, locator, quote };

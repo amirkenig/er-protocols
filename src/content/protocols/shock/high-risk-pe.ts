@@ -229,7 +229,7 @@ export const highRiskPe: ProtocolInput = {
       indication:
         "חלופה שאליה מתייחס המקור במטופל המתדרדר במהירות; טיפול הצלה במטופל עם תסחיף בסיכון גבוה המתדרדר במהירות; דום לב עם חשד לתסחיף או תסחיף ידוע כסיבה",
       routes: ["IV"],
-      dose: { kind: "text", text: "המינון אינו מפורט במקור — לפי נוהל מקומי" },
+      dose: { kind: "text", text: "בהתאם להנחיה הרפואית" },
       concentrations: [],
       highAlert: true,
       highAlertReason: "תרומבוליטי — סיכון לדימום מסכן חיים, כולל דימום תוך-גולגולתי",

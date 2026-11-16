@@ -21,7 +21,7 @@ const NO_DOSE =
   "Source names the drug for this indication without a dose — dose left as text; follow local protocol. Awaiting clinician review.";
 const WEIGHT_DEFAULT = "המקור אינו מציין בסיס משקל — משקל בפועל כברירת מחדל; לאמת";
 const AA_ALERT = "תרופה אנטי-אריתמית תוך-ורידית — סיכון ליתר לחץ דם, ברדיקרדיה או פרו-אריתמיה";
-const DOSE_NOT_STATED = "המינון אינו מפורט במקור — לפי נוהל מקומי";
+const DOSE_NOT_STATED = "בהתאם להנחיה הרפואית";
 
 const aha = (locator: string, quote?: string): Citation =>
   quote === undefined ? { sourceId: AHA_ID, locator } : { sourceId: AHA_ID, locator, quote };

@@ -11,7 +11,7 @@ import type { ProtocolInput } from "../../schema";
 
 const ESC = "esc-hf-2026";
 const PENDING = "Transcribed from ESC HF 2026 (full text). Awaiting clinician review.";
-const NO_DOSE = "המינון אינו מפורט במקור — לפי נוהל מקומי";
+const NO_DOSE = "בהתאם להנחיה הרפואית";
 const NO_DOSE_REASON =
   "ESC HF 2026 names this drug without a dose (details only in online supplementary tables, not provided). Awaiting clinician review.";
 
@@ -52,7 +52,7 @@ export const decompensatedHf: ProtocolInput = {
       "ארבע תבניות קליניות: אי-ספיקה שמאלית לא מאוזנת, אי-ספיקה ימנית לא מאוזנת, בצקת ריאות חריפה, הלם קרדיוגני — ייתכנו חפיפות",
       "בצקת ריאות חריפה: טכיפניאה של יותר מ-25 נשימות/דקה",
       "הלם קרדיוגני: תת-זילוח קריטי של איברי מטרה עקב ליקוי לבבי ראשוני; לקטט עורקי מעל 2 mmol/L; אין סף לחץ דם מוגדר",
-      "ערכי NP להוצאת האבחנה: NT-proBNP מתחת ל-300 pg/mL, או BNP מתחת ל-100 ng/mL (כך במקור; ככל הנראה pg/mL — לאמת), או MR-proANP מתחת ל-120 pg/mL",
+      "ערכי NP להוצאת האבחנה: NT-proBNP מתחת ל-300 pg/mL, או BNP מתחת ל-100 pg/mL (במקור נכתב ng/mL — טעות דפוס; היחידה pg/mL אושרה על ידי הבעלים הקליני), או MR-proANP מתחת ל-120 pg/mL",
     ],
   },
   immediateActions: [

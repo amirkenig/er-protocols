@@ -13,7 +13,7 @@ import type { ProtocolInput } from "../../schema";
 
 const DAS = "das-2025";
 const PENDING = "Transcribed from DAS 2025 (full text and Figs 1–7). Awaiting clinician review.";
-const NO_DOSE = "המינון אינו מפורט במקור — לפי נוהל מקומי";
+const NO_DOSE = "בהתאם להנחיה הרפואית";
 
 const das = (locator: string, quote?: string) =>
   quote === undefined ? { sourceId: DAS, locator } : { sourceId: DAS, locator, quote };
