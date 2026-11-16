@@ -753,7 +753,7 @@ const base: ProtocolInput = {
     "היפותרמיה מתחת ל-30°C: ה-ERC סותר את עצמו — הטקסט (עמ׳ 24) מתיר אדרנלין 1 מ״ג פעם אחת, והתרשים (עמ׳ 26) קובע ללא אפינפרין",
   ],
   contraindications: [],
-  sources: [ERC, "aha-2025-als"],
+  sources: [ERC, "aha-2025-als", "aha-2025-special"],
   lastReviewed: null,
   reviewedBy: null,
   verificationStatus: "unverified",
