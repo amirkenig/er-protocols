@@ -20,6 +20,7 @@ export const he = {
   protocol: {
     notFound: "הפרוטוקול לא נמצא",
     adultsOnly: "מבוגרים בלבד",
+    departmental: "נוהל מחלקתי",
     openCodeTimer: "פתח טיימר החייאה",
     unverifiedBanner: "תוכן זה טרם נסקר ואושר על ידי קלינאי — יש לאמת מול נוהל מקומי והוראת רופא",
     details: "פרטים",
@@ -56,6 +57,7 @@ export const he = {
     maxSingle: "מקסימום למנה",
     maxCumulative: "מקסימום מצטבר",
     concentration: "ריכוז",
+    preparation: "הכנה",
     localConcNote:
       "הריכוזים ברשימה הם ברירת מחדל מקומית ולא ערך מההנחיה — יש לאמת מול המלאי במחלקה",
     otherConcentration: "ריכוז אחר",

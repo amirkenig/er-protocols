@@ -25,19 +25,23 @@ const contentNumber = positive.refine(
 export const VerificationStatusSchema = z.enum(["draft", "unverified", "verified"]);
 export type VerificationStatus = z.infer<typeof VerificationStatusSchema>;
 
-export const SourceSchema = z.object({
-  id,
-  title: z.string().min(1),
-  issuingBody: z.string().min(1),
-  year: z.number().int().min(1950).max(2100),
-  url: z.url(),
-  doi: z.string().optional(),
-  accessed: z.iso.date(),
-  /** e.g. "Current edition as of 2026-11; replaces 2021 edition". */
-  editionNote: z.string().optional(),
-  /** How much of the source was read: full text, abstract only, or search-identified only. */
-  readLevel: z.enum(["fullText", "abstract", "identifiedOnly"]),
-});
+export const SourceSchema = z
+  .object({
+    id,
+    /** "guideline" = published guideline (needs a URL); "local" = departmental protocol document. */
+    kind: z.enum(["guideline", "local"]).default("guideline"),
+    title: z.string().min(1),
+    issuingBody: z.string().min(1),
+    year: z.number().int().min(1950).max(2100),
+    url: z.url().optional(),
+    doi: z.string().optional(),
+    accessed: z.iso.date(),
+    /** e.g. "Current edition as of 2026-11; replaces 2021 edition". */
+    editionNote: z.string().optional(),
+    /** How much of the source was read: full text, abstract only, or search-identified only. */
+    readLevel: z.enum(["fullText", "abstract", "identifiedOnly"]),
+  })
+  .refine((s) => s.kind === "local" || s.url !== undefined, "guideline sources need a url");
 export type Source = z.infer<typeof SourceSchema>;
 
 export const CitationSchema = z.object({

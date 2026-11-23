@@ -528,6 +528,12 @@ export const postRoscCare: ProtocolInput = {
       rationale:
         "פרכוסים לאחר דום לב שכיחים, חלקם ללא ביטוי קליני, ומעלים את הצריכה המטבולית של המוח הפגוע. הרגעה קצרת-טווח מצמצמת את ההשפעה המבלבלת על הבדיקה הנוירולוגית.",
       drugRefs: ["levetiracetam", "sodium-valproate"],
+      decisionPoints: [
+        {
+          condition: "שיכוך כאב וסדציה במונשם (נוהל מחלקתי)",
+          target: { kind: "protocol", id: "ventilated-sedation" },
+        },
+      ],
       citations: [
         erc(
           "Control of seizures, p. 36",

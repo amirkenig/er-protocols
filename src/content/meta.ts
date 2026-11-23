@@ -1,4 +1,4 @@
-export const CONTENT_VERSION = "0.3.1";
+export const CONTENT_VERSION = "0.3.2";
 
 export const CLINICAL_CHANGELOG: readonly { version: string; date: string; changes: string[] }[] = [
   { version: "0.1.0", date: "2026-11-10", changes: ["מבנה ראשוני — ללא תוכן קליני"] },
@@ -27,6 +27,14 @@ export const CLINICAL_CHANGELOG: readonly { version: string; date: string; chang
     changes: [
       "תרופות ללא מינון מדויק במקור: מוצג ״בהתאם להנחיה הרפואית״ (לפי החלטת הבעלים הקליני)",
       "בצקת ריאות: סף BNP מוצג ב-pg/mL (במקור ng/mL — טעות דפוס)",
+    ],
+  },
+  {
+    version: "0.3.2",
+    date: "2026-11-23",
+    changes: [
+      "נוהל מחלקתי חדש: שיכוך כאב וסדציה במטופל מונשם (פנטניל, פרופופול, קטמין) — מקושר מאינטובציה קשה ומטיפול לאחר ROSC",
+      "כרטיסי תרופות מציגים הוראות הכנה כשהן קיימות",
     ],
   },
 ];

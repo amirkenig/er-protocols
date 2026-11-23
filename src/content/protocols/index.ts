@@ -16,6 +16,7 @@ import { traumaticArrest } from "./shock/traumatic-arrest";
 import { sepsis } from "./sepsis/sepsis";
 import { difficultIntubation } from "./airway/difficult-intubation";
 import { decompensatedHf } from "./ahf/decompensated-hf";
+import { ventilatedSedation } from "./airway/ventilated-sedation";
 
 const RAW: readonly ProtocolInput[] = [
   cardiacArrest,
@@ -27,6 +28,7 @@ const RAW: readonly ProtocolInput[] = [
   sepsis,
   difficultIntubation,
   decompensatedHf,
+  ventilatedSedation,
 ];
 
 export const PROTOCOLS: readonly Protocol[] = RAW.map((p) => ProtocolSchema.parse(p)).filter(

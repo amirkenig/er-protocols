@@ -17,15 +17,22 @@ const calcItems = CALCULATOR_META.filter((c) => c.verificationStatus !== "verifi
 
 let u = `# Unverified clinical items\n\nGenerated ${today}. Nothing in this app is marked \`verified\` until a named clinician signs it off.\n\n`;
 u += `## Protocol content (${String(items.length)})\n\n`;
-u += items.length === 0 ? "_No protocol content yet._\n" : "| Protocol | Kind | Item | Status | Reason |\n|---|---|---|---|---|\n";
-for (const i of items) u += `| ${i.protocolId} | ${i.kind} | ${esc(i.label)} | ${i.status} | ${esc(i.reason)} |\n`;
+u +=
+  items.length === 0
+    ? "_No protocol content yet._\n"
+    : "| Protocol | Kind | Item | Status | Reason |\n|---|---|---|---|---|\n";
+for (const i of items)
+  u += `| ${i.protocolId} | ${i.kind} | ${esc(i.label)} | ${i.status} | ${esc(i.reason)} |\n`;
 u += `\n## Clinical calculators (${String(calcItems.length)})\n\n| Calculator | Status | Reason |\n|---|---|---|\n`;
-for (const c of calcItems) u += `| ${esc(c.titleEn)} | ${c.verificationStatus} | ${esc(c.unverifiedReason ?? "")} |\n`;
+for (const c of calcItems)
+  u += `| ${esc(c.titleEn)} | ${c.verificationStatus} | ${esc(c.unverifiedReason ?? "")} |\n`;
 writeFileSync("docs/unverified.md", u);
 
 let s = `# Sources\n\nGenerated ${today}. readLevel: fullText = relevant section read in primary text; abstract = primary abstract only; identifiedOnly = edition identified, text not yet read.\n\n| Id | Title | Body / journal | Year | Read level | URL | Accessed |\n|---|---|---|---|---|---|---|\n`;
 for (const x of SOURCES) {
-  s += `| ${x.id} | ${esc(x.title)} | ${esc(x.issuingBody)} | ${String(x.year)} | ${x.readLevel} | ${x.url} | ${x.accessed} |\n`;
+  s += `| ${x.id} | ${esc(x.title)} | ${esc(x.issuingBody)} | ${String(x.year)} | ${x.readLevel} | ${x.url ?? "(local document)"} | ${x.accessed} |\n`;
 }
 writeFileSync("docs/sources.md", s);
-console.log(`docs/unverified.md: ${String(items.length + calcItems.length)} items; docs/sources.md: ${String(SOURCES.length)} sources`);
+console.log(
+  `docs/unverified.md: ${String(items.length + calcItems.length)} items; docs/sources.md: ${String(SOURCES.length)} sources`,
+);

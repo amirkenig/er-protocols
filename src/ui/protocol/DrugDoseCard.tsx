@@ -262,6 +262,12 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
           )}
         </dl>
       )}
+      {drug.dilution !== undefined && (
+        <p className="rounded-xl bg-surface-2 p-3">
+          <span className="font-bold">{he.protocol.preparation}: </span>
+          {drug.dilution}
+        </p>
+      )}
       {hasConc ? (
         <div className="space-y-2">
           <SelectField

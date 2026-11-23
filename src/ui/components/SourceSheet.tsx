@@ -52,15 +52,17 @@ export function SourceSheet({ citations }: { citations: readonly Citation[] }) {
                   )}
                   {src && (
                     <>
-                      <a
-                        href={src.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex min-h-12 items-center break-all text-accent underline"
-                        dir="ltr"
-                      >
-                        {src.url}
-                      </a>
+                      {src.url !== undefined && (
+                        <a
+                          href={src.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-12 items-center break-all text-accent underline"
+                          dir="ltr"
+                        >
+                          {src.url}
+                        </a>
+                      )}
                       <p className="text-sm">
                         {he.calc.accessed}: {src.accessed}
                       </p>

@@ -1,8 +1,8 @@
 # Unverified clinical items
 
-Generated 2026-11-16. Nothing in this app is marked `verified` until a named clinician signs it off.
+Generated 2026-11-24. Nothing in this app is marked `verified` until a named clinician signs it off.
 
-## Protocol content (183)
+## Protocol content (198)
 
 | Protocol | Kind | Item | Status | Reason |
 |---|---|---|---|---|
@@ -189,6 +189,21 @@ Generated 2026-11-16. Nothing in this app is marked `verified` until a named cli
 | decompensated-hf | drug | dobutamine | unverified | ESC HF 2026 names this drug without a dose (details only in online supplementary tables, not provided). Awaiting clinician review. |
 | decompensated-hf | drug | milrinone | unverified | ESC HF 2026 names this drug without a dose (details only in online supplementary tables, not provided). Awaiting clinician review. |
 | decompensated-hf | drug | levosimendan | unverified | ESC HF 2026 names this drug without a dose (details only in online supplementary tables, not provided). Awaiting clinician review. |
+| ventilated-sedation | protocol | Analgesia and sedation for the ventilated ED patient (departmental protocol) | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | step | עם סיום האינטובציה (המטופל תחת שיתוק שרירים) — המטרה לשעה הראשונה: שיכוך כאב וסדציה עמוקה. 1) ודא 2 ליינים תקינים. 2) תן פוש 100 מק״ג פנטניל. 3) התחל דריפ פנטניל בקצב 50 מק״ג לשעה. 4) התחל דריפ פרופופול או קטמין בקצב 100 מ״ג לשעה. | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | step | כעבור כחצי שעה — ודא שהמטופל אינו כאוב ונמצא בסדציה עמוקה. סימנים לכאב או לערות בחולה משותק: דופק ולחץ דם גבוהים, הזעה, דמעות, אישונים מורחבים. | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | step | לאחר שעה: המשך סדציה עמוקה ועבור להערכה (סעיף ד׳) אם יש ICP מוגבר (בתיאום עם נוירוכירורגיה), סטטוס אפילפטיקוס או תסמיני גמילה קשים. בשאר המקרים המטרה היא שיכוך כאב וסדציה קלה — CPOT בין 0 ל-2 ו-RASS בין 0 למינוס 2: הורד את מינון הסדציה (פרופופול או קטמין) ב-25%. ⚠ בכל הורדת מינון — קשור את המטופל עד הגעה למצב יציב. | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | step | בצע הערכה 30 דקות אחרי כל שינוי, וכל 1–2 שעות כשהמצב יציב. | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | step | מטופל כאוב: תן בולוס 50–100 מק״ג פנטניל, והעלה את מינון דריפ הפנטניל ב-25–50 מק״ג לשעה. | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | step | סדציה עמוקה מדי: הורד את מינון הפרופופול או הקטמין ב-25%. ⚠ קשור את המטופל עד הגעה למצב יציב. אם המטופל ללא תרופה סדטיבית — הורד את מינון הפנטניל. | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | step | סדציה קלה מדי, או לפני טרנספורט: ⚠ אם לחץ הדם הסיסטולי מתחת ל-100 — התייעץ עם רופא. תן בולוס 50 מ״ג פרופופול או קטמין, והכפל את מינון הדריפ. | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. Doubling the drip can exceed the approved range (up to 200 mg/h) — beyond it a physician order is needed. |
+| ventilated-sedation | drug | Fentanyl — initial push | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | drug | Fentanyl — bolus | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. The bolus column also allows a push from a separate ampoule; ampoule volume is not stated, so the calculated volume is from the drip syringe (10 mcg/mL). |
+| ventilated-sedation | drug | Fentanyl — infusion | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | drug | Propofol — infusion | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | drug | Propofol — bolus | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. |
+| ventilated-sedation | drug | Ketamine — infusion | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. The table's mL values imply 5 mg/mL (500 mg in 100 mL total); adding a 10 mL ampoule to a 100 mL bag gives 500 mg in 110 mL (about 4.5 mg/mL). Clinician to confirm the preparation. |
+| ventilated-sedation | drug | Ketamine — bolus | unverified | Transcribed from a photo of the departmental protocol (version 1, 1/2021). Verify the transcription against the posted original and check whether a newer version exists. Volume uses 5 mg/mL as in the table (50 mg = 10 mL); see the preparation question on the ketamine drip. |
 
 ## Clinical calculators (3)
 

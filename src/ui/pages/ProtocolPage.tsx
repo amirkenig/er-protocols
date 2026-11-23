@@ -124,15 +124,17 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
                 <p>
                   {s.issuingBody} · {s.year} · {he.calc.readLevel[s.readLevel]}
                 </p>
-                <a
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-12 items-center break-all text-accent underline"
-                  dir="ltr"
-                >
-                  {s.url}
-                </a>
+                {s.url !== undefined && (
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-12 items-center break-all text-accent underline"
+                    dir="ltr"
+                  >
+                    {s.url}
+                  </a>
+                )}
               </li>
             );
           })}
@@ -185,6 +187,9 @@ export function ProtocolPage() {
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge status={local ? "localOverride" : protocol.verificationStatus} />
           <span className={`${pill} bg-surface-2 text-fg`}>{he.protocol.adultsOnly}</span>
+          {protocol.sources.every((id) => getSource(id)?.kind === "local") && (
+            <span className={`${pill} bg-local-bg text-local`}>{he.protocol.departmental}</span>
+          )}
         </div>
         {tools.map((t) => (
           <Link key={t.to} to={t.to} className={`${btnPrimary} w-full`}>

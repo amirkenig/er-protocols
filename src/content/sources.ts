@@ -6,9 +6,10 @@
  *   identifiedOnly — edition/year identified by search; text not yet read
  * Items citing only `identifiedOnly` sources must remain `unverified`.
  */
+import type { z } from "zod";
 import { SourceSchema, type Source } from "./schema";
 
-const RAW: readonly Source[] = [
+const RAW: readonly z.input<typeof SourceSchema>[] = [
   {
     id: "sofa2-2025",
     title: "Development and Validation of the Sequential Organ Failure Assessment (SOFA)-2 Score",
@@ -123,6 +124,17 @@ const RAW: readonly Source[] = [
     accessed: "2026-11-16",
     editionNote:
       "Published 2025-10; replaces 2020/2023 AHA special-circumstances guidance. PDF supplied by the clinical owner.",
+    readLevel: "fullText",
+  },
+  {
+    id: "local-ed-sedation-2021",
+    kind: "local",
+    title: "פרוטוקול שיכוך כאב וסדציה במטופל המונשם במלר״ד",
+    issuingBody: "מלר״ד — נוהל מחלקתי, גירסה 1",
+    year: 2021,
+    accessed: "2026-11-23",
+    editionNote:
+      "Version 1, 1/2021. Transcribed from a photo of the posted departmental protocol, supplied by the clinical owner on 2026-11-23.",
     readLevel: "fullText",
   },
 ];
