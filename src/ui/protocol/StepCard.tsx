@@ -96,7 +96,9 @@ export function StepCard({ step, number, drugNames }: Props) {
                       </>
                     )}
                   </td>
-                  <td className="py-1">{isolateNumbers(t.target)}</td>
+                  <td className="py-1">
+                    {/[֐-׿]/u.test(t.target) ? isolateNumbers(t.target) : `⁦${t.target}⁩`}
+                  </td>
                 </tr>
               ))}
             </tbody>

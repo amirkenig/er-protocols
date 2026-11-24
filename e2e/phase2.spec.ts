@@ -96,6 +96,11 @@ test("protocol pages have no unisolated ranges or comparison signs in Hebrew lin
   for (const id of ids) {
     await page.goto(`./#/p/${id}`);
     await page.locator("main").waitFor();
+    // <bdi dir="ltr"> runs are already ordered correctly and invisible to innerText-based
+    // checks, so blank them out like isolated runs.
+    await page.evaluate(() => {
+      for (const el of document.querySelectorAll('main bdi[dir="ltr"]')) el.textContent = "";
+    });
     const text = await page.locator("main").innerText();
     for (const line of text.split("\n")) {
       if (!/[֐-׿]/.test(line)) continue;

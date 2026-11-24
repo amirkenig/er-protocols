@@ -123,7 +123,7 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
               <li key={id}>
                 <p className="font-bold">{s.title}</p>
                 <p>
-                  {s.issuingBody} · {s.year} · {he.calc.readLevel[s.readLevel]}
+                  <bdi dir="ltr">{s.issuingBody}</bdi> · {s.year} · {he.calc.readLevel[s.readLevel]}
                 </p>
                 {s.url !== undefined && (
                   <a

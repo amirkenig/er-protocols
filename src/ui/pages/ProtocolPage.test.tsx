@@ -105,7 +105,7 @@ describe("ProtocolPage", () => {
   it("calcium chloride: text dose, no volume", () => {
     setup("cardiac-arrest");
     const c = within(card("calcium-chloride"));
-    expect(c.getByText((_, el) => el?.tagName === "P" && /10 מ״ל של calcium chloride 10%/.test((el.textContent ?? "").replace(/[⁦-⁩]/g, "")))).toBeInTheDocument();
+    expect(c.getByText((_, el) => el?.tagName === "P" && /10 מ״ל של calcium chloride 10%/.test(el.textContent.replace(/[⁦-⁩]/g, "")))).toBeInTheDocument();
     expect(c.queryByText("נפח לשאיבה", { exact: false })).toBeNull();
   });
 
