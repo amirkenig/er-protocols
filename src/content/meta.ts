@@ -1,4 +1,4 @@
-export const CONTENT_VERSION = "0.3.2";
+export const CONTENT_VERSION = "0.3.3";
 
 export const CLINICAL_CHANGELOG: readonly { version: string; date: string; changes: string[] }[] = [
   { version: "0.1.0", date: "2026-11-10", changes: ["מבנה ראשוני — ללא תוכן קליני"] },
@@ -35,6 +35,13 @@ export const CLINICAL_CHANGELOG: readonly { version: string; date: string; chang
     changes: [
       "נוהל מחלקתי חדש: שיכוך כאב וסדציה במטופל מונשם (פנטניל, פרופופול, קטמין) — מקושר מאינטובציה קשה ומטיפול לאחר ROSC",
       "כרטיסי תרופות מציגים הוראות הכנה כשהן קיימות",
+    ],
+  },
+  {
+    version: "0.3.3",
+    date: "2026-11-24",
+    changes: [
+      "קטמין בנוהל הסדציה: ריכוז בפועל 500 מ״ג ב-110 מ״ל (כ-4.5 מ״ג/מ״ל) — המחשבון מעודכן, ואזהרה שערכי המ״ל בטבלת הנוהל נותנים כ-9% פחות",
     ],
   },
 ];

@@ -28,10 +28,12 @@ describe("ventilated-sedation content", () => {
     // Table: fentanyl 50 mcg/h = 5 mL/h; propofol 100 mg/h = 10 mL/h; ketamine 100 mg/h = 20 mL/h.
     expect(50 / perMl("fentanyl-infusion")).toBe(5);
     expect(100 / perMl("propofol-infusion")).toBe(10);
-    expect(100 / perMl("ketamine-infusion")).toBe(20);
+    // Ketamine: actual preparation is 500 mg in 110 mL (ampoule into a 100 mL bag); the
+    // department table assumes 5 mg/mL, a ~9% difference that the card flags.
+    expect(perMl("ketamine-infusion")).toBeCloseTo(500 / 110, 10);
     // Boluses: fentanyl 50-100 mcg = 5-10 mL; propofol 50 mg = 5 mL; ketamine 50 mg = 10 mL.
     expect(100 / perMl("fentanyl-bolus")).toBe(10);
     expect(50 / perMl("propofol-bolus")).toBe(5);
-    expect(50 / perMl("ketamine-bolus")).toBe(10);
+    expect(perMl("ketamine-bolus")).toBeCloseTo(500 / 110, 10);
   });
 });

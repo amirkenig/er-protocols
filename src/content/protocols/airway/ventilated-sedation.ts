@@ -33,8 +33,9 @@ const PROPOFOL_CONC = {
 const KETAMINE_CONC = {
   amount: 500,
   unit: "mg" as const,
-  perVolumeMl: 100,
-  label: "500 mg / 100 mL (5 mg/mL)",
+  // Clinical owner 2026-11-24: the 500 mg / 10 mL ampoule is added to a full 100 mL bag (110 mL).
+  perVolumeMl: 110,
+  label: "500 mg / 110 mL (≈4.5 mg/mL)",
   isDefault: true,
 };
 
@@ -42,7 +43,8 @@ const FENTANYL_DILUTION =
   "לפי הנוהל המחלקתי: 200 מק״ג (2 אמפולות) למהול עם סליין במזרק 20, סה״כ 20 מ״ל.";
 const PROPOFOL_DILUTION =
   "לפי הנוהל המחלקתי: 60 מ״ל (3 אמפולות) במזרק, ללא מיהול — 600 מ״ג ב-60 מ״ל.";
-const KETAMINE_DILUTION = "לפי הנוהל המחלקתי: אמפולה של 10 מ״ל (500 מ״ג) ב-100 מ״ל סליין.";
+const KETAMINE_DILUTION =
+  "לפי הנוהל המחלקתי: אמפולה של 10 מ״ל (500 מ״ג) ב-100 מ״ל סליין — סה״כ 110 מ״ל, כ-4.5 מ״ג/מ״ל. ⚠ ערכי המ״ל בטבלת הנוהל מחושבים לפי 5 מ״ג/מ״ל ולכן נותנים כ-9% פחות מהמינון הכתוב (20 מ״ל לשעה ≈ 91 מ״ג לשעה; 10 מ״ל ≈ 45 מ״ג). המחשבון באפליקציה משתמש בריכוז בפועל.";
 
 const OPIOID_REASON = "אופיואיד בעירוי ובבולוס — סכנת דיכוי נשימתי ותת-לחץ דם; טיטרציה לפי הנוהל";
 const SEDATIVE_REASON = "תרופת הרדמה בעירוי ובבולוס — סכנת תת-לחץ דם; טיטרציה לפי הנוהל";
@@ -349,7 +351,7 @@ export const ventilatedSedation: ProtocolInput = {
       highAlertReason: SEDATIVE_REASON,
       citations: [qKetamineRow, qApprovedRange],
       verificationStatus: "unverified",
-      unverifiedReason: `${PENDING} The table's mL values imply 5 mg/mL (500 mg in 100 mL total); adding a 10 mL ampoule to a 100 mL bag gives 500 mg in 110 mL (about 4.5 mg/mL). Clinician to confirm the preparation.`,
+      unverifiedReason: `${PENDING} The department table's mL values assume 5 mg/mL; the actual preparation (500 mg ampoule into a 100 mL bag, confirmed by the clinical owner 2026-11-24) is 500 mg/110 mL ≈ 4.5 mg/mL, so the table mL values deliver about 9% less. The calculator uses the actual concentration; the table text is kept as written and flagged.`,
     },
     {
       id: "ketamine-bolus",
@@ -370,12 +372,13 @@ export const ventilatedSedation: ProtocolInput = {
         local("טבלת טיטרציה — סדציה קלה מדי/ לפני טרנספורט", 'תן/י בולוס 50 מ"ג פרופופול/ קטמין'),
       ],
       verificationStatus: "unverified",
-      unverifiedReason: `${PENDING} Volume uses 5 mg/mL as in the table (50 mg = 10 mL); see the preparation question on the ketamine drip.`,
+      unverifiedReason: `${PENDING} The department table's mL values assume 5 mg/mL; the actual preparation (500 mg ampoule into a 100 mL bag, confirmed by the clinical owner 2026-11-24) is 500 mg/110 mL ≈ 4.5 mg/mL, so the table mL values deliver about 9% less. The calculator uses the actual concentration; the table text is kept as written and flagged.`,
     },
   ],
   pitfalls: [
     "במטופל משותק, כאב וערות מתבטאים רק בסימנים אוטונומיים: דופק ולחץ דם גבוהים, הזעה, דמעות, אישונים מורחבים.",
     "הטווחים בטבלת התרופות הם הטווח המאושר להמשך טיפול ללא צורך בהוראת רופא. מעבר להם — נדרשת הוראת רופא.",
+    "קטמין: הדריפ מוכן מאמפולה של 500 מ״ג בשקית 100 מ״ל (110 מ״ל), כ-4.5 מ״ג/מ״ל. ערכי המ״ל בטבלת הנוהל מניחים 5 מ״ג/מ״ל ונותנים כ-9% פחות מהכתוב.",
     "בכל הורדת מינון סדציה — קשור את המטופל עד הגעה למצב יציב.",
   ],
   contraindications: [],
