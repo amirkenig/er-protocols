@@ -19,6 +19,7 @@
   --color-brand-stripe: var(--brand-stripe);
   --color-header: var(--header);
   --color-on-header: var(--on-header);
+  --color-logo-bg: var(--logo-bg);
   --color-danger: var(--danger);
   --color-danger-bg: var(--danger-bg);
   --color-danger-fg: var(--danger-fg);
@@ -65,6 +66,7 @@
   --brand-stripe: #94d4d2;
   --header: #94d4d2;
   --on-header: #0f3b44;
+  --logo-bg: #ffffff;
   --danger: #b3261e;
   --danger-bg: #fbe3e0;
   --danger-fg: #7a1712;
@@ -107,6 +109,7 @@
   --brand-stripe: #143b3e;
   --header: #143b3e;
   --on-header: #e0f5f2;
+  --logo-bg: #ffffff;
   --danger: #ff8a80;
   --danger-bg: #3b1214;
   --danger-fg: #ffd7d3;

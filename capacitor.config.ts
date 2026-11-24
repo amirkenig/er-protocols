@@ -2,7 +2,7 @@ import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
   appId: "com.erprotocols.app",
-  appName: "פרוטוקולים לרפואה דחופה",
+  appName: "מיון בכיס",
   webDir: "dist",
   android: {
     // All content is bundled in the APK; the app makes no network requests.

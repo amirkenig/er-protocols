@@ -1,5 +1,7 @@
 export const he = {
-  appTitle: "פרוטוקולים לרפואה דחופה",
+  appTitle: "מיון בכיס",
+  appSubtitle: "פרוטוקולים לרפואה דחופה",
+  logoAlt: "הלוגו של מיון בכיס",
   nav: {
     search: "חיפוש",
     settings: "הגדרות",

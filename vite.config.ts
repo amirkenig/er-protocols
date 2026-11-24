@@ -19,8 +19,8 @@ export default defineConfig({
         navigateFallback: "index.html",
       },
       manifest: {
-        name: "פרוטוקולים לרפואה דחופה",
-        short_name: "פרוטוקולים",
+        name: "מיון בכיס — פרוטוקולים לרפואה דחופה",
+        short_name: "מיון בכיס",
         lang: "he",
         dir: "rtl",
         display: "standalone",
@@ -28,7 +28,16 @@ export default defineConfig({
         scope: "./",
         background_color: "#f4f7f9",
         theme_color: "#94d4d2",
-        icons: [{ src: "icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
+        icons: [
+          { src: "icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+          { src: "icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+          {
+            src: "icon-maskable-512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
+        ],
       },
     }),
   ],

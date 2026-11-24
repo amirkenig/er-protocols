@@ -2,6 +2,7 @@ import { CLINICAL_CHANGELOG, CONTENT_VERSION, DEFAULT_POISON_CENTER } from "../.
 import { useSetting } from "../../state/settings";
 import { StatusBadge } from "../components/StatusBadge";
 import { he } from "../i18n/he";
+import logoUrl from "../../assets/logo.png";
 
 function telHref(p: string): string {
   return p.replace(/(?!^\+)[^\d]/g, "");
@@ -13,6 +14,13 @@ export function AboutPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">{he.about.title}</h1>
+      <div className="flex flex-col items-center gap-2 text-center">
+        <div className="flex size-32 items-center justify-center rounded-3xl bg-logo-bg shadow-card">
+          <img src={logoUrl} alt={he.logoAlt} className="size-28" />
+        </div>
+        <p className="text-2xl font-bold">{he.appTitle}</p>
+        <p className="text-muted">{he.appSubtitle}</p>
+      </div>
       <p>
         {he.about.appVersion}: {__APP_VERSION__}
       </p>

@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import { CONTENT_VERSION } from "../../content/meta";
 import { getSetting, setSetting } from "../../state/settings";
 import { he } from "../i18n/he";
-import { Stethoscope } from "../icons";
+import logoUrl from "../../assets/logo.png";
 import { btnPrimary } from "../styles";
 
 export function DisclaimerGate({ children }: { children: ReactNode }) {
@@ -19,9 +19,11 @@ export function DisclaimerGate({ children }: { children: ReactNode }) {
       className="fixed inset-0 z-50 overflow-y-auto bg-warm p-6"
     >
       <div className="mx-auto max-w-xl">
-        <div className="mx-auto mb-4 flex size-28 items-center justify-center rounded-full bg-soft text-accent">
-          <Stethoscope size={56} aria-hidden="true" />
+        <div className="mx-auto mb-3 flex size-32 items-center justify-center rounded-3xl bg-logo-bg shadow-card">
+          <img src={logoUrl} alt={he.logoAlt} className="size-28" />
         </div>
+        <p className="text-center text-2xl font-bold">{he.appTitle}</p>
+        <p className="mb-6 text-center text-muted">{he.appSubtitle}</p>
         <h1 id="disclaimer-title" className="mb-4 text-center text-2xl font-bold">
           {he.disclaimer.title}
         </h1>
