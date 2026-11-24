@@ -2,6 +2,7 @@ import type { z } from "zod";
 import type { GuidelineDifferenceSchema } from "../../content/schema";
 import { SourceSheet } from "../components/SourceSheet";
 import { he } from "../i18n/he";
+import { isolateNumbers } from "../text/bidi";
 import { pill } from "../styles";
 
 type GuidelineDifference = z.infer<typeof GuidelineDifferenceSchema>;
@@ -31,7 +32,7 @@ export function GuidelineComparison({ items }: { items: readonly GuidelineDiffer
                   : he.protocol.guidelineDiffers}
               </span>
             </div>
-            <p>{g.recommendation}</p>
+            <p>{isolateNumbers(g.recommendation)}</p>
             <SourceSheet citations={g.citations} />
           </li>
         ))}

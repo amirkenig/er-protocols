@@ -75,3 +75,33 @@ test("no page scrolls horizontally at phone width", async ({ page }) => {
     expect(scrollW, `horizontal overflow on ${route}`).toBeLessThanOrEqual(vw);
   }
 });
+
+test("protocol pages have no unisolated ranges or comparison signs in Hebrew lines", async ({
+  page,
+}) => {
+  await page.goto("./");
+  await acknowledge(page);
+  const ids = [
+    "cardiac-arrest",
+    "bradycardia",
+    "tachycardia",
+    "post-rosc-care",
+    "hyperkalaemia",
+    "traumatic-arrest",
+    "sepsis",
+    "difficult-intubation",
+    "decompensated-hf",
+    "ventilated-sedation",
+  ];
+  for (const id of ids) {
+    await page.goto(`./#/p/${id}`);
+    await page.locator("main").waitFor();
+    const text = await page.locator("main").innerText();
+    for (const line of text.split("\n")) {
+      if (!/[֐-׿]/.test(line)) continue;
+      const outside = line.replace(/[⁦⁧⁨][^⁩]*⁩/g, "");
+      const unsafe = /\d\s?[–—−]\s?\d/.test(outside) || /[≥≤<>]\s?\d/.test(outside);
+      expect(unsafe, `${id}: ${line}`).toBe(false);
+    }
+  }
+});

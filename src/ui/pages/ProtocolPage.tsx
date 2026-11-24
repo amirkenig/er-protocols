@@ -8,6 +8,7 @@ import { drugNeedsPatient } from "../../content/adapters";
 import { PatientFields } from "../components/PatientFields";
 import { StatusBadge } from "../components/StatusBadge";
 import { he } from "../i18n/he";
+import { isolateNumbers } from "../text/bidi";
 import { ChevronRight, Play } from "../icons";
 import { DrugDoseCard } from "../protocol/DrugDoseCard";
 import { scrollToId } from "../protocol/scroll";
@@ -42,7 +43,7 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
           <p className="font-bold">{he.protocol.findings}</p>
           <ul className="list-disc ps-6">
             {protocol.recognition.findings.map((f) => (
-              <li key={f}>{f}</li>
+              <li key={f}>{isolateNumbers(f)}</li>
             ))}
           </ul>
           {protocol.recognition.criteria.length > 0 && (
@@ -50,7 +51,7 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
               <p className="font-bold">{he.protocol.criteria}</p>
               <ul className="list-disc ps-6">
                 {protocol.recognition.criteria.map((c) => (
-                  <li key={c}>{c}</li>
+                  <li key={c}>{isolateNumbers(c)}</li>
                 ))}
               </ul>
             </>
@@ -87,7 +88,7 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
         <Section title={he.protocol.pitfalls}>
           <ul className="list-disc space-y-1 ps-6">
             {protocol.pitfalls.map((p) => (
-              <li key={p}>{p}</li>
+              <li key={p}>{isolateNumbers(p)}</li>
             ))}
           </ul>
         </Section>
@@ -96,7 +97,7 @@ function ProtocolBody({ protocol }: { protocol: Protocol }) {
         <Section title={he.protocol.contraindications}>
           <ul className="list-disc space-y-1 ps-6">
             {protocol.contraindications.map((p) => (
-              <li key={p}>{p}</li>
+              <li key={p}>{isolateNumbers(p)}</li>
             ))}
           </ul>
         </Section>
@@ -220,14 +221,14 @@ export function ProtocolPage() {
         <>
           <section className="space-y-2 rounded-2xl border-2 border-local bg-local-bg p-4">
             <h2 className="text-xl font-bold text-local">{he.protocol.localTitle}</h2>
-            <p>{local.text}</p>
+            <p>{isolateNumbers(local.text)}</p>
             {local.steps !== undefined && (
               <ol className="list-decimal space-y-1 ps-6">
                 {local.steps.map((s, i) => (
                   <li key={i}>
-                    <span className="font-bold">{s.action}</span>
+                    <span className="font-bold">{isolateNumbers(s.action)}</span>
                     {s.rationale !== undefined && (
-                      <span className="text-muted"> — {s.rationale}</span>
+                      <span className="text-muted"> — {isolateNumbers(s.rationale)}</span>
                     )}
                   </li>
                 ))}

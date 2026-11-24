@@ -4,6 +4,7 @@ import { SourceSheet } from "../components/SourceSheet";
 import { StatusBadge } from "../components/StatusBadge";
 import { GuidelineComparison } from "./GuidelineComparison";
 import { he } from "../i18n/he";
+import { isolateNumbers } from "../text/bidi";
 import { scrollToId } from "./scroll";
 import { card } from "../styles";
 
@@ -31,10 +32,10 @@ export function StepCard({ step, number, drugNames }: Props) {
             {number}
           </span>
         )}
-        <p className="text-lg font-bold">{step.action}</p>
+        <p className="text-lg font-bold">{isolateNumbers(step.action)}</p>
       </div>
       <p className="text-muted">
-        <span className="font-bold">{he.protocol.why}</span> {step.rationale}
+        <span className="font-bold">{he.protocol.why}</span> {isolateNumbers(step.rationale)}
       </p>
       {step.drugRefs.length > 0 && (
         <div className="flex flex-wrap gap-2">
@@ -64,7 +65,7 @@ export function StepCard({ step, number, drugNames }: Props) {
                 else void navigate(`/p/${dp.target.id}`);
               }}
             >
-              ← {dp.condition}
+              ← {isolateNumbers(dp.condition)}
             </button>
           ))}
         </div>
@@ -86,13 +87,16 @@ export function StepCard({ step, number, drugNames }: Props) {
             <tbody>
               {step.reassessmentTargets.map((t, i) => (
                 <tr key={i} className="border-t border-line">
-                  <td className="py-1">{t.param}</td>
                   <td className="py-1">
-                    <bdi dir="ltr">
-                      {t.target}
-                      {t.unit !== undefined ? ` ${t.unit}` : ""}
-                    </bdi>
+                    {isolateNumbers(t.param)}
+                    {t.unit !== undefined && (
+                      <>
+                        {" "}
+                        (<bdi dir="ltr">{t.unit}</bdi>)
+                      </>
+                    )}
                   </td>
+                  <td className="py-1">{isolateNumbers(t.target)}</td>
                 </tr>
               ))}
             </tbody>

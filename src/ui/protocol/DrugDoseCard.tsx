@@ -18,6 +18,7 @@ import { SourceSheet } from "../components/SourceSheet";
 import { StatusBadge } from "../components/StatusBadge";
 import { parsePositiveNumber } from "../forms/parse";
 import { he } from "../i18n/he";
+import { isolateNumbers } from "../text/bidi";
 import { Gauge, Play, Repeat, Syringe, TriangleAlert } from "../icons";
 import { btnOutline } from "../styles";
 
@@ -41,7 +42,8 @@ function DoseValue({ drug }: { drug: DrugEntry }) {
             <bdi dir="ltr">{`${fmt(d.amountPerKg)} ${d.unit}/kg`}</bdi>
           </p>
           <p className="text-sm">
-            {he.protocol.perKgBasis}: {weightBasisLabel(d.weightBasis)} — {d.weightBasisRationale}
+            {he.protocol.perKgBasis}: {weightBasisLabel(d.weightBasis)} —{" "}
+            {isolateNumbers(d.weightBasisRationale)}
           </p>
         </div>
       );
@@ -55,7 +57,9 @@ function DoseValue({ drug }: { drug: DrugEntry }) {
           {d.perKg && d.weightBasis !== undefined && (
             <p className="text-sm">
               {he.protocol.perKgBasis}: {weightBasisLabel(d.weightBasis)}
-              {d.weightBasisRationale !== undefined ? ` — ${d.weightBasisRationale}` : ""}
+              {d.weightBasisRationale !== undefined
+                ? ` — ${isolateNumbers(d.weightBasisRationale)}`
+                : ""}
             </p>
           )}
         </div>
@@ -77,14 +81,14 @@ function DoseValue({ drug }: { drug: DrugEntry }) {
               </span>
             )}
           </p>
-          {d.titration !== undefined && <p>{d.titration}</p>}
+          {d.titration !== undefined && <p>{isolateNumbers(d.titration)}</p>}
           <Link to="/calc/infusion" className="flex min-h-12 items-center text-accent underline">
             {he.protocol.openInfusionCalc}
           </Link>
         </div>
       );
     case "text":
-      return <p className="text-xl font-bold">{d.text}</p>;
+      return <p className="text-xl font-bold">{isolateNumbers(d.text)}</p>;
   }
 }
 
@@ -212,7 +216,7 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
             {he.protocol.highAlertHeader}
           </p>
           {drug.highAlertReason !== undefined && (
-            <p className="text-danger-fg">{drug.highAlertReason}</p>
+            <p className="text-danger-fg">{isolateNumbers(drug.highAlertReason)}</p>
           )}
         </div>
       )}
@@ -229,7 +233,7 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
             {he.explainer.openDrug}
           </Link>
         )}
-        <p className="mt-1">{drug.indication}</p>
+        <p className="mt-1">{isolateNumbers(drug.indication)}</p>
       </div>
       <DoseLine drug={drug} />
       {(drug.routes.length > 0 ||
@@ -265,7 +269,7 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
       {drug.dilution !== undefined && (
         <p className="rounded-xl bg-surface-2 p-3">
           <span className="font-bold">{he.protocol.preparation}: </span>
-          {drug.dilution}
+          {isolateNumbers(drug.dilution)}
         </p>
       )}
       {hasConc ? (
@@ -347,17 +351,17 @@ export function DrugDoseCard({ drug, protocolId }: { drug: DrugEntry; protocolId
           <ul className="list-disc ps-6">
             {drug.adjustments.renal !== undefined && (
               <li>
-                {he.protocol.renal}: {drug.adjustments.renal.text}
+                {he.protocol.renal}: {isolateNumbers(drug.adjustments.renal.text)}
               </li>
             )}
             {drug.adjustments.hepatic !== undefined && (
               <li>
-                {he.protocol.hepatic}: {drug.adjustments.hepatic.text}
+                {he.protocol.hepatic}: {isolateNumbers(drug.adjustments.hepatic.text)}
               </li>
             )}
             {drug.adjustments.elderly !== undefined && (
               <li>
-                {he.protocol.elderly}: {drug.adjustments.elderly.text}
+                {he.protocol.elderly}: {isolateNumbers(drug.adjustments.elderly.text)}
               </li>
             )}
           </ul>
